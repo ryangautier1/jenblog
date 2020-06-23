@@ -8,8 +8,9 @@ import Instagram from '../src/pages/Instagram';
 
 function App() {
   return (
+    <div>
+      <Header />
       <Router>
-        <Header />
         <Nav />
         <Switch>
           <Route exact path={["/"]}>
@@ -23,6 +24,8 @@ function App() {
           </Route>
         </Switch>
       </Router>
+    </div>
+
   );
 }
 
