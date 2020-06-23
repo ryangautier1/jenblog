@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 function Nav() {
+  // use state for setting active tab
   const [tabState, setTabState] = useState("youtube-tab");
 
+  // when the tab state is updated, change the active tab on the page
   useEffect(() => {
     document.getElementById("youtube-tab").classList.remove("border-t-2", "sm:border-b-2", "sm:border-t-0", "border-red-700");
     document.getElementById("instagram-tab").classList.remove("border-t-2", "sm:border-b-2", "sm:border-t-0", "border-red-700");
@@ -11,6 +13,7 @@ function Nav() {
     document.getElementById(tabState).classList.add("border-t-2", "sm:border-b-2", "sm:border-t-0", "border-red-700");
   },[tabState]);
 
+  // update tab state on click
   const handleTabChange = (newTab) => {
     setTabState(newTab);
   }
