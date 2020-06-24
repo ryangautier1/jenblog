@@ -3,7 +3,7 @@ import React from 'react';
 
 function Home() {
   return (
-    <div className="p-12">
+    <div className="my-5 mx-12">
       Home
     </div>
   )
