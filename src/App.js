@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from '../src/components/Header';
 import Nav from '../src/components/Nav';
+import Footer from '../src/components/Footer';
 import Home from '../src/pages/Home';
 import Youtube from '../src/pages/Youtube';
 import Instagram from '../src/pages/Instagram';
@@ -24,6 +25,7 @@ function App() {
             <Youtube />
           </Route>
         </Switch>
+        <Footer />
       </Router>
     </div>
 
