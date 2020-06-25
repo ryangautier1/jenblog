@@ -5,6 +5,16 @@ function Nav() {
   // use state for setting active tab
   const [tabState, setTabState] = useState("home-tab");
 
+  // on page load, set tab state based on current page
+  useEffect(()=> {
+    if (window.location.pathname === "/") {
+      setTabState("home-tab");
+    }
+    else {
+      setTabState(window.location.pathname.substring(1) + "-tab");
+    }
+  }, []);
+
   // when the tab state is updated, change the active tab on the page
   useEffect(() => {
     document.getElementById("youtube-tab").classList.remove("border-t-2", "sm:border-b-2", "sm:border-t-0", "border-red-700");
@@ -19,22 +29,25 @@ function Nav() {
     setTabState(newTab);
   }
 
+  const navStyle = "px-2 pb-2 pt-1 mx-2 text-md text-gray-700 cursor-pointer";
+  const navActive = "px-2 pb-2 pt-1 mx-2 text-md text-gray-700 cursor-pointer border-t-2 sm:border-b-2 sm:border-t-0 border-red-700";
+
   return (
     <nav className="min-w-full sm:px-12 sm:mt-3 fixed sm:static bottom-0 border-t sm:rounded-none sm:border-none">
       <ul className="flex flex-row justify-around sm:justify-start">
         
         <Link to="/">
-          <li className="px-2 pb-2 pt-1 mx-2 text-md text-gray-700 cursor-pointer" id="home-tab" onClick={() => {handleTabChange("home-tab")}}>Home</li>
+          <li className={navStyle} id="home-tab" onClick={() => {handleTabChange("home-tab")}}>Home</li>
         </Link>
 
         <Link to="/youtube">
-          <li className="px-2 pb-2 pt-1 mx-2 text-md text-gray-700 cursor-pointer" id="youtube-tab" onClick={() => {handleTabChange("youtube-tab")}}>Youtube</li>
+          <li className={navStyle} id="youtube-tab" onClick={() => {handleTabChange("youtube-tab")}}>Youtube</li>
         </Link>
 
         <Link to="/instagram">
-          <li className="px-2 pb-2 pt-1 mx-2 text-md text-gray-700 cursor-pointer" id="instagram-tab" onClick={() => {handleTabChange("instagram-tab")}}>Instagram</li>
+          <li className={navStyle} id="instagram-tab" onClick={() => {handleTabChange("instagram-tab")}}>Instagram</li>
         </Link>
-        
+
       </ul>
     </nav>
   )
