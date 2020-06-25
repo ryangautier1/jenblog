@@ -1,6 +1,7 @@
 import React from 'react';
 import youtubedata from '../data/youtube-data.json';
 
+
 // custom styling is in App.css
 
 function Youtube() {
@@ -13,7 +14,7 @@ function Youtube() {
             <br />
             <span className="text-gray-600 text-sm pl-2 sm:pl-0">{item.date}</span>
             <div className="yt-container mt-2">
-              <iframe src={item.video} title={item.title} frameBorder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowFullScreen={true}></iframe>
+              <iframe className="lozad" data-src={item.video} title={item.title} frameBorder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowFullScreen={true}></iframe>
             </div>
             <div>
               {item.caption}

@@ -24,6 +24,10 @@ footer {
   position: relative;
   overflow: hidden;
   padding-top: 57%;
+  background-image:url(../src/assets/loading.gif);
+  background-size: 150px;
+  background-repeat:no-repeat;
+  background-position: center;
 }
 
 iframe {
