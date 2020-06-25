@@ -6,8 +6,9 @@
   width: 100%;
   position: relative;
   overflow: hidden;
-  padding-top: 50%;
-  margin: 20px 0;
+  padding-top: 57%;
+  margin-bottom: 20px;
+  margin-top: 5px;
 }
 
 iframe {
