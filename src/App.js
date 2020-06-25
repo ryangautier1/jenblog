@@ -5,6 +5,7 @@ import Nav from '../src/components/Nav';
 import Home from '../src/pages/Home';
 import Youtube from '../src/pages/Youtube';
 import Instagram from '../src/pages/Instagram';
+import './App.css';
 
 function App() {
   return (

@@ -4,13 +4,15 @@ import youtubedata from '../data/youtube-data.json';
 
 function Youtube() {
   return (
-    <div className="my-5 mx-12">
+    <div className="my-5 mx-12 videos">
       {youtubedata.map(item => {
         return (
-          <div key={item.key}>
-            {item.date}
+          <div>
+          {item.date}
             <br />
-            <iframe width='843' height='474' src={item.video} frameBorder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowFullScreen={true}></iframe>"
+          <div key={item.title} className="yt-container">
+            <iframe src={item.video} title={item.title} frameBorder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowFullScreen={true}></iframe>
+          </div>
           </div>
         )
       })}
