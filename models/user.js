@@ -13,19 +13,7 @@ const userSchema = new Schema({
     trim: true,
     required: "Password is Required",
     validate: [({ length }) => length >= 6, "Password should be longer."]
-  },
-  monsters: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Monster"
-    }
-  ],
-  friends: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User"
-    }
-  ]
+  }
 })
 
 userSchema.pre("save", async function save(next) {
