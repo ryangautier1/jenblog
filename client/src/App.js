@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Header from '../src/components/Header';
-import Nav from '../src/components/Nav';
-import Footer from '../src/components/Footer';
-import Home from '../src/pages/Home';
-import Youtube from '../src/pages/Youtube';
-import Instagram from '../src/pages/Instagram';
+import Header from './components/Header';
+import Nav from './components/Nav';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Youtube from './pages/Youtube';
+import Instagram from './pages/Instagram';
 import './App.css';
 
 function App() {
