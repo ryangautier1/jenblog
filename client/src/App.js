@@ -7,22 +7,28 @@ import Home from './pages/Home';
 import Youtube from './pages/Youtube';
 import Instagram from './pages/Instagram';
 import './App.css';
+import Login from './pages/Login';
 
 function App() {
   return (
     <div>
       <Header />
       <Router>
-        <Nav />
         <Switch>
           <Route exact path={["/"]}>
+            <Nav />
             <Home />
           </Route>
           <Route exact path={["/instagram"]}>
+            <Nav />
             <Instagram />
           </Route>
           <Route exact path={["/youtube"]}>
+            <Nav />
             <Youtube />
+          </Route>
+          <Route exact path={["/admin"]}>
+            <Login />
           </Route>
         </Switch>
         <Footer />
