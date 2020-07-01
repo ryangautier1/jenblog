@@ -2,7 +2,7 @@ import React from 'react';
 
 
 function Video(props) {
-  const { title, date, video, caption } = props;
+  const { title, date, video, caption, comments} = props;
   return (
 
     <div key={title} className="mb-5 relative">
@@ -13,9 +13,21 @@ function Video(props) {
       <div className="yt-container mt-2">
         <iframe src={video} title={title} frameBorder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowFullScreen={true}></iframe>
       </div>
-      <div>
+      <div className="mt-1 mb-3">
         {caption}
       </div>
+      <hr />
+      {comments ?
+        <div className="border rounded bg-black opacity-50 mx-4 mb-2 mt-5 p-2">
+        {comments.comments.map(item => {
+          return(
+            <div className="text-md text-gray-100 mb-3">
+            <span className="text-lg">{item.author}</span><br />
+              {item.comment}
+            </div>
+          )
+        })}
+      </div> : <div>No comments</div>}
     </div>
   )
 
