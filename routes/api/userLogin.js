@@ -2,7 +2,7 @@ const db = require("../../models");
 const passport = require("../../config/passport");
 const router = require("express").Router();
 
-router.post("/login", passport.authenticate("local"), function(req, res) {
+router.post("/login", passport.authenticate("userlocal"), function(req, res) {
   // console.log(req.body);
   res.json(req.user);
 });

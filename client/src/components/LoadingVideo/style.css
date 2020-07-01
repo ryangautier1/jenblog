@@ -1,0 +1,28 @@
+.loading-caption {
+  width: 70%;
+  height: 150px;
+  background-color: #b4b4b4;
+}
+
+.loading-video {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding-top: 57%;
+  background-image:url(../../assets/loading.gif);
+  background-size: 250px;
+  background-repeat:no-repeat;
+  background-position: center;
+}
+
+.loading-title {
+  width: 200px;
+  height: 1.5rem;
+  background-color: #b4b4b4;
+}
+
+.loading-title {
+  width: 100px;
+  height: 1.5rem;
+  background-color: #b4b4b4;
+}
