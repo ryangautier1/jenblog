@@ -15,6 +15,18 @@ function Youtube() {
 
   return (
     <main className="mt-8 mx-1 pb-2 sm:mx-16 videos">
+
+    {true ? 
+      <div class="text-center">
+        <button
+          className="mb-3 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+          Add new
+        </button>
+        <hr className="mb-3" />
+      </div>
+      : <div></div>}
+
+
       {youtubedata.map(item => {
         if (commentIds.includes(item._id)) {
           let comments = commentdata.filter(comment => comment._id === item._id);
