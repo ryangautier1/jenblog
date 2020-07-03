@@ -35,7 +35,7 @@ function Youtube() {
     <div>
       <div className="text-center">
         <button
-          className="mb-3 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+          className="mb-3 bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           id="youtube-modal-open"
           onClick={() => toggleModal("youtube-modal")}>
           Add new
@@ -50,7 +50,7 @@ function Youtube() {
       <div id="youtube-modal"
       className="fixed modal right-0 left-0 mx-auto border rounded-lg hidden bg-white z-20 p-5">
         <form>
-          <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text" />
+          <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200" type="text" />
 
         </form>
         <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

@@ -29,10 +29,10 @@ function Nav() {
     setTabState(newTab);
   }
 
-  const navStyle = "px-2 pb-2 mx-2 pt-1 text-md text-gray-700 cursor-pointer";
+  const navStyle = "px-2 pb-2 mx-2 pt-1 text-md text-gray-300 cursor-pointer";
 
   return (
-    <nav className="min-w-full sm:px-12 sm:mt-3 fixed sm:static bottom-0 sm:rounded-none sm:border-none bg-white sm:bg-transparent z-10">
+    <nav className="min-w-full my-nav sm:px-12 sm:mt-3 fixed sm:static bottom-0 sm:rounded-none sm:border-none sm:bg-transparent border-t border-blue-700 z-10">
       <ul className="flex flex-row justify-around sm:justify-start">
         
         <Link to="/">

@@ -58,4 +58,11 @@ iframe {
     max-height: unset;
     margin: 0 20px;
   }
+
+}
+
+@media screen and (max-width: 640px) {
+  .my-nav {
+    background-color: #1d3557;
+  }
 }
