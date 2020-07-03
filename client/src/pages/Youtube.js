@@ -9,6 +9,21 @@ const Video = lazy(() => import('../components/Video'));
 
 // custom styling is in App.css
 function Youtube() {
+
+  let modalOpen = true;
+  const toggleModal = (target) => {
+    modalOpen = !modalOpen;
+    if (modalOpen) {
+      document.getElementById(target).classList.add("hidden");
+      document.getElementById(target + "-bg").classList.add("hidden");
+    } else {
+      document.getElementById(target).classList.remove("hidden");
+      document.getElementById(target + "-bg").classList.remove("hidden");
+    }
+
+  }
+
+  
   let commentIds = []
   commentdata.map(item => {commentIds.push(item._id)});
   console.log(commentIds);
@@ -17,14 +32,30 @@ function Youtube() {
     <main className="mt-8 mx-1 pb-2 sm:mx-16 videos">
 
     {true ? 
-      <div class="text-center">
+    <div>
+      <div className="text-center">
         <button
-          className="mb-3 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+          className="mb-3 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+          id="youtube-modal-open"
+          onClick={() => toggleModal("youtube-modal")}>
           Add new
         </button>
-        <hr className="mb-3" />
       </div>
-      : <div></div>}
+      <hr className="mb-3" />
+
+      {/* modal background here */}
+      <div className="modal-bg hidden opacity-50 z-10 bg-black fixed top-0 left-0" id="youtube-modal-bg"></div>
+      
+      {/* modal here */}
+      <div id="youtube-modal"
+      className="fixed modal right-0 left-0 mx-auto border rounded-lg hidden bg-white z-20">
+        <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => toggleModal("youtube-modal")}>
+          Close</button>
+      </div>
+
+  </div>
+  : <div></div>}
 
 
       {youtubedata.map(item => {
