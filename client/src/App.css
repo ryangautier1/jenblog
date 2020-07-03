@@ -42,9 +42,8 @@ iframe {
 }
 
 .modal {
-  transition: opacity 0.25s ease;
   max-width: 70vw;
-  max-height: 30vh;
+  top: 10%;
 }
 
 .modal-bg {
@@ -52,10 +51,13 @@ iframe {
   min-height: 100vh;
 }
 
+.comments-section {
+  background-color: #0f1b2c;
+}
+
 @media screen and (max-width: 800px) {
   .modal {
     max-width: unset;
-    max-height: unset;
     margin: 0 20px;
   }
 
@@ -63,6 +65,6 @@ iframe {
 
 @media screen and (max-width: 640px) {
   .my-nav {
-    background-color: #1d3557;
+    background-color: #0f1b2c;
   }
 }
