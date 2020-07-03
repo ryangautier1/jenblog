@@ -1,3 +1,5 @@
 module.exports = {
-  User: require("./user")
+  User: require("./user"),
+  Youtube: require("./youtubeModel"),
+  Comment: require("./comment")
 };
