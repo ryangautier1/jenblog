@@ -6,7 +6,7 @@ const youtubeSchema = new Schema({
   date: { type: Date, required: true},
   link: { type: String, required: true },
   caption: { type: String, required: true}
-})
+});
 
 const Youtube = mongoose.model("Youtube", youtubeSchema);
 

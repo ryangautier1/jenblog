@@ -18,3 +18,5 @@ router
 router
     .route("/:video")
     .get(ytcommentController.getCommentsByVideo);
+
+module.exports = router;
