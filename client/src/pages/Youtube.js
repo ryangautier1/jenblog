@@ -1,15 +1,17 @@
-import React, { lazy, Suspense } from 'react';
-import youtubedata from '../data/youtube-data.json';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
+// import youtubedata from '../data/youtube-data.json';
 import commentdata from '../data/comment-data.json';
 import LoadingVideo from '../components/LoadingVideo';
+import API from '../utils/API';
 
 const Video = lazy(() => import('../components/Video'));
 
-
-
 // custom styling is in App.css
 function Youtube() {
-
+const [youtubedata, setYoutubeData] = useState([]);
+useEffect(() => {
+  API.getYtVideos().then(res => {setYoutubeData(res.data)});
+},[])
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
