@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useEffect, useRef } from 'react';
 // import youtubedata from '../data/youtube-data.json';
 import commentdata from '../data/comment-data.json';
 import LoadingVideo from '../components/LoadingVideo';
@@ -8,17 +8,33 @@ const Video = lazy(() => import('../components/Video'));
 
 // custom styling is in App.css
 function Youtube() {
+
+// set up state for storing video data
 const [youtubedata, setYoutubeData] = useState([]);
+// gather video data on load
 useEffect(() => {
   API.getYtVideos().then(res => {setYoutubeData(res.data)});
-},[])
+},[]);
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
+// set up useRef for form values
+const titleRef = useRef();
+const videoRef = useRef();
+const dateRef = useRef();
+const captionRef = useRef();
+
+const handleFormSubmit = (event) => {
+  event.preventDefault();
+  let formContent = {
+    title: titleRef.current.value,
+    date: dateRef.current.value,
+    video: videoRef.current.value,
+    caption: captionRef.current.value
   }
+  console.log(formContent);
+}
 
-  let modalOpen = true;
-  const toggleModal = (target) => {
+let modalOpen = true;
+const toggleModal = (target) => {
     modalOpen = !modalOpen;
     if (modalOpen) {
       document.getElementById(target).classList.add("hidden");
@@ -27,7 +43,6 @@ useEffect(() => {
       document.getElementById(target).classList.remove("hidden");
       document.getElementById(target + "-bg").classList.remove("hidden");
     }
-
   }
 
   
@@ -60,18 +75,22 @@ useEffect(() => {
           <label htmlFor="#titleinput">Title</label>
           <input className="mb-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200" 
             type="text"
-            id="titleinput" />
+            id="titleinput"
+            ref={titleRef} />
             <label htmlFor="#dateinput">Date Uploaded</label>
           <input className="mb-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200" 
             type="date"
-            id="dateinput" />
+            id="dateinput"
+            ref={dateRef} />
           <label htmlFor="#videolink">Link to video</label>
           <input className="mb-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200" 
             type="text"
-            id="videolink" />
+            id="videolink"
+            ref={videoRef} />
             <label htmlFor="#vaptioninput">Caption</label>
           <textarea className="mb-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200" 
-            id="captioninput" />
+            id="captioninput"
+            ref={captionRef} />
         </form>
         <div className="flex flex-row">
           <button type="submit" className="mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
