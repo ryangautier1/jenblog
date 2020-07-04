@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const commentSchema = new Schema({
-  postId: 
+const ytcommentSchema = new Schema({
+  video: 
     {
       type: Schema.Types.ObjectId,
       ref: "Youtube"
@@ -16,6 +16,6 @@ const commentSchema = new Schema({
   ]
 })
 
-const Comment = mongoose.model("Comment", commentSchema);
+const ytComment = mongoose.model("ytComment", ytcommentSchema);
 
-module.exports = Comment;
+module.exports = ytComment;
