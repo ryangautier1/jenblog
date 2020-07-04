@@ -9,5 +9,8 @@ export default {
     },
     getYtVideos: function() {
         return axios.get("/api/youtube");
+    },
+    addVideo: function(data) {
+        return axios.post("/api/youtube", data);
     }
 };

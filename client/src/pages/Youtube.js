@@ -1,5 +1,4 @@
 import React, { lazy, Suspense, useState, useEffect, useRef } from 'react';
-// import youtubedata from '../data/youtube-data.json';
 import commentdata from '../data/comment-data.json';
 import LoadingVideo from '../components/LoadingVideo';
 import API from '../utils/API';
@@ -7,6 +6,7 @@ import API from '../utils/API';
 const Video = lazy(() => import('../components/Video'));
 
 // custom styling is in App.css
+
 function Youtube() {
 
 // set up state for storing video data
@@ -29,8 +29,17 @@ const handleFormSubmit = (event) => {
     date: dateRef.current.value,
     video: videoRef.current.value,
     caption: captionRef.current.value
+  };
+  // Need to add validateForm()
+  // add video to db
+  API.addVideo(formContent).then(() => {
+    // update page, clear and close modal
+    API.getYtVideos().then(res => {setYoutubeData(res.data)});
+    modalOpen = !modalOpen
+    // clearModal();
   }
-  console.log(formContent);
+    
+  ).catch(err => console.log(err));
 }
 
 let modalOpen = true;
