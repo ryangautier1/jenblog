@@ -35,8 +35,8 @@ const handleFormSubmit = (event) => {
   API.addVideo(formContent).then(() => {
     // update page, clear and close modal
     API.getYtVideos().then(res => {setYoutubeData(res.data)});
-    modalOpen = !modalOpen
-    // clearModal();
+    clearModal();
+    toggleModal("youtube-modal")
   }
     
   ).catch(err => console.log(err));
@@ -53,6 +53,13 @@ const toggleModal = (target) => {
       document.getElementById(target + "-bg").classList.remove("hidden");
     }
   }
+
+const clearModal = () => {
+  titleRef.current.value = "";
+  dateRef.current.value = "";
+  videoRef.current.value = "";
+  captionRef.current.value = "";
+}
 
   
   let commentIds = []
