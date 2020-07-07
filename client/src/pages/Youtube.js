@@ -13,7 +13,7 @@ function Youtube() {
 const [youtubedata, setYoutubeData] = useState([]);
 // gather video data on load
 useEffect(() => {
-  API.getYtVideos().then(res => {setYoutubeData(res.data)});
+  updatePage();
 },[]);
 
 // set up useRef for form values
@@ -21,6 +21,29 @@ const titleRef = useRef();
 const videoRef = useRef();
 const dateRef = useRef();
 const captionRef = useRef();
+
+// this function gets video data from db, sorts by date, formats the dates and updates the state with the result
+const updatePage = () => {
+  API.getYtVideos().then(res => {
+    // sort the result by date descending
+    res.data.sort(function (a,b) {
+      return new Date(b.date) - new Date(a.date);
+    });
+    // put the dates in mm-dd-yyyy format
+    formatDates(res.data);
+    // update the state
+    setYoutubeData(res.data);
+  });
+}
+
+// this function takes an array of objects each with a date key and formats the dates into mm-dd-yyyy format
+const formatDates = (data) => {
+  for (let i=0; i<data.length; i++) {
+    let dateArr = data[i].date.split("-");
+    dateArr = [dateArr[1], dateArr[2].substring(0,2), dateArr[0]];
+    data[i].date = dateArr.join("-")
+  }
+}
 
 const handleFormSubmit = (event) => {
   event.preventDefault();
@@ -34,7 +57,7 @@ const handleFormSubmit = (event) => {
   // add video to db
   API.addVideo(formContent).then(() => {
     // update page, clear and close modal
-    API.getYtVideos().then(res => {setYoutubeData(res.data)});
+    updatePage();
     clearModal();
     toggleModal("youtube-modal")
   }
@@ -54,6 +77,7 @@ const toggleModal = (target) => {
     }
   }
 
+// this function clears the contents of the form in the modal
 const clearModal = () => {
   titleRef.current.value = "";
   dateRef.current.value = "";

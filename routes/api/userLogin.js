@@ -8,7 +8,6 @@ router.post("/login", passport.authenticate("userlocal"), function(req, res) {
 });
 
 router.post("/signup", function(req, res) {
-  console.log(req.body);
   db.User.create({
     username: req.body.username,
     password: req.body.password
