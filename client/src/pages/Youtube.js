@@ -34,7 +34,9 @@ const updatePage = () => {
       });
 
     // put the dates in mm-dd-yyyy format
-    formatDates(vids.data);
+    formatDates(vids.data, "video");
+    formatDates(comments.data, "comment");
+
 
     // update the state
     setYoutubeData(vids.data);
@@ -45,11 +47,22 @@ const updatePage = () => {
 }
 
 // this function takes an array of objects each with a date key and formats the dates into mm-dd-yyyy format
-const formatDates = (data) => {
-  for (let i=0; i<data.length; i++) {
-    let dateArr = data[i].date.split("-");
-    dateArr = [dateArr[1], dateArr[2].substring(0,2), dateArr[0]];
-    data[i].date = dateArr.join("-")
+const formatDates = (data, type) => {
+  if (type === "video"){
+    for (let i=0; i<data.length; i++) {
+      let dateArr = data[i].date.split("-");
+      dateArr = [dateArr[1], dateArr[2].substring(0,2), dateArr[0]];
+      data[i].date = dateArr.join("-")
+    }
+  }
+  else {
+    for (let i=0; i<data.length; i++) {
+      for (let j=0; j<data[i].comments.length; j++) {
+        let dateArr = data[i].comments[j].date.split("-");
+        dateArr = [dateArr[1], dateArr[2].substring(0,2), dateArr[0]];
+        data[i].comments[j].date = dateArr.join("-")
+      }
+    } 
   }
 }
 
