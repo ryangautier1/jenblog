@@ -1,5 +1,4 @@
 import React, { lazy, Suspense, useState, useEffect, useRef } from 'react';
-// import commentdata from '../data/comment-data.json';
 import LoadingVideo from '../components/LoadingVideo';
 import API from '../utils/API';
 
@@ -12,7 +11,6 @@ function Youtube() {
 // set up state for storing video data
 const [youtubedata, setYoutubeData] = useState([]);
 const [commentdata, setCommentData] = useState([]);
-const [commentIdState, setCommentIdState] = useState([]);
 
 // gather video data on load
 useEffect(() => {
@@ -29,12 +27,6 @@ const captionRef = useRef();
 const updatePage = () => {
   API.getYtVideos().then(vids => {
     API.getYtComments().then(comments => {  
-
-    // build array of comment ids
-    let commentIds = []
-    comments.data.map(item => {return commentIds.push(item._id)});
-    // update state with comment id array
-    setCommentIdState({commentIds});
 
     // sort the result by date descending
     vids.data.sort(function (a,b) {
@@ -163,20 +155,19 @@ const clearModal = () => {
 
 
       {youtubedata.map(item => {
+        // check if video has comments
         let comments = commentdata.filter(comment => comment.video === item._id);
           if (comments) {
-            console.log(comments[0]);
             return (
-              <Suspense fallback={<LoadingVideo />} key={item.title}>
-                <Video title={item.title} date={item.date} video={item.video} caption={item.caption} comments={comments[0]} />
+              <Suspense fallback={<LoadingVideo />} key={item._id}>
+                <Video id={item._id} title={item.title} date={item.date} video={item.video} caption={item.caption} comments={comments[0]} />
               </Suspense>
             )
           }
-        
         else {
           return (
-            <Suspense fallback={<LoadingVideo />} key={item.title}>
-              <Video title={item.title} date={item.date} video={item.video} caption={item.caption} />
+            <Suspense fallback={<LoadingVideo />} key={item._id}>
+              <Video id={item._id} title={item.title} date={item.date} video={item.video} caption={item.caption} />
             </Suspense>
           )
         }

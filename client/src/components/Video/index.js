@@ -2,10 +2,10 @@ import React from 'react';
 
 
 function Video(props) {
-  const { title, date, video, caption, comments} = props;
+  const { id, title, date, video, caption, comments} = props;
   return (
 
-    <div key={title} className="mb-5 relative text-gray-300">
+    <div key={id} className="mb-5 relative text-gray-300">
       {/* change true to check if user is logged in */}
       {true ? <div className="absolute top-0 right-0 w-8 h-8 text-lg text-center text-white font-bold opacity-50 bg-black rounded-full cursor-pointer">X</div> : <div></div>}
       <span className="text-lg sm:text-xl pl-2 sm:pl-0">{title}</span>
@@ -28,7 +28,7 @@ function Video(props) {
         <div className="rounded comments-section mx-4 mb-2 mt-5 p-2">
         {comments.comments.map(item => {
           return(
-            <div className="text-md text-gray-200 mb-3">
+            <div className="text-md text-gray-200 mb-3" key={id + item.comment + item.author}>
             <span className="font-bold mr-2">{item.author}</span>
             <span className="text-sm">{item.date}</span>
             <br />
