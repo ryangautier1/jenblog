@@ -11,10 +11,12 @@ function Youtube() {
 // set up state for storing video data
 const [youtubedata, setYoutubeData] = useState([]);
 const [commentdata, setCommentData] = useState([]);
+const [jenBlogName, setJenBlogName] = useState();
 
 // gather video data on load
 useEffect(() => {
   updatePage();
+  setJenBlogName(localStorage.getItem("jenBlogName"));
 },[]);
 
 // set up useRef for form values
@@ -42,17 +44,19 @@ const updatePage = () => {
     setYoutubeData(vids.data);
     setCommentData(comments.data);
     })
-    
+  
   });
 }
 
 // this function takes an array of objects each with a date key and formats the dates into mm-dd-yyyy format
+// for type === video, the dates are at data[i].date
+// for type === comments, the dates are at data[i].comments[j].date
 const formatDates = (data, type) => {
   if (type === "video"){
     for (let i=0; i<data.length; i++) {
       let dateArr = data[i].date.split("-");
       dateArr = [dateArr[1], dateArr[2].substring(0,2), dateArr[0]];
-      data[i].date = dateArr.join("-")
+      data[i].date = dateArr.join("-");
     }
   }
   else {
@@ -60,7 +64,7 @@ const formatDates = (data, type) => {
       for (let j=0; j<data[i].comments.length; j++) {
         let dateArr = data[i].comments[j].date.split("-");
         dateArr = [dateArr[1], dateArr[2].substring(0,2), dateArr[0]];
-        data[i].comments[j].date = dateArr.join("-")
+        data[i].comments[j].date = dateArr.join("-");
       }
     } 
   }
@@ -106,7 +110,16 @@ const clearModal = () => {
   captionRef.current.value = "";
 }
 
-  
+const removeName = () => {
+  localStorage.removeItem("jenBlogName");
+}
+
+const updateName = (event, input) => {
+  event.preventDefault();
+  if (input !== "") {
+    localStorage.setItem("jenBlogName", input);
+  }
+}
   
   
 
@@ -173,14 +186,14 @@ const clearModal = () => {
           if (comments) {
             return (
               <Suspense fallback={<LoadingVideo />} key={item._id}>
-                <Video id={item._id} title={item.title} date={item.date} video={item.video} caption={item.caption} comments={comments[0]} />
+                <Video jenBlogName={jenBlogName} id={item._id} updateName={updateName} removeName={removeName} title={item.title} date={item.date} video={item.video} caption={item.caption} comments={comments[0]} />
               </Suspense>
             )
           }
         else {
           return (
             <Suspense fallback={<LoadingVideo />} key={item._id}>
-              <Video id={item._id} title={item.title} date={item.date} video={item.video} caption={item.caption} />
+              <Video jenBlogName={jenBlogName} id={item._id} updateName={updateName} removeName={removeName} title={item.title} date={item.date} video={item.video} caption={item.caption} />
             </Suspense>
           )
         }

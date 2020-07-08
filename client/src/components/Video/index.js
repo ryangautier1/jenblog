@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 
 function Video(props) {
-  const { id, title, date, video, caption, comments} = props;
+  const { jenBlogName, id, title, date, video, caption, comments, removeName, updateName} = props;
+  const nameRef = useRef();
+
+
   return (
 
     <div key={id} className="mb-5 relative text-gray-300">
@@ -18,11 +21,39 @@ function Video(props) {
         {caption}
       </div>
       <hr />
-      <form className="flex flex-row mt-3">
-        <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-400" type="text" placeholder="Add comment..." />
-        <button className="ml-2 shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-          Submit
-        </button>
+      <form className="flex flex-col mt-3">
+        {jenBlogName ? 
+        <div>
+          <div className="flex flex-row">
+            <div>Hello, {jenBlogName}!</div>
+            <div className="ml-5 text-gray-500 cursor-pointer" onClick={removeName}>Not you?</div>
+          </div>
+          <div className="flex flex-row mt-1">
+            <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-400" type="text" placeholder="Add comment..." />
+            <button className="ml-2 shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+              Submit
+            </button>
+          </div>
+        </div>
+         : 
+        <div>
+          <p className="mb-1">Would you like to add a comment? Start by entering your name:</p>
+          <div className="flex flex-row">
+            <input className="bg-gray-200 appearance-none border-2 border-gray-200 w-full rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
+            type="text"
+            placeholder="Your name here..." 
+            ref={nameRef} />
+              <button className="ml-2 shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+               type="submit"
+               onClick={(event) => {updateName(event, nameRef.current.value)}}>
+                Submit
+              </button>
+          </div>
+          
+        </div>
+        }
+         
+        
       </form>
       {comments ?
         <div className="rounded comments-section mx-4 mb-2 mt-5 p-2">
