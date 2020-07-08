@@ -24,15 +24,15 @@ const captionRef = useRef();
 
 // this function gets video data from db, sorts by date, formats the dates and updates the state with the result
 const updatePage = () => {
-  API.getYtVideos().then(res => {
+  API.getYtVideos().then(vids => {
     // sort the result by date descending
-    res.data.sort(function (a,b) {
+    vids.data.sort(function (a,b) {
       return new Date(b.date) - new Date(a.date);
     });
     // put the dates in mm-dd-yyyy format
-    formatDates(res.data);
+    formatDates(vids.data);
     // update the state
-    setYoutubeData(res.data);
+    setYoutubeData(vids.data);
   });
 }
 
@@ -88,7 +88,6 @@ const clearModal = () => {
   
   let commentIds = []
   commentdata.map(item => {return commentIds.push(item._id)});
-  console.log(commentIds);
 
   return (
     <main className="mt-8 mx-1 pb-2 sm:mx-16 videos">
@@ -127,7 +126,7 @@ const clearModal = () => {
             type="text"
             id="videolink"
             ref={videoRef} />
-            <label htmlFor="#vaptioninput">Caption</label>
+            <label htmlFor="#captioninput">Caption</label>
           <textarea className="mb-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200" 
             id="captioninput"
             ref={captionRef} />
