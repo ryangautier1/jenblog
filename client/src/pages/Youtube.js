@@ -180,14 +180,14 @@ const updateComments = (video, data, commentRef) => {
           if (comments) {
             return (
               <Suspense fallback={<LoadingVideo />} key={item._id}>
-                <Video id={item._id} updateComments={updateComments} updatePage={updatePage} title={item.title} date={item.date} video={item.video} caption={item.caption} comments={comments[0]} />
+                <Video id={item._id} toggleModal={toggleModal} updateComments={updateComments} updatePage={updatePage} title={item.title} date={item.date} video={item.video} caption={item.caption} comments={comments[0]} />
               </Suspense>
             )
           }
         else {
           return (
             <Suspense fallback={<LoadingVideo />} key={item._id}>
-              <Video id={item._id} updatePage={updatePage} title={item.title} date={item.date} video={item.video} caption={item.caption} />
+              <Video id={item._id} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} video={item.video} caption={item.caption} />
             </Suspense>
           )
         }

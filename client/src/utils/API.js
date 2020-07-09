@@ -24,5 +24,11 @@ export default {
     },
     updateYtComments: function(video, data) {
         return axios.put("/api/ytcomment/" + video, data);
+    },
+    deleteVideo: function(id) {
+        return axios.delete("/api/youtube/" + id);
+    },
+    deleteComments: function(id) {
+        return axios.delete("/api/ytcomment/delete/" + id);
     }
 };
