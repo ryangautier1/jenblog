@@ -119,7 +119,7 @@ function Video(props) {
         <div className="rounded comments-section mx-4 mb-2 mt-5 p-2">
         {comments.comments.map(item => {
           return(
-            <div className="text-md text-gray-200 mb-3" key={id + item.comment + item.author}>
+            <div className="text-md text-gray-200 mb-3" key={item._id}>
             <span className="font-bold mr-2">{item.author}</span>
             <span className="text-sm">{item.date}</span>
             <br />

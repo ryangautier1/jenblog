@@ -137,7 +137,7 @@ const updateComments = (video, data, commentRef) => {
       
       {/* modal here */}
       <div id="youtube-modal"
-      className="fixed modal right-0 left-0 mx-auto border rounded-lg hidden bg-white z-20 p-5">
+      className="fixed modal right-0 left-0 mx-auto border hidden bg-white z-20 p-5">
         <form className="mb-4">
           <label htmlFor="#titleinput">Title</label>
           <input className="mb-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200" 
