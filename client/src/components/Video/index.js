@@ -1,10 +1,54 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import API from '../../utils/API';
 
 
 function Video(props) {
-  const { jenBlogName, id, title, date, video, caption, comments, removeName, updateName} = props;
+  const { id, title, date, video, caption, comments, updatePage } = props;
+  const [jenBlogName, setJenBlogName] = useState(localStorage.getItem("jenBlogName"));
   const nameRef = useRef();
+  const commentRef = useRef();
 
+  const removeName = () => {
+    // clear local storage
+    localStorage.removeItem("jenBlogName");
+    // update state
+    setJenBlogName(localStorage.getItem("jenBlogName"));
+  }
+  
+  const updateName = (event, input) => {
+    event.preventDefault();
+    if (input !== "") {
+      // update local storage
+      localStorage.setItem("jenBlogName", input);
+      // update state
+      setJenBlogName(localStorage.getItem("jenBlogName"));
+      // clear text field
+      nameRef.current.value = "";
+    }
+  }
+
+  const handleCommentSubmit = (event, id) => {
+    event.preventDefault();
+    let today = new Date();
+    let date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
+    // console.log(commentRef.current.value, id, jenBlogName, date);
+
+    // if there are no comments yet 
+    if (!comments) {
+      API.postNewComment(
+        {
+          video: id,
+          comments: [
+            {
+              author: jenBlogName,
+              date: date,
+              comment: commentRef.current.value
+            }
+          ]
+        }
+      ).then(updatePage).catch(err => console.log(err));
+    }
+  }
 
   return (
 
@@ -29,8 +73,13 @@ function Video(props) {
             <div className="ml-5 text-gray-500 cursor-pointer" onClick={removeName}>Not you?</div>
           </div>
           <div className="flex flex-row mt-1">
-            <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-400" type="text" placeholder="Add comment..." />
-            <button className="ml-2 shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+            <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-400"
+            type="text"
+            placeholder="Add comment..."
+            ref={commentRef}/>
+            <button className="ml-2 shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+            type="submit"
+            onClick={(event) => {handleCommentSubmit(event, id)}}>
               Submit
             </button>
           </div>

@@ -18,5 +18,8 @@ export default {
     },
     getYtComments: function() {
         return axios.get("/api/ytcomment");
+    },
+    postNewComment: function(data) {
+        return axios.post("/api/ytcomment", data);
     }
 };

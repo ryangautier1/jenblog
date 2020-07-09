@@ -11,12 +11,12 @@ function Youtube() {
 // set up state for storing video data
 const [youtubedata, setYoutubeData] = useState([]);
 const [commentdata, setCommentData] = useState([]);
-const [jenBlogName, setJenBlogName] = useState();
+// const [jenBlogName, setJenBlogName] = useState();
 
 // gather video data on load
 useEffect(() => {
   updatePage();
-  setJenBlogName(localStorage.getItem("jenBlogName"));
+  // setJenBlogName(localStorage.getItem("jenBlogName"));
 },[]);
 
 // set up useRef for form values
@@ -38,7 +38,6 @@ const updatePage = () => {
     // put the dates in mm-dd-yyyy format
     formatDates(vids.data, "video");
     formatDates(comments.data, "comment");
-
 
     // update the state
     setYoutubeData(vids.data);
@@ -110,16 +109,16 @@ const clearModal = () => {
   captionRef.current.value = "";
 }
 
-const removeName = () => {
-  localStorage.removeItem("jenBlogName");
-}
+// const removeName = () => {
+//   localStorage.removeItem("jenBlogName");
+// }
 
-const updateName = (event, input) => {
-  event.preventDefault();
-  if (input !== "") {
-    localStorage.setItem("jenBlogName", input);
-  }
-}
+// const updateName = (event, input) => {
+//   event.preventDefault();
+//   if (input !== "") {
+//     localStorage.setItem("jenBlogName", input);
+//   }
+// }
   
   
 
@@ -186,14 +185,14 @@ const updateName = (event, input) => {
           if (comments) {
             return (
               <Suspense fallback={<LoadingVideo />} key={item._id}>
-                <Video jenBlogName={jenBlogName} id={item._id} updateName={updateName} removeName={removeName} title={item.title} date={item.date} video={item.video} caption={item.caption} comments={comments[0]} />
+                <Video id={item._id} updatePage={updatePage} title={item.title} date={item.date} video={item.video} caption={item.caption} comments={comments[0]} />
               </Suspense>
             )
           }
         else {
           return (
             <Suspense fallback={<LoadingVideo />} key={item._id}>
-              <Video jenBlogName={jenBlogName} id={item._id} updateName={updateName} removeName={removeName} title={item.title} date={item.date} video={item.video} caption={item.caption} />
+              <Video id={item._id} updatePage={updatePage} title={item.title} date={item.date} video={item.video} caption={item.caption} />
             </Suspense>
           )
         }
