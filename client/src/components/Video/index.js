@@ -3,7 +3,7 @@ import API from '../../utils/API';
 
 
 function Video(props) {
-  const { id, title, date, video, caption, comments, updatePage } = props;
+  const { id, title, date, video, caption, comments, updatePage, updateComments } = props;
   const [jenBlogName, setJenBlogName] = useState(localStorage.getItem("jenBlogName"));
   const nameRef = useRef();
   const commentRef = useRef();
@@ -46,7 +46,18 @@ function Video(props) {
             }
           ]
         }
-      ).then(updatePage).catch(err => console.log(err));
+      ).then(() => {
+        updatePage();
+        commentRef.current.value = "";
+      }).catch(err => console.log(err));
+    }
+    else {
+      let data = {
+        author: jenBlogName,
+        date: date,
+        comment: commentRef.current.value 
+      }
+      updateComments(id, data, commentRef);
     }
   }
 

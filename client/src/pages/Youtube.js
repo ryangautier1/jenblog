@@ -28,7 +28,7 @@ const captionRef = useRef();
 // this function gets video data from db, sorts by date, formats the dates and updates the state with the result
 const updatePage = () => {
   API.getYtVideos().then(vids => {
-    API.getYtComments().then(comments => {  
+    API.getYtComments().then(comments => {
 
     // sort the result by date descending
     vids.data.sort(function (a,b) {
@@ -108,18 +108,13 @@ const clearModal = () => {
   videoRef.current.value = "";
   captionRef.current.value = "";
 }
-
-// const removeName = () => {
-//   localStorage.removeItem("jenBlogName");
-// }
-
-// const updateName = (event, input) => {
-//   event.preventDefault();
-//   if (input !== "") {
-//     localStorage.setItem("jenBlogName", input);
-//   }
-// }
   
+const updateComments = (video, data, commentRef) => {
+  API.updateYtComments(video, data).then(() => {
+    updatePage();
+    commentRef.current.value = "";
+  }).catch(err => {console.log(err)});
+}
   
 
   return (
@@ -185,7 +180,7 @@ const clearModal = () => {
           if (comments) {
             return (
               <Suspense fallback={<LoadingVideo />} key={item._id}>
-                <Video id={item._id} updatePage={updatePage} title={item.title} date={item.date} video={item.video} caption={item.caption} comments={comments[0]} />
+                <Video id={item._id} updateComments={updateComments} updatePage={updatePage} title={item.title} date={item.date} video={item.video} caption={item.caption} comments={comments[0]} />
               </Suspense>
             )
           }

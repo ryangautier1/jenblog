@@ -21,5 +21,8 @@ export default {
     },
     postNewComment: function(data) {
         return axios.post("/api/ytcomment", data);
+    },
+    updateYtComments: function(video, data) {
+        return axios.put("/api/ytcomment/" + video, data);
     }
 };

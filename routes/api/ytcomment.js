@@ -17,6 +17,7 @@ router
 // Match with "/api/ytcomment/:video"
 router
     .route("/:video")
-    .get(ytcommentController.getCommentsByVideo);
+    .get(ytcommentController.getCommentsByVideo)
+    .put(ytcommentController.update);
 
 module.exports = router;
