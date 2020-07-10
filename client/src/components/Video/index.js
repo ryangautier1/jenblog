@@ -3,7 +3,7 @@ import API from '../../utils/API';
 
 
 function Video(props) {
-  const { id, title, date, video, caption, comments, updatePage, updateComments, toggleModal } = props;
+  const { id, title, date, video, caption, comments, updatePage, updateComments, toggleModal, userState } = props;
   const [jenBlogName, setJenBlogName] = useState(localStorage.getItem("jenBlogName"));
   const nameRef = useRef();
   const commentRef = useRef();
@@ -74,7 +74,7 @@ function Video(props) {
 
     <div key={id} className="mb-5 relative text-gray-300">
       {/* change true to check if user is logged in */}
-      {true ? 
+      {userState ? 
         <div>
           <div className="absolute top-0 right-0 w-8 h-8 text-lg text-center text-white font-bold opacity-50 bg-black rounded-full cursor-pointer"
             onClick={() => toggleModal(id + "video-modal")}

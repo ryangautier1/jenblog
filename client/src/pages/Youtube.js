@@ -11,12 +11,15 @@ function Youtube() {
 // set up state for storing video data
 const [youtubedata, setYoutubeData] = useState([]);
 const [commentdata, setCommentData] = useState([]);
+const [userState, setUserState] = useState(false);
 // const [jenBlogName, setJenBlogName] = useState();
 
 // gather video data on load
 useEffect(() => {
   updatePage();
-  // setJenBlogName(localStorage.getItem("jenBlogName"));
+  API.getUserData().then(res => {
+    setUserState(true);
+  }).catch(setUserState(false))
 },[]);
 
 // set up useRef for form values
@@ -120,7 +123,7 @@ const updateComments = (video, data, commentRef) => {
   return (
     <main className="mt-8 mx-1 pb-2 sm:mx-16 videos">
 
-    {true ? 
+    {userState ? 
     <div>
       <div className="text-center">
         <button
@@ -180,14 +183,14 @@ const updateComments = (video, data, commentRef) => {
           if (comments) {
             return (
               <Suspense fallback={<LoadingVideo />} key={item._id}>
-                <Video id={item._id} toggleModal={toggleModal} updateComments={updateComments} updatePage={updatePage} title={item.title} date={item.date} video={item.video} caption={item.caption} comments={comments[0]} />
+                <Video id={item._id} userState={userState} toggleModal={toggleModal} updateComments={updateComments} updatePage={updatePage} title={item.title} date={item.date} video={item.video} caption={item.caption} comments={comments[0]} />
               </Suspense>
             )
           }
         else {
           return (
             <Suspense fallback={<LoadingVideo />} key={item._id}>
-              <Video id={item._id} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} video={item.video} caption={item.caption} />
+              <Video id={item._id} userState={userState} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} video={item.video} caption={item.caption} />
             </Suspense>
           )
         }
