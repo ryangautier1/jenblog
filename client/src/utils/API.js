@@ -30,5 +30,8 @@ export default {
     },
     deleteComments: function(id) {
         return axios.delete("/api/ytcomment/delete/" + id);
+    },
+    getUserData: function () {
+        return axios.get("/api/user-login/user_data");
     }
 };

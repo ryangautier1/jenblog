@@ -29,4 +29,18 @@ router.get("logout", function(req, res) {
   });
 });
 
+// Route for getting some data about our user to be used client side
+router.get("/user_data", function (req, res) {
+  if (!req.user) {
+    // The user is not logged in, send back an empty object
+    res.status(401).json({});
+  } else {
+    // Otherwise send back the user's email and id
+    res.json({
+      id: req.user._id,
+      username: req.user.username
+    });
+  }
+});
+
 module.exports = router;
