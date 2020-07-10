@@ -19,7 +19,9 @@ useEffect(() => {
   updatePage();
   API.getUserData().then(res => {
     setUserState(true);
-  }).catch(setUserState(false))
+  }).catch(err => {
+    console.log("Not logged in");
+    setUserState(false);})
 },[]);
 
 // set up useRef for form values
@@ -190,7 +192,7 @@ const updateComments = (video, data, commentRef) => {
         else {
           return (
             <Suspense fallback={<LoadingVideo />} key={item._id}>
-              <Video id={item._id} userState={userState} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} video={item.video} caption={item.caption} />
+              <Video id={item._id} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} video={item.video} caption={item.caption} />
             </Suspense>
           )
         }
