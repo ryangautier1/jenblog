@@ -18,7 +18,10 @@ function Header() {
         <h2 className="text-2xl text-red-700">Jen Blog</h2>
         <img className=" w-16" src={logo} alt='Jen Blog Logo'/>
         {userState ? <button type="button" className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
-            onClick={() => API.logoutUser().then(window.location.replace("/")).catch(err => console.log(err))}>
+            onClick={() => API.logoutUser().then(() => {
+              setUserState(false);
+              window.location.reload();
+            }).catch(err => console.log(err))}>
             Logout</button> : ""}
         </div>
       <p className="text-gray-500 text-center italic px-4">

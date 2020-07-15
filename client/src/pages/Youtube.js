@@ -180,6 +180,7 @@ const updateComments = (video, data, commentRef) => {
 
 
       {youtubedata.map(item => {
+        console.log(item._id);
         // check if video has comments
         let comments = commentdata.filter(comment => comment.video === item._id);
           if (comments) {
