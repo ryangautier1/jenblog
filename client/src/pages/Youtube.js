@@ -44,7 +44,6 @@ const updatePage = () => {
     formatDates(vids.data, "video");
     formatDates(comments.data, "comment");
 
-    console.log(comments.data);
     // update the state
     setYoutubeData(vids.data);
     setCommentData(comments.data);

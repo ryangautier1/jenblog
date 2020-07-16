@@ -5,14 +5,15 @@ import API from '../../utils/API';
 function Video(props) {
   const { id, title, date, video, caption, comments, updatePage, updateComments, toggleModal, userState } = props;
   const [jenBlogName, setJenBlogName] = useState(localStorage.getItem("jenBlogName"));
+  const [commentState, setCommentState] = useState([]);
   const nameRef = useRef();
   const commentRef = useRef();
 
-  // useEffect(() => {
-  //   if (comments) {
-  //   comments.comments.reverse();
-  //   set
-  // }}, [])
+  useEffect(() => {
+    if (comments) {
+    // comments.comments.reverse();
+    setCommentState(comments.comments.reverse())
+  }}, [])
 
   const removeName = () => {
     // clear local storage
@@ -183,11 +184,11 @@ function Video(props) {
 
 
       </form>
-      {comments ?
+      {commentState.length > 0 ?
         <div className="comments-section mx-4 mb-2 mt-5 p-2 varta">
-          <div className="flex justify-between border-b border-gray-700 mb-2 pr-1 pb-1">{comments.comments.length} comments <i id={"arrow-" + id} className="fas fa-caret-square-up pt-1 cursor-pointer" onClick={() => { toggleComments() }}></i></div>
+          <div className="flex justify-between border-b border-gray-700 mb-2 pr-1 pb-1">{commentState.length} comments <i id={"arrow-" + id} className="fas fa-caret-square-up pt-1 cursor-pointer" onClick={() => { toggleComments() }}></i></div>
           <div id={"comments-section-" + id}>
-            {comments.comments.map(item => {
+            {commentState.map(item => {
               return (
                 <div className="text-md text-gray-700 mb-3" key={item._id}>
                   <span className="font-bold mr-2">{item.author}</span>
