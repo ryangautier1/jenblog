@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../../assets/logo.png'
+import headerGradient from '../../assets/gradient.png'
 import API from '../../utils/API';
 function Header() {
   const [userState, setUserState] = useState(false);
@@ -14,9 +14,14 @@ function Header() {
 
   return (
     <header>
-      <div className="min-w-full flex justify-between p-6">
-        <h2 className="text-2xl text-red-700">Jen Blog</h2>
-        <img className=" w-16" src={logo} alt='Jen Blog Logo'/>
+      <div className="min-w-full mt-6">
+        <img className="z-0 w-full h-24 px-6 absolute top-0 mt-6" src={headerGradient} alt='Jen Blog Gradient'/>
+        <div className="relative z-10 flex justify-between">
+          <div className="w-6 h-24 header-div"></div>
+          <div className="w-6 h-24 header-div"></div>
+          <div className="w-6 h-24 header-div"></div>
+          <div className="w-6 h-24 header-div"></div>
+        </div>
         {userState ? <button type="button" className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
             onClick={() => API.logoutUser().then(() => {
               setUserState(false);
@@ -24,9 +29,6 @@ function Header() {
             }).catch(err => console.log(err))}>
             Logout</button> : ""}
         </div>
-      <p className="text-gray-500 text-center italic px-4">
-        "Some quote or phrase here would look nice maybe" - Jenny Benedict
-      </p>
     </header>
   )
 }

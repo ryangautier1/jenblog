@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import API from '../../utils/API';
 
 
@@ -7,6 +7,12 @@ function Video(props) {
   const [jenBlogName, setJenBlogName] = useState(localStorage.getItem("jenBlogName"));
   const nameRef = useRef();
   const commentRef = useRef();
+
+  // useEffect(() => {
+  //   if (comments) {
+  //   comments.comments.reverse();
+  //   set
+  // }}, [])
 
   const removeName = () => {
     // clear local storage
@@ -89,7 +95,7 @@ function Video(props) {
 
   return (
 
-    <div key={id} className="mb-5 relative text-gray-300">
+    <div key={id} className="mb-5 relative text-gray-700">
       {/* change true to check if user is logged in */}
       {userState ?
         <div>
@@ -121,9 +127,9 @@ function Video(props) {
           </div>
 
         </div> : <div></div>}
-      <span className="text-lg sm:text-xl pl-2 sm:pl-0">{title}</span>
+      <span className="text-lg sm:text-xl pl-2 sm:pl-0 lato">{title}</span>
       <br />
-      <span className="text-gray-100 text-sm pl-2 sm:pl-0">{date}</span>
+      <span className="text-gray-700 text-sm pl-2 sm:pl-0 lato">{date}</span>
       <div className="yt-container mt-2">
         <iframe src={video} title={title} frameBorder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowFullScreen={true}></iframe>
       </div>
@@ -139,7 +145,7 @@ function Video(props) {
               <div className="ml-5 text-gray-500 cursor-pointer" onClick={removeName}>Not you?</div>
             </div>
             <div className="flex flex-row mt-1">
-              <input className="appearance-none bg-transparent w-full py-2 px-4 text-gray-200 border-b leading-tight border-transparent focus:border-gray-600 focus:outline-none"
+              <input className="appearance-none bg-transparent w-full py-2 px-4 text-gray-700 border-b leading-tight border-transparent focus:border-gray-600 focus:outline-none"
                 type="text"
                 placeholder="Add comment..."
                 ref={commentRef} />
@@ -154,7 +160,7 @@ function Video(props) {
           <div>
             <p className="mb-1">Would you like to add a comment? Start by entering your name:</p>
             <div className="flex flex-row">
-              <input className="appearance-none bg-transparent w-full py-2 px-4 text-gray-200 border-b leading-tight border-transparent focus:border-gray-600 focus:outline-none"
+              <input className="appearance-none bg-transparent w-full py-2 px-4 text-gray-700 border-b leading-tight border-transparent focus:border-gray-600 focus:outline-none"
                 type="text"
                 placeholder="Your name here..."
                 ref={nameRef} />
@@ -171,7 +177,7 @@ function Video(props) {
 
       </form>
       {comments ?
-        <div className="comments-section mx-4 mb-2 mt-5 p-2">
+        <div className="comments-section mx-4 mb-2 mt-5 p-2 varta">
           <div className="flex justify-between border-b border-gray-700 mb-2 pr-1 pb-1">{comments.comments.length} comments <i id={"arrow-" + id} className="fas fa-caret-square-up pt-1 cursor-pointer" onClick={() => { toggleComments() }}></i></div>
           <div id={"comments-section-" + id}>
             {comments.comments.map(item => {
