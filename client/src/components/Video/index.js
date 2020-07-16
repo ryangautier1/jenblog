@@ -91,7 +91,10 @@ function Video(props) {
     commentsOpen = !commentsOpen;
   }
 
-  console.log(id);
+
+  const toggleSubmitButton = () => {
+    document.getElementById(id + "submit-button").classList.remove("hidden");
+  }
 
   return (
 
@@ -147,10 +150,12 @@ function Video(props) {
             <div className="flex flex-row mt-1">
               <input className="appearance-none bg-transparent w-full py-2 px-4 text-gray-700 border-b leading-tight border-transparent focus:border-gray-600 focus:outline-none"
                 type="text"
+                onClick={toggleSubmitButton}
                 placeholder="Add comment..."
                 ref={commentRef} />
-              <button className="ml-2 shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4"
+              <button className="hidden ml-2 shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4"
                 type="submit"
+                id={id + "submit-button"}
                 onClick={(event) => { handleCommentSubmit(event, id) }}>
                 Submit
             </button>
@@ -162,10 +167,12 @@ function Video(props) {
             <div className="flex flex-row">
               <input className="appearance-none bg-transparent w-full py-2 px-4 text-gray-700 border-b leading-tight border-transparent focus:border-gray-600 focus:outline-none"
                 type="text"
+                onClick={toggleSubmitButton}
                 placeholder="Your name here..."
                 ref={nameRef} />
-              <button className="ml-2 shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4"
+              <button className="hidden ml-2 shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4"
                 type="submit"
+                id={id + "submit-button"}
                 onClick={(event) => { updateName(event, nameRef.current.value) }}>
                 Submit
               </button>
@@ -182,7 +189,7 @@ function Video(props) {
           <div id={"comments-section-" + id}>
             {comments.comments.map(item => {
               return (
-                <div className="text-md text-gray-200 mb-3" key={item._id}>
+                <div className="text-md text-gray-700 mb-3" key={item._id}>
                   <span className="font-bold mr-2">{item.author}</span>
                   <span className="text-sm">{item.date}</span>
                   <br />
