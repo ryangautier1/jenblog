@@ -124,7 +124,7 @@ const updateComments = (video, data, commentRef) => {
   
 
   return (
-    <main className="mt-8 mx-1 pb-2 sm:mx-16 videos">
+    <main className="mt-8 mx-1 pb-2 sm:mx-16 videos inner-shadow">
 
     {userState ? 
     <div>

@@ -15,12 +15,12 @@ function Header() {
   return (
     <header>
       <div className="min-w-full mt-6">
-        <img className="z-0 w-full h-24 px-6 absolute top-0 mt-6" src={headerGradient} alt='Jen Blog Gradient'/>
+        <img className="z-0 w-full h-16 sm:h-24 px-6 absolute top-0 mt-6" src={headerGradient} alt='Jen Blog Gradient'/>
         <div className="relative z-10 flex justify-between">
-          <div className="w-6 h-24 header-div"></div>
-          <div className="w-6 h-24 header-div"></div>
-          <div className="w-6 h-24 header-div"></div>
-          <div className="w-6 h-24 header-div"></div>
+          <div className="w-6 h-16 sm:h-24 header-div"></div>
+          <div className="w-6 h-16 sm:h-24 header-div"></div>
+          <div className="w-6 h-16 sm:h-24 header-div"></div>
+          <div className="w-6 h-16 sm:h-24 header-div hidden sm:block"></div>
         </div>
         {userState ? <button type="button" className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
             onClick={() => API.logoutUser().then(() => {

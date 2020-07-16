@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 function Nav() {
   // use state for setting active tab
   const [tabState, setTabState] = useState("home-tab");
+  const [navState, setNavState] = useState(120)
 
   // on page load, set tab state based on current page
   useEffect(()=> {
@@ -13,6 +14,8 @@ function Nav() {
     else {
       setTabState(window.location.pathname.substring(1) + "-tab");
     }
+    // setNavState(document.getElementById("nav-area").offsetTop);
+
   }, []);
 
   // when the tab state is updated, change the active tab on the page
@@ -29,10 +32,22 @@ function Nav() {
     setTabState(newTab);
   }
 
-  const navStyle = "px-2 pb-2 mx-2 pt-1 text-md text-gray-300 cursor-pointer";
+  const navStyle = "px-2 pb-2 mx-2 pt-1 text-md text-gray-700 cursor-pointer";
+
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > navState) {
+      document.getElementById("nav-area").classList.add("fixed", "top-0");
+      document.getElementsByTagName("main")[0].classList.add("extra-margin");
+    }
+    else {
+      document.getElementById("nav-area").classList.remove("fixed", "top-0");
+      document.getElementsByTagName("main")[0].classList.remove("extra-margin");
+    }
+  })
 
   return (
-    <nav className="varta min-w-full my-nav sm:px-12 sm:mt-3 fixed sm:static bottom-0 sm:rounded-none sm:border-none sm:bg-transparent border-t border-blue-700 z-10">
+    <div id="nav-area" className="z-10 w-full">
+    <nav className="varta min-w-full my-nav sm:px-12 sm:pt-3 fixed sm:static bottom-0 sm:rounded-none sm:border-none sm:bg-transparent border-t border-blue-700 z-10">
       <ul className="flex flex-row justify-around sm:justify-start">
         
         <Link to="/">
@@ -49,6 +64,8 @@ function Nav() {
 
       </ul>
     </nav>
+    <div className="nav-page-effect h-16 bg-transparent z-0 absolute"></div>
+ </div>
   )
 }
 

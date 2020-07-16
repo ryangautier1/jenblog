@@ -20,6 +20,20 @@ footer {
   background-color: #fff;
 }
 
+nav {
+  background-color: #fff !important;
+}
+
+.nav-page-effect {
+  box-shadow: inset 0px 5px 5px 0px #ccc;
+  width: calc(100% - 3rem);
+  margin-left: 1.5rem;
+}
+
+.extra-margin {
+  margin-top: 85px;
+}
+
 .videos {
   max-width: 650px;
 }
