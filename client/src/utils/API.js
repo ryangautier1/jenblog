@@ -19,7 +19,7 @@ export default {
     getYtComments: function() {
         return axios.get("/api/ytcomment");
     },
-    postNewComment: function(data) {
+    postNewYtComment: function(data) {
         return axios.post("/api/ytcomment", data);
     },
     updateYtComments: function(video, data) {
@@ -45,5 +45,14 @@ export default {
     },
     deleteTextPost: function(id) {
         return axios.delete("/api/textpost/" + id)
+    },
+    getTpComments: function() {
+        return axios.get("/api/textpostcomment");
+    },
+    postNewTpComment: function(data) {
+        return axios.post("/api/textpostcomment", data);
+    },
+    updateTpComments: function(textpost, data) {
+        return axios.put("/api/textpostcomment/" + textpost, data);
     }
 };

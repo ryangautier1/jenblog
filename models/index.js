@@ -1,6 +1,7 @@
 module.exports = {
   User: require("./user"),
   Youtube: require("./youtubeModel"),
-  ytComment: require("./ytcomment"),
-  TextPost: require("./textPostModel")
+  ytComment: require("./ytComment"),
+  TextPost: require("./textPostModel"),
+  TextPostComment: require('./textPostComment')
 };

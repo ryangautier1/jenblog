@@ -42,7 +42,7 @@ function Video(props) {
 
     // if there are no comments yet 
     if (!comments) {
-      API.postNewComment(
+      API.postYtNewComment(
         {
           video: id,
           comments: [
