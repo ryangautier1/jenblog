@@ -20,6 +20,10 @@ footer {
   background-color: #fff;
 }
 
+.header-caption {
+  max-width: 33%
+}
+
 nav {
   background-color: #fff !important;
 }
@@ -79,6 +83,10 @@ iframe {
 
 .lato {
   font-family: 'Lato', sans-serif;
+}
+
+.josefin {
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 @media screen and (max-width: 800px) {
