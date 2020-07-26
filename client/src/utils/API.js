@@ -36,5 +36,14 @@ export default {
     },
     logoutUser: function() {
         return axios.get("/api/user-login/logout");
+    },
+    addTextPost: function(data) {
+        return axios.post("/api/textpost", data);
+    },
+    getTextPosts: function() {
+        return axios.get("/api/textpost");
+    },
+    deleteTextPost: function(id) {
+        return axios.delete("/api/textpost/" + id)
     }
 };
