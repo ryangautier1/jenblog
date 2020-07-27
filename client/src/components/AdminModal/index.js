@@ -51,6 +51,8 @@ function AdminModal(props) {
         }
       }
       
+      API.addTextPost(formContent).then(console.log("success")).catch(err => console.log(err));
+
     }
     
   }
@@ -90,20 +92,20 @@ function AdminModal(props) {
         <div className="flex flex-row mb-2 content-center h-10">
           {modalState === "youtube" ?
             <div className="mx-3 text-red-700 text-3xl cursor-pointer nav-icon" onClick={() => toggleInput("youtube")}>
-              <i class="fab fa-youtube"></i>
+              <i className="fab fa-youtube"></i>
             </div>
             :
             <div className="mx-3 text-gray-700 text-2xl cursor-pointer nav-icon" onClick={() => toggleInput("youtube")}>
-              <i class="fab fa-youtube"></i>
+              <i className="fab fa-youtube"></i>
             </div>}
 
           {modalState === "text" ?
             <div className="p-1 text-red-700 text-2xl cursor-pointer nav-icon" onClick={() => toggleInput("text")}>
-              <i class="fas fa-quote-left"></i>
+              <i className="fas fa-quote-left"></i>
             </div>
             :
             <div className="p-1 text-gray-700 text-xl cursor-pointer nav-icon" onClick={() => toggleInput("text")}>
-              <i class="fas fa-quote-left"></i>
+              <i className="fas fa-quote-left"></i>
             </div>}
         </div>
         <form className="mb-4">
