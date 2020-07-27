@@ -5,7 +5,7 @@ import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Youtube from './pages/Youtube';
-import Instagram from './pages/Instagram';
+// import Instagram from './pages/Instagram';
 import './App.css';
 import Login from './pages/Login';
 
@@ -22,10 +22,10 @@ function App() {
             <Nav />
             <Home />
           </Route>
-          <Route exact path={["/instagram"]}>
+          {/* <Route exact path={["/instagram"]}>
             <Nav />
             <Instagram />
-          </Route>
+          </Route> */}
           <Route exact path={["/youtube"]}>
             <Nav />
             <Youtube />
