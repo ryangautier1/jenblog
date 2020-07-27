@@ -73,6 +73,10 @@ iframe {
   min-height: 100vh;
 }
 
+.nav-icon {
+  transition: 0.2s ease;
+}
+
 /* .comments-section {
   background-color: #0f1b2c;
 } */

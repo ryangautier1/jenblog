@@ -96,7 +96,8 @@ const updateComments = (video, data, commentRef) => {
 
     {userState ? 
     <AdminModal updatePage={updatePage} toggleModal={toggleModal}/>
-  : null}
+  : <AdminModal updatePage={updatePage} toggleModal={toggleModal}/>
+}
 
 
       {youtubedata.map(item => {
