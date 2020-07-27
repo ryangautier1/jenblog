@@ -14,22 +14,45 @@ function AdminModal(props) {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    let formContent = {
-      title: titleRef.current.value,
-      date: dateRef.current.value,
-      video: videoRef.current.value,
-      caption: captionRef.current.value
-    };
-    // Need to add validateForm()
-    // add video to db
-    API.addVideo(formContent).then(() => {
-      // update page, clear and close modal
-      props.updatePage();
-      clearModal();
-      props.toggleModal("admin-modal")
-    }
 
-    ).catch(err => console.log(err));
+    if (modalState === "youtube") {
+      let formContent = {
+        title: titleRef.current.value,
+        date: dateRef.current.value,
+        video: videoRef.current.value,
+        caption: captionRef.current.value
+      };
+      // Need to add validateForm()
+      // add video to db
+      API.addVideo(formContent).then(() => {
+        // update page, clear and close modal
+        props.updatePage();
+        clearModal();
+        props.toggleModal("admin-modal")
+      }
+  
+      ).catch(err => console.log(err));
+    }
+    else if (modalState === "text") {
+      let formContent;
+      // if the user entered a title
+      if (titleRef.current.value !== "") {
+        formContent = {
+          title: titleRef.current.value,
+          date: Date.now(),
+          body: textpostRef.current.value
+        }
+      }
+      // if the user did not enter a title
+      else {
+        formContent = {
+          date: Date.now(),
+          body: textpostRef.current.value
+        }
+      }
+      
+    }
+    
   }
 
   const toggleInput = (value) => {
