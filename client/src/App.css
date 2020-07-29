@@ -1,3 +1,4 @@
+/* style for sticky footer */
 html {
   position: relative;
   min-height: 100%;
@@ -15,7 +16,9 @@ footer {
       height: 150px;
       text-align: center;
 }
+/*  */
 
+/* header and nav style */
 .header-div {
   background-color: #fff;
 }
@@ -37,6 +40,22 @@ nav {
 .extra-margin {
   margin-top: 85px;
 }
+/*  */
+
+
+/* thumbnail styles */
+.thumbnail-card {
+  max-width: 400px;
+}
+
+.thumbnail-card img {
+  width: 380px;
+  height: 215px;
+  object-fit: cover;
+}
+
+/*  */
+
 
 .videos {
   max-width: 650px;

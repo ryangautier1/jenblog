@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
-import Home from './pages/Home';
+// import Home from './pages/Home';
 import Youtube from './pages/Youtube';
 // import Instagram from './pages/Instagram';
+import Thumbnails from './pages/Thumbnails';
 import './App.css';
 import Login from './pages/Login';
 
@@ -20,12 +21,12 @@ function App() {
         <Switch>
           <Route exact path={["/"]}>
             <Nav />
-            <Home />
+            {/* <Home /> */}
           </Route>
-          {/* <Route exact path={["/instagram"]}>
+          <Route exact path={["/thumbnails"]}>
             <Nav />
-            <Instagram />
-          </Route> */}
+            <Thumbnails />
+          </Route>
           <Route exact path={["/youtube"]}>
             <Nav />
             <Youtube />

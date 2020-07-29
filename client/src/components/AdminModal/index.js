@@ -41,14 +41,12 @@ function AdminModal(props) {
       let formContent = {
         title: titleRef.current.value,
         date: dateRef.current.value,
-        video: videoRef.current.value.split("=")[3].split("\"")[1],
+        video: videoRef.current.value.split("src=\"")[1].split("\"")[0],
       };
 
       if (captionRef.current.value !== "") {
         formContent.caption = captionRef.current.value
       }
-
-      console.log("Submitted form");
 
       // add video to db
       API.addVideo(formContent).then(() => {
@@ -124,7 +122,7 @@ function AdminModal(props) {
     <div>
       <div className="text-center">
         <button
-          className="mb-3 bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+          className="cursor-pointer mb-3 bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           id="admin-modal-open"
           onClick={() => {
             props.toggleModal("admin-modal")
