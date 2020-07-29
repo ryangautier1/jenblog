@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, createElement } from 'react';
 import API from '../../utils/API';
 
 
@@ -18,15 +18,42 @@ function AdminModal(props) {
     if (modalState === "youtube") {
 
       // get video link from video input
-      // <iframe width="843" height="474" src="https://www.youtube.com/embed/6TAPqXkZW_I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      
+      // validate input fields
+      if (titleRef.current.value === "") {
+        console.log("YOu must enter a title");
+        document.getElementById("titleinput").classList.remove("border-gray-200");
+        document.getElementById("titleinput").classList.add("border-red-400");
+        document.getElementById("titlewarning").classList.remove("hidden");
+        return;
+      }
+
+      if (dateRef.current.value === "") {
+        document.getElementById("dateinput").classList.remove("border-gray-200");
+        document.getElementById("dateinput").classList.add("border-red-400");
+        document.getElementById("datewarning").classList.remove("hidden");
+        return;
+      }
+
+      if (videoRef.current.value === "") {
+        document.getElementById("videoinput").classList.remove("border-gray-200");
+        document.getElementById("videoinput").classList.add("border-red-400");
+        document.getElementById("videowarning").classList.remove("hidden");
+        return;
+      }
       
       let formContent = {
         title: titleRef.current.value,
         date: dateRef.current.value,
         video: videoRef.current.value.split("=")[3].split("\"")[1],
-        caption: captionRef.current.value
       };
-      console.log(formContent.video);
+
+      if (captionRef.current.value !== "") {
+        formContent.caption = captionRef.current.value
+      }
+
+      console.log("Submitted form");
+
       // Need to add validateForm()
       // add video to db
       // API.addVideo(formContent).then(() => {
@@ -121,6 +148,7 @@ function AdminModal(props) {
             type="text"
             id="titleinput"
             ref={titleRef} />
+            <p className="hidden text-red-600 text-sm italic" id="titlewarning">You must enter a title</p>
 
           {modalState === "youtube" ?
             <div>
@@ -129,12 +157,16 @@ function AdminModal(props) {
                 type="date"
                 id="dateinput"
                 ref={dateRef} />
-              <label htmlFor="#videolink">Link to video</label>
+              <p className="hidden text-red-600 text-sm italic" id="datewarning">You must enter a date</p>
+
+              <label htmlFor="#videolink">Embed Code</label>
               <input className="mb-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200"
                 type="text"
                 id="videolink"
                 ref={videoRef} />
-              <label htmlFor="#captioninput">Caption</label>
+              <p className="hidden text-red-600 text-sm italic" id="embedwarning">You must enter a valid embed code</p>
+
+              <label htmlFor="#captioninput">Caption (Optional)</label>
               <textarea className="mb-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200"
                 id="captioninput"
                 ref={captionRef} />
