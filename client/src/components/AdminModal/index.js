@@ -1,4 +1,4 @@
-import React, { useRef, useState, createElement } from 'react';
+import React, { useRef, useState } from 'react';
 import API from '../../utils/API';
 
 
@@ -15,17 +15,19 @@ function AdminModal(props) {
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    if (modalState === "youtube") {
-
-      // get video link from video input
-      
+    if (modalState === "youtube") {      
       // validate input fields
       if (titleRef.current.value === "") {
-        console.log("YOu must enter a title");
         document.getElementById("titleinput").classList.remove("border-gray-200");
         document.getElementById("titleinput").classList.add("border-red-400");
         document.getElementById("titlewarning").classList.remove("hidden");
         return;
+      }
+      // remove warning if it was displayed
+      else {
+        document.getElementById("titleinput").classList.add("border-gray-200");
+        document.getElementById("titleinput").classList.remove("border-red-400");
+        document.getElementById("titlewarning").classList.add("hidden");
       }
 
       if (dateRef.current.value === "") {
@@ -34,12 +36,22 @@ function AdminModal(props) {
         document.getElementById("datewarning").classList.remove("hidden");
         return;
       }
+      else {
+        document.getElementById("dateinput").classList.add("border-gray-200");
+        document.getElementById("dateinput").classList.remove("border-red-400");
+        document.getElementById("datewarning").classList.add("hidden");
+      }
 
       if (videoRef.current.value === "") {
         document.getElementById("videoinput").classList.remove("border-gray-200");
         document.getElementById("videoinput").classList.add("border-red-400");
         document.getElementById("videowarning").classList.remove("hidden");
         return;
+      }
+      else {
+        document.getElementById("videoinput").classList.add("border-gray-200");
+        document.getElementById("videoinput").classList.remove("border-red-400");
+        document.getElementById("videowarning").classList.add("hidden");
       }
       
       let formContent = {
@@ -54,7 +66,6 @@ function AdminModal(props) {
 
       console.log("Submitted form");
 
-      // Need to add validateForm()
       // add video to db
       // API.addVideo(formContent).then(() => {
       //   // update page, clear and close modal
@@ -67,8 +78,22 @@ function AdminModal(props) {
     }
     else if (modalState === "text") {
       let formContent;
+
+      // validate input fields
+      if (textpostRef.current.value === "") {
+        document.getElementById("textpostinput").classList.remove("border-gray-200");
+        document.getElementById("textpostinput").classList.add("border-red-400");
+        document.getElementById("textpostwarning").classList.remove("hidden");
+        return;
+      }
+      else {
+        document.getElementById("textpostinput").classList.add("border-gray-200");
+        document.getElementById("textpostinput").classList.remove("border-red-400");
+        document.getElementById("textpostwarning").classList.add("hidden");
+      }
+
       // if the user entered a title
-      if (titleRef.current.value !== "") {
+      if (titleRef.current.value !== ""){
         formContent = {
           title: titleRef.current.value,
           date: Date.now(),
@@ -178,6 +203,7 @@ function AdminModal(props) {
               <textarea className="mb-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200"
                 id="textpostinput"
                 ref={textpostRef} />
+              <p className="hidden text-red-600 text-sm italic" id="textpostwarning">You must enter content for your post</p>
             </div>
 
           }
