@@ -45,13 +45,18 @@ nav {
 
 /* thumbnail styles */
 .thumbnail-card {
-  max-width: 400px;
+  max-width: 390px;
+  transition: 0.2s ease;
 }
 
 .thumbnail-card img {
-  width: 380px;
-  height: 215px;
+  width: 100%;
+  height: 200px;
   object-fit: cover;
+}
+
+.thumbnail-card:hover {
+  box-shadow: 0 0 7px #777;
 }
 
 /*  */
