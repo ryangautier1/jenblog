@@ -15,19 +15,13 @@ function AdminModal(props) {
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    if (modalState === "youtube") {      
+    if (modalState === "youtube") {
       // validate input fields
       if (titleRef.current.value === "") {
         document.getElementById("titleinput").classList.remove("border-gray-200");
         document.getElementById("titleinput").classList.add("border-red-400");
         document.getElementById("titlewarning").classList.remove("hidden");
         return;
-      }
-      // remove warning if it was displayed
-      else {
-        document.getElementById("titleinput").classList.add("border-gray-200");
-        document.getElementById("titleinput").classList.remove("border-red-400");
-        document.getElementById("titlewarning").classList.add("hidden");
       }
 
       if (dateRef.current.value === "") {
@@ -36,11 +30,6 @@ function AdminModal(props) {
         document.getElementById("datewarning").classList.remove("hidden");
         return;
       }
-      else {
-        document.getElementById("dateinput").classList.add("border-gray-200");
-        document.getElementById("dateinput").classList.remove("border-red-400");
-        document.getElementById("datewarning").classList.add("hidden");
-      }
 
       if (videoRef.current.value === "") {
         document.getElementById("videoinput").classList.remove("border-gray-200");
@@ -48,12 +37,7 @@ function AdminModal(props) {
         document.getElementById("videowarning").classList.remove("hidden");
         return;
       }
-      else {
-        document.getElementById("videoinput").classList.add("border-gray-200");
-        document.getElementById("videoinput").classList.remove("border-red-400");
-        document.getElementById("videowarning").classList.add("hidden");
-      }
-      
+
       let formContent = {
         title: titleRef.current.value,
         date: dateRef.current.value,
@@ -67,14 +51,14 @@ function AdminModal(props) {
       console.log("Submitted form");
 
       // add video to db
-      // API.addVideo(formContent).then(() => {
-      //   // update page, clear and close modal
-      //   props.updatePage();
-      //   clearModal();
-      //   props.toggleModal("admin-modal")
-      // }
-  
-      // ).catch(err => console.log(err));
+      API.addVideo(formContent).then(() => {
+        // update page, clear and close modal
+        props.updatePage();
+        clearModal();
+        props.toggleModal("admin-modal")
+      }
+
+      ).catch(err => console.log(err));
     }
     else if (modalState === "text") {
       let formContent;
@@ -93,7 +77,7 @@ function AdminModal(props) {
       }
 
       // if the user entered a title
-      if (titleRef.current.value !== ""){
+      if (titleRef.current.value !== "") {
         formContent = {
           title: titleRef.current.value,
           date: Date.now(),
@@ -107,25 +91,33 @@ function AdminModal(props) {
           body: textpostRef.current.value
         }
       }
-      
-      API.addTextPost(formContent).then(console.log("success")).catch(err => console.log(err));
+
+      API.addTextPost(formContent).then(() => {
+        props.updatePage();
+        clearModal();
+        props.toggleModal("admin-modal")
+      }).catch(err => console.log(err));
 
     }
-    
+
   }
 
   const toggleInput = (value) => {
-    setModalState(value)
+    setModalState(value);
   }
 
 
   // this function clears the contents of the form in the modal
   const clearModal = () => {
     titleRef.current.value = "";
-    dateRef.current.value = "";
-    videoRef.current.value = "";
-    captionRef.current.value = "";
-    textpostRef.current.value = "";
+    if (modalState === "youtube") {
+      dateRef.current.value = "";
+      videoRef.current.value = "";
+      captionRef.current.value = "";
+    }
+    if (modalState === "text") {
+      textpostRef.current.value = "";
+    }
   }
 
   return (
@@ -134,7 +126,9 @@ function AdminModal(props) {
         <button
           className="mb-3 bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           id="admin-modal-open"
-          onClick={() => props.toggleModal("admin-modal")}>
+          onClick={() => {
+            props.toggleModal("admin-modal")
+          }}>
           Add new
         </button>
       </div>
@@ -173,7 +167,7 @@ function AdminModal(props) {
             type="text"
             id="titleinput"
             ref={titleRef} />
-            <p className="hidden text-red-600 text-sm italic" id="titlewarning">You must enter a title</p>
+          <p className="hidden text-red-600 text-sm italic" id="titlewarning">You must enter a title</p>
 
           {modalState === "youtube" ?
             <div>
