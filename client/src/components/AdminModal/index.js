@@ -16,22 +16,27 @@ function AdminModal(props) {
     event.preventDefault();
 
     if (modalState === "youtube") {
+
+      // get video link from video input
+      // <iframe width="843" height="474" src="https://www.youtube.com/embed/6TAPqXkZW_I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      
       let formContent = {
         title: titleRef.current.value,
         date: dateRef.current.value,
-        video: videoRef.current.value,
+        video: videoRef.current.value.split("=")[3].split("\"")[1],
         caption: captionRef.current.value
       };
+      console.log(formContent.video);
       // Need to add validateForm()
       // add video to db
-      API.addVideo(formContent).then(() => {
-        // update page, clear and close modal
-        props.updatePage();
-        clearModal();
-        props.toggleModal("admin-modal")
-      }
+      // API.addVideo(formContent).then(() => {
+      //   // update page, clear and close modal
+      //   props.updatePage();
+      //   clearModal();
+      //   props.toggleModal("admin-modal")
+      // }
   
-      ).catch(err => console.log(err));
+      // ).catch(err => console.log(err));
     }
     else if (modalState === "text") {
       let formContent;
@@ -81,7 +86,6 @@ function AdminModal(props) {
           Add new
         </button>
       </div>
-      <hr className="mb-3" />
 
       {/* modal background here */}
       <div className="modal-bg hidden opacity-50 z-10 bg-black fixed top-0 left-0" id="admin-modal-bg"></div>

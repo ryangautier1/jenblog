@@ -77,7 +77,7 @@ function Video(props) {
     }).catch((err) => { console.log(err) });
   }
 
-  let commentsOpen = true;
+  let commentsOpen = false;
   const toggleComments = () => {
     if (commentsOpen) {
       document.getElementById("comments-section-" + id).classList.add("hidden");
@@ -186,8 +186,13 @@ function Video(props) {
       </form>
       {commentState.length > 0 ?
         <div className="comments-section mx-4 mb-2 mt-5 p-2 varta">
-          <div className="flex justify-between border-b border-gray-700 mb-2 pr-1 pb-1">{commentState.length} comments <i id={"arrow-" + id} className="fas fa-caret-square-up pt-1 cursor-pointer" onClick={() => { toggleComments() }}></i></div>
-          <div id={"comments-section-" + id}>
+          <div className="flex justify-between border-b border-gray-700 mb-2 pr-1 pb-1">
+            {commentState.length} comments 
+              <i id={"arrow-" + id} className="fas fa-caret-square-down pt-1 cursor-pointer" 
+                onClick={() => { toggleComments() }}>
+              </i>
+          </div>
+          <div id={"comments-section-" + id} className="hidden">
             {commentState.map(item => {
               return (
                 <div className="text-md text-gray-700 mb-3" key={item._id}>

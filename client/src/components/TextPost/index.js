@@ -137,7 +137,7 @@ function TextPost(props) {
       {title ? <span className="text-lg sm:text-xl pl-2 sm:pl-0 lato">{title}</span> : null}
       <br />
       <span className="text-gray-700 text-sm pl-2 sm:pl-0 lato">{date}</span>
-      <div className="yt-container mt-2">
+      <div className="tp-container mt-2">
         {body}
       </div>
       <div className="mt-1 mb-3">
