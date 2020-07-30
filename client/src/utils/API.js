@@ -10,6 +10,9 @@ export default {
     getYtVideos: function() {
         return axios.get("/api/youtube");
     },
+    getVideoById: function(id) {
+        return axios.get("/api/youtube/" + id);
+    },
     addVideo: function(data) {
         return axios.post("/api/youtube", data);
     },

@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 // import Home from './pages/Home';
 import Youtube from './pages/Youtube';
 // import Instagram from './pages/Instagram';
+import VideoPage from './pages/VideoPage';
 import Thumbnails from './pages/Thumbnails';
 import './App.css';
 import Login from './pages/Login';
@@ -26,6 +27,10 @@ function App() {
           <Route exact path={["/thumbnails"]}>
             <Nav />
             <Thumbnails />
+          </Route>
+          <Route path={["/video/:id"]}>
+            <Nav />
+            <VideoPage />
           </Route>
           <Route exact path={["/youtube"]}>
             <Nav />

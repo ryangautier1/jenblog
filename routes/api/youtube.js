@@ -10,6 +10,7 @@ router
 // Match with /api/youtube/:id
 router
     .route("/:id")
+    .get(youtubeController.findById)
     .delete(youtubeController.remove);
 
 module.exports = router;
