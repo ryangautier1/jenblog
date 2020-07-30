@@ -15,7 +15,7 @@ function Video(props) {
       // comments.comments.reverse();
       setCommentState(comments.comments.reverse())
     }
-  }, [])
+  }, [comments])
 
   const removeName = () => {
     // clear local storage
@@ -111,8 +111,8 @@ function Video(props) {
 
     <div key={id} className="mb-5 relative text-gray-700">
       {/* change true to check if user is logged in */}
-      {true ?
-        <DeleteModal id={id} title={title} toggleModal={toggleModal} deleteVideo={deleteVideo} />
+      {userState ?
+        <DeleteModal id={id} title={title} toggleModal={toggleModal} deleteVideo={deleteVideo} type={"video"}/>
         : <div></div>}
       <span className="text-lg sm:text-xl pl-2 sm:pl-0 lato">{title}</span>
       <br />
