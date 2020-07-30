@@ -140,6 +140,7 @@ function Youtube() {
             let comments = tpCommentData.filter(comment => comment.textpost === item._id);
             // check if text post has comments
             if (comments) {
+              console.log(comments);
               return (
                 <TextPost key={item._id} id={item._id} userState={userState} toggleModal={toggleModal} updateComments={updateComments} updatePage={updatePage} title={item.title} date={item.date} body={item.body} caption={item.caption} comments={comments[0]} />
               )

@@ -24,7 +24,9 @@ function Nav() {
     document.getElementById("thumbnails-tab").classList.remove("border-t-2", "sm:border-b-2", "sm:border-t-0", "border-red-700");
     document.getElementById("home-tab").classList.remove("border-t-2", "sm:border-b-2", "sm:border-t-0", "border-red-700");
 
-    document.getElementById(tabState).classList.add("border-t-2", "sm:border-b-2", "sm:border-t-0", "border-red-700");
+    if (tabState === "youtube-tab" || tabState === "thumbnails-tab" || tabState === "home-tab"){
+      document.getElementById(tabState).classList.add("border-t-2", "sm:border-b-2", "sm:border-t-0", "border-red-700");
+    }
   }, [tabState]);
 
   // update tab state on click
