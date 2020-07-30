@@ -17,7 +17,7 @@ export default {
         return axios.post("/api/youtube", data);
     },
     getYtCommentsByVideo: function(video) {
-        return axios.get("/api/ytcomments/" + video);
+        return axios.get("/api/ytcomment/" + video);
     },
     getYtComments: function() {
         return axios.get("/api/ytcomment");
