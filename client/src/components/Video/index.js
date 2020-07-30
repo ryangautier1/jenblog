@@ -1,9 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
+import DeleteModal from '../DeleteModal';
 import API from '../../utils/API';
 
 
 function Video(props) {
-  const { id, title, date, video, caption, comments, updatePage, updateComments, toggleModal, userState } = props;
+  const { id, title, date, video, caption, comments, updatePage, updateComments, userState, toggleModal } = props;
   const [jenBlogName, setJenBlogName] = useState(localStorage.getItem("jenBlogName"));
   const [commentState, setCommentState] = useState([]);
   const nameRef = useRef();
@@ -11,9 +12,10 @@ function Video(props) {
 
   useEffect(() => {
     if (comments) {
-    // comments.comments.reverse();
-    setCommentState(comments.comments.reverse())
-  }}, [])
+      // comments.comments.reverse();
+      setCommentState(comments.comments.reverse())
+    }
+  }, [])
 
   const removeName = () => {
     // clear local storage
@@ -69,12 +71,20 @@ function Video(props) {
   }
 
   const deleteVideo = () => {
-    API.deleteVideo(id).then(() => {
-      API.deleteComments(comments._id).then(() => {
+    if (comments) {
+      API.deleteVideo(id).then(() => {
+        API.deleteComments(comments._id).then(() => {
+          updatePage();
+          toggleModal(id + "video-modal");
+        }).catch((errr) => { console.log(errr) })
+      }).catch((err) => { console.log(err) });
+    }
+    else {
+      API.deleteVideo(id).then(() => {
         updatePage();
         toggleModal(id + "video-modal");
-      }).catch((errr) => { console.log(errr) })
-    }).catch((err) => { console.log(err) });
+      }).catch((err) => { console.log(err) });
+    }
   }
 
   let commentsOpen = false;
@@ -101,36 +111,9 @@ function Video(props) {
 
     <div key={id} className="mb-5 relative text-gray-700">
       {/* change true to check if user is logged in */}
-      {userState ?
-        <div>
-          <div className="absolute top-0 right-0 w-8 h-8 text-lg text-center text-white font-bold opacity-50 bg-black rounded-full cursor-pointer"
-            onClick={() => toggleModal(id + "video-modal")}
-          >X
-          </div>
-
-          {/* modal background here */}
-          <div className="modal-bg hidden opacity-50 z-10 bg-black fixed top-0 left-0" id={id + "video-modal-bg"}></div>
-
-          {/* modal here */}
-          <div id={id + "video-modal"}
-            className="fixed modal right-0 left-0 mx-auto border hidden bg-white z-20 p-5">
-            <p className="text-gray-700 mb-4">Are you sure you want to delete "{title}" and its comments?</p>
-            <div className="flex flex-row">
-              <button
-                type="button"
-                className="mr-2 bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
-                onClick={() => { deleteVideo() }}>
-                I'm Sure</button>
-              <button
-                type="button"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                onClick={() => toggleModal(id + "video-modal")}>
-                Nevermind</button>
-            </div>
-
-          </div>
-
-        </div> : <div></div>}
+      {true ?
+        <DeleteModal id={id} title={title} toggleModal={toggleModal} deleteVideo={deleteVideo} />
+        : <div></div>}
       <span className="text-lg sm:text-xl pl-2 sm:pl-0 lato">{title}</span>
       <br />
       <span className="text-gray-700 text-sm pl-2 sm:pl-0 lato">{date}</span>
@@ -187,10 +170,10 @@ function Video(props) {
       {commentState.length > 0 ?
         <div className="comments-section mx-4 mb-2 mt-5 p-2 varta">
           <div className="flex justify-between border-b border-gray-700 mb-2 pr-1 pb-1">
-            {commentState.length} comments 
-              <i id={"arrow-" + id} className="fas fa-caret-square-down pt-1 cursor-pointer" 
-                onClick={() => { toggleComments() }}>
-              </i>
+            {commentState.length} comments
+              <i id={"arrow-" + id} className="fas fa-caret-square-down pt-1 cursor-pointer"
+              onClick={() => { toggleComments() }}>
+            </i>
           </div>
           <div id={"comments-section-" + id} className="hidden">
             {commentState.map(item => {

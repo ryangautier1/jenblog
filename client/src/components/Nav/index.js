@@ -68,7 +68,7 @@ function Nav() {
 
         </ul>
       </nav>
-      <div className="nav-page-effect h-16 bg-transparent z-0 absolute hidden sm:block"></div>
+      <div className="nav-page-effect h-16 bg-transparent z-0 absolute hidden sm:block pointer-events-none"></div>
     </div>
   )
 }
