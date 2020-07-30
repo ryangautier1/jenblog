@@ -61,6 +61,9 @@ nav {
 
 /*  */
 
+.videos {
+  max-width: 650px;
+}
 
 .yt-container {
   width: 100%;

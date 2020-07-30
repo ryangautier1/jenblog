@@ -7,7 +7,7 @@ import API from '../utils/API';
 function VideoPage(props) {
   let { id } = useParams();
   const [videoState, setVideoState] = useState(false);
-  const { userState, toggleModal } = props;
+  const { userState } = props;
   const [jenBlogName, setJenBlogName] = useState(localStorage.getItem("jenBlogName"));
   const [commentState, setCommentState] = useState([]);
   const nameRef = useRef();
@@ -32,6 +32,18 @@ function VideoPage(props) {
       }).catch(err => console.log(err));
     }).catch(err => console.log(err))
   }, [])
+
+  let modalOpen = true;
+  const toggleModal = (target) => {
+    modalOpen = !modalOpen;
+    if (modalOpen) {
+      document.getElementById(target).classList.add("hidden");
+      document.getElementById(target + "-bg").classList.add("hidden");
+    } else {
+      document.getElementById(target).classList.remove("hidden");
+      document.getElementById(target + "-bg").classList.remove("hidden");
+    }
+  }
 
   const removeName = () => {
     // clear local storage
@@ -124,7 +136,7 @@ function VideoPage(props) {
   }
 
   return (
-    <main>
+    <main className="mt-8 mx-1 pb-2 sm:mx-16 videos inner-shadow">
 
 
       <div key={id} className="mb-5 relative text-gray-700">

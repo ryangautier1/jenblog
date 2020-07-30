@@ -13,7 +13,27 @@ import Login from './pages/Login';
 
 function App() {
   
-  
+  // this function takes an array of objects each with a date key and formats the dates into mm-dd-yyyy format
+  // for type === post, the dates are at data[i].date
+  // for type === comments, the dates are at data[i].comments[j].date
+  const formatDates = (data, type) => {
+    if (type === "post") {
+      for (let i = 0; i < data.length; i++) {
+        let dateArr = data[i].date.split("-");
+        dateArr = [dateArr[1], dateArr[2].substring(0, 2), dateArr[0]];
+        data[i].date = dateArr.join("-");
+      }
+    }
+    else {
+      for (let i = 0; i < data.length; i++) {
+        for (let j = 0; j < data[i].comments.length; j++) {
+          let dateArr = data[i].comments[j].date.split("-");
+          dateArr = [dateArr[1], dateArr[2].substring(0, 2), dateArr[0]];
+          data[i].comments[j].date = dateArr.join("-");
+        }
+      }
+    }
+  }
 
   return (
     <div>
@@ -30,11 +50,11 @@ function App() {
           </Route>
           <Route path={["/video/:id"]}>
             <Nav />
-            <VideoPage />
+            <VideoPage formatDates={formatDates} />
           </Route>
           <Route exact path={["/youtube"]}>
             <Nav />
-            <Youtube />
+            <Youtube formatDates={formatDates} />
           </Route>
           <Route exact path={["/admin"]}>
             <Login />
