@@ -42,29 +42,29 @@ function Thumbnails() {
         // API.getTextPosts().then(posts => {
         //   API.getTpComments().then(tpComments => {
 
-            // let allPosts = vids.data.concat(posts.data);
+        // let allPosts = vids.data.concat(posts.data);
 
-            // sort the result by date descending
-            // allPosts.sort(function (a, b) {
-            //   return new Date(b.date) - new Date(a.date);
-            // });
+        // sort the result by date descending
+        // allPosts.sort(function (a, b) {
+        //   return new Date(b.date) - new Date(a.date);
+        // });
 
-            vids.data.sort(function (a, b) {
-              return new Date(b.date) - new Date(a.date);
-            });
+        vids.data.sort(function (a, b) {
+          return new Date(b.date) - new Date(a.date);
+        });
 
-            // put the dates in mm-dd-yyyy format
-            formatDates(vids.data, "post");
-            formatDates(ytComments.data, "comment");
-            // formatDates(posts.data, "post")
-            // formatDates(tpComments.data, "comment");
+        // put the dates in mm-dd-yyyy format
+        formatDates(vids.data, "post");
+        formatDates(ytComments.data, "comment");
+        // formatDates(posts.data, "post")
+        // formatDates(tpComments.data, "comment");
 
 
-            // update the state
-            setPostsData(vids.data);
-            setYtCommentData(ytComments.data);
-            // setTpCommentData(tpComments.data);
-          })
+        // update the state
+        setPostsData(vids.data);
+        setYtCommentData(ytComments.data);
+        // setTpCommentData(tpComments.data);
+      })
       //   })
       // })
 
@@ -113,29 +113,29 @@ function Thumbnails() {
   }
 
   return (
-    <main className="mt-8 mx-1 pb-2 sm:mx-16 videos inner-shadow">
+    <main className="mt-8 mx-1 pb-2 sm:mx-16 inner-shadow">
 
       {userState ?
         <AdminModal updatePage={updatePage} toggleModal={toggleModal} />
         : <AdminModal updatePage={updatePage} toggleModal={toggleModal} />
       }
 
-      {/* <RenderPosts /> */}
+      <div className="flex flex-row flex-wrap w-full justify-around">
 
-      {postsData.map(item => {
+        {postsData.map(item => {
           // check if item is a video
           if (item.video) {
             let comments = ytCommentData.filter(comment => comment.video === item._id);
             // check if video has comments
             if (comments[0] !== undefined) {
               return (
-                  <VideoThumbnail key={item._id} id={item._id} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} video={item.video} comments={comments[0].comments.length} />
+                <VideoThumbnail key={item._id} id={item._id} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} video={item.video} comments={comments[0].comments.length} />
               )
             }
             else {
               // video has no comments
               return (
-                  <VideoThumbnail key={item._id} id={item._id} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} video={item.video} />
+                <VideoThumbnail key={item._id} id={item._id} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} video={item.video} />
               )
             }
           }
@@ -156,8 +156,9 @@ function Thumbnails() {
             }
           }
         })
-      }
-  
+        }
+
+      </div>
 
     </main>
   )
