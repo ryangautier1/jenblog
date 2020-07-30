@@ -54,5 +54,8 @@ export default {
     },
     updateTpComments: function(textpost, data) {
         return axios.put("/api/textpostcomment/" + textpost, data);
+    },
+    deleteTpComments: function(id) {
+        return axios.delete("/api/textpostcomment/delete/" + id);
     }
 };

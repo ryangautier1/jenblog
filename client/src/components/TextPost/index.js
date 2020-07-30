@@ -40,9 +40,7 @@ function TextPost(props) {
     event.preventDefault();
     let today = new Date();
     let date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear();
-    // console.log(commentRef.current.value, id, jenBlogName, date);
 
-    console.log("in text post ", comments);
     // if there are no comments yet 
     if (!comments) {
       API.postNewTpComment(
