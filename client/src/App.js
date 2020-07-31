@@ -15,6 +15,7 @@ function App() {
   
   // this function takes an array of objects each with a date key and formats the dates into mm-dd-yyyy format
   // for type === post, the dates are at data[i].date
+  // for type === single, the dates are in data.date
   // for type === comments, the dates are at data[i].comments[j].date
   const formatDates = (data, type) => {
     if (type === "post") {
@@ -23,6 +24,11 @@ function App() {
         dateArr = [dateArr[1], dateArr[2].substring(0, 2), dateArr[0]];
         data[i].date = dateArr.join("-");
       }
+    }
+    else if (type === "single") {
+      let dateArr = data.date.split("-");
+      dateArr = [dateArr[1], dateArr[2].substring(0, 2), dateArr[0]];
+      data.date = dateArr.join("-");
     }
     else {
       for (let i = 0; i < data.length; i++) {
@@ -50,7 +56,7 @@ function App() {
           </Route>
           <Route path={["/video/:id"]}>
             <Nav />
-            <VideoPage formatDates={formatDates} />
+            <VideoPage formatDates={formatDates} userState={false} />
           </Route>
           <Route exact path={["/youtube"]}>
             <Nav />

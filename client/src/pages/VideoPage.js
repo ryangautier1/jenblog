@@ -7,29 +7,28 @@ import API from '../utils/API';
 function VideoPage(props) {
   let { id } = useParams();
   const [videoState, setVideoState] = useState(false);
-  const { userState } = props;
+  const { formatDates, userState } = props;
   const [jenBlogName, setJenBlogName] = useState(localStorage.getItem("jenBlogName"));
-  const [commentState, setCommentState] = useState([]);
+  const [commentState, setCommentState] = useState(false);
   const nameRef = useRef();
   const commentRef = useRef();
 
   useEffect(() => {
     API.getVideoById(id).then(res => {
-      console.log(res.data)
-      API.getYtCommentsByVideo(res.data._id).then(comments => {
-        console.log(comments.data);
-        
-        let video = {
-          title: res.data.title,
-          date: res.data.date,
-          video: res.data.video,
-          caption: res.data.caption
-        }
+      API.getYtCommentsByVideo(id).then(comments => {
+
+        formatDates(res.data, "single");
+        formatDates(comments.data, "comments");
+
         if (comments.data) {
-          setCommentState(comments.data)
+          setCommentState(comments.data[0].comments);
         }
-        setVideoState(video);
-      }).catch(err => console.log(err));
+        setVideoState(res.data);
+      }).catch(() => {
+        console.log("no comments")
+        formatDates(res.data, "single");
+        setVideoState(res.data);
+      });
     }).catch(err => console.log(err))
   }, [])
 
@@ -72,7 +71,7 @@ function VideoPage(props) {
 
     // if there are no comments yet 
     if (!commentState) {
-      API.postYtNewComment(
+      API.postNewYtComment(
         {
           video: id,
           comments: [
@@ -84,8 +83,11 @@ function VideoPage(props) {
           ]
         }
       ).then(() => {
-        // updatePage();
-        commentRef.current.value = "";
+        API.getYtCommentsByVideo(id).then(comments => {
+          formatDates(comments.data, "comments");
+          setCommentState(comments.data[0].comments);
+          commentRef.current.value = "";
+        }).catch(err => console.log(err));
       }).catch(err => console.log(err));
     }
     else {
@@ -94,7 +96,13 @@ function VideoPage(props) {
         date: date,
         comment: commentRef.current.value
       }
-      API.updateYtComments(id, data);
+      API.updateYtComments(id, data).then(() => {
+        API.getYtCommentsByVideo(id).then(comments => {
+          formatDates(comments.data, "comments");
+          setCommentState(comments.data[0].comments);
+          commentRef.current.value = "";
+        }).catch(err => console.log(err));
+      }).catch(err => console.log(err));
     }
   }
 
@@ -142,7 +150,7 @@ function VideoPage(props) {
       <div key={id} className="mb-5 relative text-gray-700">
         {/* change true to check if user is logged in */}
         {userState ?
-          <DeleteModal id={id} title={videoState.title} toggleModal={toggleModal} deleteVideo={deleteVideo} type={"video"}/>
+          <DeleteModal id={id} title={videoState.title} toggleModal={toggleModal} deleteVideo={deleteVideo} type={"video"} />
           : <div></div>}
         <span className="text-lg sm:text-xl pl-2 sm:pl-0 lato">{videoState.title}</span>
         <br />
@@ -197,7 +205,7 @@ function VideoPage(props) {
 
 
         </form>
-        {commentState.length > 0 ?
+        {commentState ?
           <div className="comments-section mx-4 mb-2 mt-5 p-2 varta">
             <div className="flex justify-between border-b border-gray-700 mb-2 pr-1 pb-1">
               {commentState.length} comments
