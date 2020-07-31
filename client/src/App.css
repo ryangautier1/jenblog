@@ -59,6 +59,11 @@ nav {
   box-shadow: 0 0 7px #777;
 }
 
+.text-thumbnail-body {
+  width: 100%;
+  height: 10.5rem;
+}
+
 /*  */
 
 .videos {

@@ -1,7 +1,8 @@
 import React, { lazy, Suspense, useState, useEffect } from 'react';
-import LoadingVideo from '../components/LoadingVideo';
+// import LoadingVideo from '../components/LoadingVideo';
 import VideoThumbnail from '../components/VideoThumbnail';
-import TextPost from '../components/TextPost';
+import TextThumbnail from '../components/TextThumbnail';
+// import TextPost from '../components/TextPost';
 import AdminModal from '../components/AdminModal';
 import API from '../utils/API';
 
@@ -39,34 +40,35 @@ function Thumbnails() {
   const updatePage = () => {
     API.getYtVideos().then(vids => {
       API.getYtComments().then(ytComments => {
-        // API.getTextPosts().then(posts => {
-        //   API.getTpComments().then(tpComments => {
+        API.getTextPosts().then(posts => {
+          API.getTpComments().then(tpComments => {
 
-        // let allPosts = vids.data.concat(posts.data);
+            let allPosts = vids.data.concat(posts.data);
 
-        // sort the result by date descending
-        // allPosts.sort(function (a, b) {
-        //   return new Date(b.date) - new Date(a.date);
-        // });
+            console.log("all", allPosts)
+            // sort the result by date descending
+            allPosts.sort(function (a, b) {
+              return new Date(b.date) - new Date(a.date);
+            });
 
-        vids.data.sort(function (a, b) {
-          return new Date(b.date) - new Date(a.date);
-        });
+            // vids.data.sort(function (a, b) {
+            //   return new Date(b.date) - new Date(a.date);
+            // });
 
-        // put the dates in mm-dd-yyyy format
-        formatDates(vids.data, "post");
-        formatDates(ytComments.data, "comment");
-        // formatDates(posts.data, "post")
-        // formatDates(tpComments.data, "comment");
+            // put the dates in mm-dd-yyyy format
+            // formatDates(vids.data, "post");
+            formatDates(ytComments.data, "comment");
+            formatDates(allPosts, "post")
+            formatDates(tpComments.data, "comment");
 
 
-        // update the state
-        setPostsData(vids.data);
-        setYtCommentData(ytComments.data);
-        // setTpCommentData(tpComments.data);
+            // update the state
+            setPostsData(allPosts);
+            setYtCommentData(ytComments.data);
+            setTpCommentData(tpComments.data);
+          })
+        })
       })
-      //   })
-      // })
 
     });
   }
@@ -145,13 +147,13 @@ function Thumbnails() {
             // check if text post has comments
             if (comments) {
               return (
-                <TextPost key={item._id} id={item._id} userState={userState} toggleModal={toggleModal} updateComments={updateComments} updatePage={updatePage} title={item.title} date={item.date} body={item.body} caption={item.caption} comments={comments[0]} />
+                <TextThumbnail key={item._id} id={item._id} userState={userState} toggleModal={toggleModal} updateComments={updateComments} updatePage={updatePage} title={item.title} date={item.date} body={item.body} caption={item.caption} comments={comments[0]} />
               )
             }
             else {
               // text post with no comments
               return (
-                <TextPost key={item._id} id={item._id} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} body={item.body} caption={item.caption} />
+                <TextThumbnail key={item._id} id={item._id} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} body={item.body} caption={item.caption} />
               )
             }
           }
