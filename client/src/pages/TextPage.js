@@ -82,8 +82,11 @@ function TextPage(props) {
           ]
         }
       ).then(() => {
-        // updatePage();
-        commentRef.current.value = "";
+        API.getTpCommentsByTp(id).then(comments => {
+          formatDates(comments.data, "comments");
+          setCommentState(comments.data[0].comments);
+          commentRef.current.value = "";
+        }).catch(err => console.log(err));
       }).catch(err => console.log(err));
     }
     else {
@@ -93,8 +96,11 @@ function TextPage(props) {
         comment: commentRef.current.value
       }
       API.updateTpComments(id, data).then(() => {
-        // updatePage();
-        commentRef.current.value = "";
+        API.getTpCommentsByTp(id).then(comments => {
+          formatDates(comments.data, "comments");
+          setCommentState(comments.data[0].comments);
+          commentRef.current.value = "";
+        }).catch(err => console.log(err));
       }).catch(err => console.log(err));
     }
   }
