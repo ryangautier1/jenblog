@@ -52,7 +52,7 @@ function App() {
             <Nav />
             {/* <Home /> */}
           </Route>
-          <Route exact path={["/thumbnails"]}>
+          <Route exact path={["/blog"]}>
             <Nav />
             <Thumbnails />
           </Route>

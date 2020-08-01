@@ -21,10 +21,10 @@ function Nav() {
   // when the tab state is updated, change the active tab on the page
   useEffect(() => {
     document.getElementById("youtube-tab").classList.remove("border-t-2", "sm:border-b-2", "sm:border-t-0", "border-red-700");
-    document.getElementById("thumbnails-tab").classList.remove("border-t-2", "sm:border-b-2", "sm:border-t-0", "border-red-700");
+    document.getElementById("blog-tab").classList.remove("border-t-2", "sm:border-b-2", "sm:border-t-0", "border-red-700");
     document.getElementById("home-tab").classList.remove("border-t-2", "sm:border-b-2", "sm:border-t-0", "border-red-700");
 
-    if (tabState === "youtube-tab" || tabState === "thumbnails-tab" || tabState === "home-tab"){
+    if (tabState === "youtube-tab" || tabState === "blog-tab" || tabState === "home-tab"){
       document.getElementById(tabState).classList.add("border-t-2", "sm:border-b-2", "sm:border-t-0", "border-red-700");
     }
   }, [tabState]);
@@ -64,8 +64,8 @@ function Nav() {
             <li className={navStyle} id="youtube-tab" onClick={() => { handleTabChange("youtube-tab") }}>Youtube</li>
           </Link>
 
-          <Link to="/thumbnails">
-            <li className={navStyle} id="thumbnails-tab" onClick={() => { handleTabChange("thumbnails-tab") }}>Thumbnails</li>
+          <Link to="/blog">
+            <li className={navStyle} id="blog-tab" onClick={() => { handleTabChange("blog-tab") }}>Blog</li>
           </Link>
 
         </ul>

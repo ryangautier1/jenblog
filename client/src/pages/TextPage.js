@@ -107,15 +107,15 @@ function TextPage(props) {
     if (commentState) {
       API.deleteTextPost(id).then(() => {
         API.deleteTpComments(commentState._id).then(() => {
-          // updatePage();
           toggleModal(id + "delete-modal");
+          window.location.replace("/blog");
         }).catch((errr) => { console.log(errr) })
       }).catch((err) => { console.log(err) });
     }
     else {
       API.deleteTextPost(id).then(() => {
-        // updatePage();
         toggleModal(id + "delete-modal");
+        window.location.replace("/blog");
       }).catch((err) => { console.log(err) });
     }
 

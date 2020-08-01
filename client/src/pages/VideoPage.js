@@ -15,19 +15,18 @@ function VideoPage(props) {
 
   useEffect(() => {
     API.getVideoById(id).then(res => {
+      formatDates(res.data, "single");
+      setVideoState(res.data);
       API.getYtCommentsByVideo(id).then(comments => {
 
-        formatDates(res.data, "single");
         formatDates(comments.data, "comments");
 
         if (comments.data) {
-          setCommentState(comments.data[0].comments);
+          setCommentState(comments.data[0]);
         }
-        setVideoState(res.data);
       }).catch(() => {
         console.log("no comments")
-        formatDates(res.data, "single");
-        setVideoState(res.data);
+        
       });
     }).catch(err => console.log(err))
   }, [])
@@ -85,7 +84,7 @@ function VideoPage(props) {
       ).then(() => {
         API.getYtCommentsByVideo(id).then(comments => {
           formatDates(comments.data, "comments");
-          setCommentState(comments.data[0].comments);
+          setCommentState(comments.data[0]);
           commentRef.current.value = "";
         }).catch(err => console.log(err));
       }).catch(err => console.log(err));
@@ -99,7 +98,8 @@ function VideoPage(props) {
       API.updateYtComments(id, data).then(() => {
         API.getYtCommentsByVideo(id).then(comments => {
           formatDates(comments.data, "comments");
-          setCommentState(comments.data[0].comments);
+          setCommentState(comments.data[0]);
+
           commentRef.current.value = "";
         }).catch(err => console.log(err));
       }).catch(err => console.log(err));
@@ -110,15 +110,15 @@ function VideoPage(props) {
     if (commentState) {
       API.deleteVideo(id).then(() => {
         API.deleteComments(commentState._id).then(() => {
-          // updatePage();
-          toggleModal(id + "video-modal");
+          toggleModal(id + "delete-modal");
+          window.location.replace("/blog");
         }).catch((errr) => { console.log(errr) })
       }).catch((err) => { console.log(err) });
     }
     else {
       API.deleteVideo(id).then(() => {
-        // updatePage();
-        toggleModal(id + "video-modal");
+        toggleModal(id + "delete-modal");
+        window.location.replace("/blog");
       }).catch((err) => { console.log(err) });
     }
   }
@@ -205,16 +205,16 @@ function VideoPage(props) {
 
 
         </form>
-        {commentState ?
+        {commentState.comments ?
           <div className="comments-section mx-4 mb-2 mt-5 p-2 varta">
             <div className="flex justify-between border-b border-gray-700 mb-2 pr-1 pb-1">
-              {commentState.length} comments
+              {commentState.comments.length} comments
                 <i id={"arrow-" + id} className="fas fa-caret-square-down pt-1 cursor-pointer"
                 onClick={() => { toggleComments() }}>
               </i>
             </div>
             <div id={"comments-section-" + id} className="hidden">
-              {commentState.map(item => {
+              {commentState.comments.map(item => {
                 return (
                   <div className="text-md text-gray-700 mb-3" key={item._id}>
                     <span className="font-bold mr-2">{item.author}</span>
