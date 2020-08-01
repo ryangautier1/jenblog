@@ -27,6 +27,10 @@ footer {
   max-width: 33%
 }
 
+.header-gradient {
+  background: linear-gradient(to left, #f8a574, #e76f29);
+}
+
 nav {
   background-color: #fff !important;
 }
@@ -49,7 +53,7 @@ nav {
   column-gap: 1em;
   width: 850px;
   padding: 1em;
-  background-image: linear-gradient(#f3955e, #e76f29);
+  background: linear-gradient(#f3955e, #e76f29);
 }
 
 .thumbnail-card {

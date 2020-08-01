@@ -119,7 +119,7 @@ function Thumbnails() {
 
       {userState ?
         <AdminModal updatePage={updatePage} toggleModal={toggleModal} />
-        : <AdminModal updatePage={updatePage} toggleModal={toggleModal} />
+        : null
       }
 
       <div className="w-full masonry">

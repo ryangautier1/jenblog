@@ -53,7 +53,6 @@ function App() {
             {/* <Home /> */}
           </Route>
           <Route exact path={["/blog"]}>
-            <Nav />
             <Thumbnails />
           </Route>
           <Route path={["/video/:id"]}>
