@@ -27,6 +27,7 @@ function App() {
       }
     }
     else if (type === "single") {
+      console.log(data.date);
       let dateArr = data.date.split("-");
       dateArr = [dateArr[1], dateArr[2].substring(0, 2), dateArr[0]];
       data.date = dateArr.join("-");

@@ -15,19 +15,17 @@ function TextPage(props) {
 
   useEffect(() => {
     API.getTextPostById(id).then(res => {
+      formatDates(res.data, "single");
+      setTextState(res.data);
       API.getTpCommentsByTp(id).then(comments => {
-
-        formatDates(res.data, "single");
+        
         formatDates(comments.data, "comments");
 
         if (comments.data) {
           setCommentState(comments.data[0].comments);
         }
-        setTextState(res.data);
       }).catch(() => {
-        console.log("no comments")
-        formatDates(res.data, "single");
-        setTextState(res.data);
+        console.log("no comments");
       });
     }).catch(err => console.log(err))
   }, [])
