@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Youtube from './pages/Youtube';
 // import Instagram from './pages/Instagram';
 import VideoPage from './pages/VideoPage';
+import TextPage from './pages/TextPage';
 import Thumbnails from './pages/Thumbnails';
 import './App.css';
 import Login from './pages/Login';
@@ -57,6 +58,10 @@ function App() {
           <Route path={["/video/:id"]}>
             <Nav />
             <VideoPage formatDates={formatDates} userState={false} />
+          </Route>
+          <Route path={["/text/:id"]}>
+            <Nav />
+            <TextPage formatDates={formatDates} userState={false} />
           </Route>
           <Route exact path={["/youtube"]}>
             <Nav />

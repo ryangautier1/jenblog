@@ -45,7 +45,7 @@ nav {
 
 /* thumbnail styles */
 .thumbnail-card {
-  max-width: 320px;
+  width: 320px;
   transition: 0.2s ease;
 }
 

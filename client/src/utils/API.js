@@ -46,11 +46,17 @@ export default {
     getTextPosts: function() {
         return axios.get("/api/textpost");
     },
+    getTextPostById: function(id) {
+        return axios.get("/api/textpost/" + id);
+    },
     deleteTextPost: function(id) {
-        return axios.delete("/api/textpost/" + id)
+        return axios.delete("/api/textpost/" + id);
     },
     getTpComments: function() {
         return axios.get("/api/textpostcomment");
+    },
+    getTpCommentsByTp: function(textpost) {
+        return axios.get("/api/textpostcomment/" + textpost)
     },
     postNewTpComment: function(data) {
         return axios.post("/api/textpostcomment", data);

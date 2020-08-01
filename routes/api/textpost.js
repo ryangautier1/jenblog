@@ -10,6 +10,7 @@ router
 // Match with /api/textpost/:id
 router
     .route("/:id")
+    .get(textPostController.findById)
     .delete(textPostController.remove);
 
 module.exports = router;
