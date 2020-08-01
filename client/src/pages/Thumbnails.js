@@ -122,7 +122,7 @@ function Thumbnails() {
         : <AdminModal updatePage={updatePage} toggleModal={toggleModal} />
       }
 
-      <div className="w-full bg-orange-500 masonry">
+      <div className="w-full masonry">
 
         {postsData.map(item => {
           // check if item is a video
