@@ -31,6 +31,10 @@ footer {
   background: linear-gradient(to left, #f8a574, #e76f29);
 }
 
+.search {
+  width: 200px;
+}
+
 nav {
   background-color: #fff !important;
 }

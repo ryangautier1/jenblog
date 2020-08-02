@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 // import Home from './pages/Home';
+import Search from './components/Search';
 import Youtube from './pages/Youtube';
 // import Instagram from './pages/Instagram';
 import VideoPage from './pages/VideoPage';
@@ -45,7 +46,7 @@ function App() {
 
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <Router>
         <Switch>
           <Route exact path={["/"]}>

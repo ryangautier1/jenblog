@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, useState, useEffect } from 'react';
 // import LoadingVideo from '../components/LoadingVideo';
+import Search from '../components/Search';
 import VideoThumbnail from '../components/VideoThumbnail';
 import TextThumbnail from '../components/TextThumbnail';
 // import TextPost from '../components/TextPost';
@@ -115,14 +116,17 @@ function Thumbnails() {
   }
 
   return (
-    <main className="mt-8 mx-1 pb-2 sm:mx-16 inner-shadow">
+    <main className="mt-8 mx-2 pb-2 inner-shadow flex flex-row">
+
+      <Search />
+
 
       {userState ?
         <AdminModal updatePage={updatePage} toggleModal={toggleModal} />
         : null
       }
 
-      <div className="w-full masonry">
+      <div className="w-full masonry ml-6">
 
         {postsData.map(item => {
           // check if item is a video
