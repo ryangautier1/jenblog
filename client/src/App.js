@@ -46,7 +46,7 @@ function App() {
 
   return (
     <div>
-      {/* <Header /> */}
+      <Header />
       <Router>
         <Switch>
           <Route exact path={["/"]}>
@@ -54,6 +54,7 @@ function App() {
             {/* <Home /> */}
           </Route>
           <Route exact path={["/blog"]}>
+          <Nav />
             <Thumbnails />
           </Route>
           <Route path={["/video/:id"]}>

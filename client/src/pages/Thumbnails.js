@@ -116,9 +116,9 @@ function Thumbnails() {
   }
 
   return (
-    <main className="mt-8 mx-2 pb-2 inner-shadow flex flex-row">
+    <main className="mt-8 ml-6 mr-16 pb-2 inner-shadow flex flex-row justify-between">
 
-      <Search />
+      {/* <Search /> */}
 
 
       {userState ?
@@ -126,7 +126,7 @@ function Thumbnails() {
         : null
       }
 
-      <div className="w-full masonry ml-6">
+      <div className="w-full masonry">
 
         {postsData.map(item => {
           // check if item is a video

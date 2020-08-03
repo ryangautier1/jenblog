@@ -35,6 +35,10 @@ footer {
   width: 200px;
 }
 
+.search input:focus {
+  outline: none;
+}
+
 nav {
   background-color: #fff !important;
 }

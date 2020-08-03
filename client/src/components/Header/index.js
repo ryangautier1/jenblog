@@ -15,7 +15,7 @@ function Header() {
   return (
     <header>
       <div className="min-w-full mt-6">
-        {/* <img className="z-0 w-full h-16 sm:h-24 px-6 absolute top-0 mt-6" src={headerGradient} alt='Jen Blog Gradient'/> */}
+        <img className="z-0 w-full h-16 sm:h-24 px-6 absolute top-0 mt-6" src={headerGradient} alt='Jen Blog Gradient'/>
         <div className="z-0 w-full h-16 sm:h-24 px-6 absolute top-0 mt-6 header-gradient" ></div>
         <div className="josefin absolute top-0 pt-1 mt-6 ml-10 z-10 flex flex-col header-caption">
           {/* <p className="josefin text-3xl sm:text-5xl text-white leading-tight">Jen</p>
