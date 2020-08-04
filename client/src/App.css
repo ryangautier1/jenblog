@@ -6,7 +6,7 @@ html {
 
 body {
   margin-bottom: 150px !important;
-  background-color: #fff;
+  background-image: linear-gradient(#f7f7f7, #e7e7e7);
 }
 
 footer {
@@ -57,11 +57,10 @@ nav {
 
 /* thumbnail styles */
 .masonry {
-  column-count: 3;
+  column-count: 4;
   column-gap: 1em;
-  width: 850px;
+  width: 100%;
   padding: 1em;
-  background: linear-gradient(#f3955e, #e76f29);
 }
 
 .thumbnail-card {

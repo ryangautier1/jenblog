@@ -116,10 +116,7 @@ function Thumbnails() {
   }
 
   return (
-    <main className="mt-8 ml-6 mr-16 pb-2 inner-shadow flex flex-row justify-between">
-
-      {/* <Search /> */}
-
+    <main className="mt-8 ml-6 mr-16 pb-2 inner-shadow mt-16 z-0">
 
       {userState ?
         <AdminModal updatePage={updatePage} toggleModal={toggleModal} />
