@@ -39,6 +39,14 @@ footer {
   outline: none;
 }
 
+.fa-times:hover {
+  transition: ease 0.3s;
+}
+
+.fa-times:hover {
+  color: #444;
+}
+
 nav {
   background-color: #fff !important;
 }

@@ -50,7 +50,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path={["/"]}>
-            <Nav />
+            {/* <Nav /> */}
             {/* <Home /> */}
           </Route>
           <Route exact path={["/blog"]}>
@@ -59,15 +59,15 @@ function App() {
             <Thumbnails />
           </Route>
           <Route path={["/video/:id"]}>
-            <Nav />
+            {/* <Nav /> */}
             <VideoPage formatDates={formatDates} userState={false} />
           </Route>
           <Route path={["/text/:id"]}>
-            <Nav />
+            {/* <Nav /> */}
             <TextPage formatDates={formatDates} userState={false} />
           </Route>
           <Route exact path={["/youtube"]}>
-            <Nav />
+            {/* <Nav /> */}
             <Youtube formatDates={formatDates} />
           </Route>
           <Route exact path={["/admin"]}>
