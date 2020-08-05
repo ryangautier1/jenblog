@@ -13,7 +13,7 @@ function VideoThumbnail(props) {
 
   return (
     <Link to={"/video/" + props.id}>
-      <div className="thumbnail-card mb-4 cursor-pointer p-3">
+      <div className="thumbnail-card mb-4 cursor-pointer p-3 animate__animated animate__fadeInUp">
         <img src={thumbnailSrc} alt={props.title} className="mb-2" />
         <h2 className="lato text-lg text-gray-900 text-bold">{props.title}</h2>
         <div className="text-md text-blue-700">{props.date}</div>

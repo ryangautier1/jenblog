@@ -46,7 +46,7 @@ function App() {
 
   return (
     <div>
-      {/* <Header /> */}
+      <Header />
       <Router>
         <Switch>
           <Route exact path={["/"]}>

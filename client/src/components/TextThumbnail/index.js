@@ -13,7 +13,7 @@ function TextThumbnail(props) {
 
   return (
     <Link to={"/text/" + props.id}>
-      <div className="thumbnail-card mb-4 cursor-pointer p-4">
+      <div className="thumbnail-card mb-4 cursor-pointer p-4 animate__animated animate__fadeInUp">
         <p className="varta overflow-hidden text-thumbnail-body" id={props.id + "-text"}>{props.body}
           <span className="text-thumbnail-fade hidden" id={props.id + "-fade"}></span>
         </p>

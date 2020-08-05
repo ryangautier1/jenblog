@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 
 
@@ -6,6 +6,27 @@ function Search() {
 
   const [searchState, setSearchState] = useState([]);
   const searchRef = useRef();
+
+  useEffect(function setupScroll() {
+    function handleScroll() {
+      if (window.scrollY > 60) {
+        if (window.innerWidth > 640) {
+          document.getElementById("search").classList.add("fixed", "top-0");
+          document.getElementsByTagName("main")[0].classList.add("extra-margin");
+        }
+      }
+      else {
+        if (window.innerWidth > 640) {
+          document.getElementById("search").classList.remove("fixed", "top-0");
+          document.getElementsByTagName("main")[0].classList.remove("extra-margin");
+        }
+      }
+    }
+    window.addEventListener("scroll", handleScroll);
+    return function cleanupScroll() {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  });
 
   // this function updates the state with user input and clears the search field
   const handleSearch = (event) => {
@@ -23,8 +44,23 @@ function Search() {
     setSearchState(newTerms);
   }
 
+  // window.addEventListener("scroll", function () {
+  //   if (window.scrollY > 60) {
+  //     if (window.innerWidth > 640) {
+  //       document.getElementById("search").classList.add("fixed", "top-0");
+  //       document.getElementsByTagName("main")[0].classList.add("extra-margin");
+  //     }
+  //   }
+  //   else {
+  //     if (window.innerWidth > 640) {
+  //       document.getElementById("search").classList.remove("fixed", "top-0");
+  //       document.getElementsByTagName("main")[0].classList.remove("extra-margin");
+  //     }
+  //   }
+  // })
+
   return (
-    <div className="py-2 px-5 border-b border-gray-500 flex flex-row flex-wrap bg-white shadow fixed w-full top-0 left-0 z-10 content-center">
+    <div className="py-2 px-5 border-b border-gray-500 flex flex-row flex-wrap bg-white shadow w-full left-0 z-10 content-center" id="search">
       <form
         className="search relative"
         onSubmit={(event) => handleSearch(event)}>

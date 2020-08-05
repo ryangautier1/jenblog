@@ -116,7 +116,7 @@ function Thumbnails() {
   }
 
   return (
-    <main className="mt-8 sm:mx-6 md:mx-16 mx-2 pb-2 inner-shadow mt-16 z-0">
+    <main className="mt-8 sm:mx-6 md:mx-16 mx-2 pb-2 inner-shadow z-0">
 
       {userState ?
         <AdminModal updatePage={updatePage} toggleModal={toggleModal} />
