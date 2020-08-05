@@ -4,6 +4,7 @@ import API from '../../utils/API';
 
 function AdminModal(props) {
   const [modalState, setModalState] = useState("youtube");
+  const [tagsState, setTagsState] = useState(false);
 
   // set up useRef for form values
   const titleRef = useRef();
@@ -11,6 +12,7 @@ function AdminModal(props) {
   const dateRef = useRef();
   const captionRef = useRef();
   const textpostRef = useRef();
+  const tagsRef = useRef();
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -118,6 +120,11 @@ function AdminModal(props) {
     }
   }
 
+  const removeTag = (tag) => {
+    let newTags = tagsState.filter(item => item !== tag);
+    setTagsState(newTags);
+  }
+
   return (
     <div>
       <div className="text-center">
@@ -199,6 +206,30 @@ function AdminModal(props) {
             </div>
 
           }
+          <label htmlFor="#tagsinput">Tags</label>
+              <input className="mb-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200 relative"
+                type="text"
+                id="tagsinput"
+                ref={tagsRef} />
+                <i className="fas fa-times absolute right-0 bottom-0 mb-2 text-gray-600 mr-2"></i>
+
+
+
+          {tagsState ? 
+          <div className="overflow-auto ml-0 sm:ml-6 mt-2 sm:mt-0 flex flex-row">
+          {tagsState.map(tag => {
+            return (
+              <div className="mx-1 bg-gray-300 py-1 pr-1 pl-3 rounded-full" key={tag}>
+                {tag}
+                <i className="fas fa-times ml-2 mr-1 text-gray-500 cursor-pointer"
+                  onClick={() => { removeTag(tag) }}></i>
+              </div>
+            )
+          })
+          }
+        </div>
+          :
+          null}
 
         </form>
         <div className="flex flex-row">

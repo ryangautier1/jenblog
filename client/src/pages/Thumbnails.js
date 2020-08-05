@@ -113,7 +113,7 @@ function Thumbnails(props) {
   return (
     <main className="mt-8 sm:mx-6 md:mx-16 mx-2 pb-2 inner-shadow z-0">
 
-      {userState ?
+      {true ?
         <AdminModal updatePage={updatePage} toggleModal={toggleModal} />
         : null
       }
