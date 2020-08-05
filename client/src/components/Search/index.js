@@ -11,8 +11,10 @@ function Search() {
   const handleSearch = (event) => {
     event.preventDefault();
     let term = searchRef.current.value;
-    setSearchState([...searchState, term]);
-    searchRef.current.value = "";
+    if (!searchState.includes(term)){
+      setSearchState([...searchState, term]);
+      searchRef.current.value = "";
+    }
   }
 
   // this function updates the state to remove the item clicked
@@ -22,18 +24,18 @@ function Search() {
   }
 
   return (
-    <div className="py-2 px-5 border-b border-gray-500 flex flex-row bg-white shadow fixed w-full top-0 left-0 z-10 content-center">
+    <div className="py-2 px-5 border-b border-gray-500 flex flex-row flex-wrap bg-white shadow fixed w-full top-0 left-0 z-10 content-center">
       <form
         className="search relative"
         onSubmit={(event) => handleSearch(event)}>
         <input placeholder="Search"
           type="text"
           ref={searchRef}
-          className="rounded-full border border-gray-500 px-3 py-1 relative" />
-        <i className="fas fa-search absolute right-0 bottom-0 mb-2 text-gray-600"></i>
+          className="rounded-full border border-gray-500 px-3 py-1 relative w-full" />
+        <i className="fas fa-search absolute right-0 bottom-0 mb-2 text-gray-600 mr-2"></i>
       </form>
 
-      <div className="overflow-auto ml-6 flex flex-row">
+      <div className="overflow-auto ml-0 sm:ml-6 mt-2 sm:mt-0 flex flex-row">
         {searchState.map(term => {
           return (
             <div className="mx-1 bg-gray-300 py-1 pr-1 pl-3 rounded-full" key={term}>
