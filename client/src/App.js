@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Nav from './components/Nav';
@@ -15,6 +15,8 @@ import Login from './pages/Login';
 
 function App() {
   
+  const [searchState, setSearchState] = useState([]);
+
   // this function takes an array of objects each with a date key and formats the dates into mm-dd-yyyy format
   // for type === post, the dates are at data[i].date
   // for type === single, the dates are in data.date
@@ -44,6 +46,21 @@ function App() {
     }
   }
 
+  // this function updates the state with user input and clears the search field
+  const handleSearch = (event, value) => {
+    event.preventDefault();
+    let term = value;
+    if (!searchState.includes(term)){
+      setSearchState([...searchState, term]);
+    }
+  }
+
+  // this function updates the state to remove the item clicked
+  const removeTerm = (term) => {
+    let newTerms = searchState.filter(item => item !== term);
+    setSearchState(newTerms);
+  }
+
   return (
     <div>
       <Header />
@@ -55,7 +72,7 @@ function App() {
           </Route>
           <Route exact path={["/blog"]}>
           {/* <Nav /> */}
-            <Search />
+            <Search handleSearch={handleSearch} removeTerm={removeTerm} searchState={searchState}/>
             <Thumbnails />
           </Route>
           <Route path={["/video/:id"]}>
