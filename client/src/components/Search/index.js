@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 
 
@@ -26,9 +26,6 @@ function Search(props) {
       window.removeEventListener('scroll', handleScroll);
     }
   });
-
-
-
 
 
   return (

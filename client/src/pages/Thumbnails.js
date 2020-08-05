@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 // import LoadingVideo from '../components/LoadingVideo';
 import Search from '../components/Search';
 import VideoThumbnail from '../components/VideoThumbnail';
@@ -7,22 +7,16 @@ import TextThumbnail from '../components/TextThumbnail';
 import AdminModal from '../components/AdminModal';
 import API from '../utils/API';
 
-// const Video = lazy(() => import('../components/Video'));
-
 // custom styling is in App.css
-
-function Thumbnails() {
+function Thumbnails(props) {
 
   // set up state for storing video data
-  // const [youtubedata, setYoutubeData] = useState([]);
   const [postsData, setPostsData] = useState([]);
   const [ytCommentData, setYtCommentData] = useState([]);
 
   // set up state for storing text post data
-  // const [textpostdata, setTextpostData] = useState([]);
   const [tpCommentData, setTpCommentData] = useState([]);
   const [userState, setUserState] = useState(false);
-  // const [jenBlogName, setJenBlogName] = useState();
 
   // gather video data on load
   useEffect(() => {
@@ -35,6 +29,8 @@ function Thumbnails() {
     })
   }, []);
 
+  useEffect(() => {console.log(props.searchState)}, [props.searchState]);
+
 
 
   // this function gets video data from db, sorts by date, formats the dates and updates the state with the result
@@ -46,7 +42,6 @@ function Thumbnails() {
 
             let allPosts = vids.data.concat(posts.data);
 
-            console.log("all", allPosts)
             // sort the result by date descending
             allPosts.sort(function (a, b) {
               return new Date(b.date) - new Date(a.date);

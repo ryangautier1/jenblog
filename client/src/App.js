@@ -73,7 +73,7 @@ function App() {
           <Route exact path={["/blog"]}>
           {/* <Nav /> */}
             <Search handleSearch={handleSearch} removeTerm={removeTerm} searchState={searchState}/>
-            <Thumbnails />
+            <Thumbnails searchState={searchState} />
           </Route>
           <Route path={["/video/:id"]}>
             {/* <Nav /> */}
