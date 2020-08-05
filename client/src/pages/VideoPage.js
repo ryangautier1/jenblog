@@ -205,7 +205,7 @@ function VideoPage(props) {
 
 
         </form>
-        {commentState.comments ?
+        {commentState ?
           <div className="comments-section mx-4 mb-2 mt-5 p-2 varta">
             <div className="flex justify-between border-b border-gray-700 mb-2 pr-1 pb-1">
               {commentState.comments.length} comments
