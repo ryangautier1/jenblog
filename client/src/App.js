@@ -62,14 +62,10 @@ function App() {
 
   return (
     <div>
-      <Header />
       <Router>
+      <Header />
         <Switch>
-          <Route exact path={["/"]}>
-            {/* <Nav /> */}
-            {/* <Home /> */}
-          </Route>
-          <Route exact path={["/blog"]}>
+          <Route exact path={["/", "/blog"]}>
           {/* <Nav /> */}
             <Search handleSearch={handleSearch} removeTerm={removeTerm} searchState={searchState}/>
             <Thumbnails searchState={searchState} />
