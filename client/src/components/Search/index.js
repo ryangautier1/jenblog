@@ -46,7 +46,7 @@ function Search(props) {
       <div className="overflow-auto ml-0 sm:ml-6 mt-2 sm:mt-0 flex flex-row">
         {props.searchState.map(term => {
           return (
-            <div className="mx-1 bg-gray-300 py-1 pr-1 pl-3 rounded-full" key={term}>
+            <div className="mx-1 bg-gray-300 py-1 pr-1 pl-3 rounded-full whitespace-no-wrap" key={term}>
               {term}
               <i className="fas fa-times ml-2 mr-1 text-gray-500 cursor-pointer"
                 onClick={() => { props.removeTerm(term) }}></i>

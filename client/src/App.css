@@ -146,6 +146,10 @@ iframe {
   min-height: 100vh;
 }
 
+.tags {
+  max-width: 300px;
+}
+
 .nav-icon {
   transition: 0.2s ease;
 }
@@ -226,6 +230,9 @@ iframe {
 @media screen and (max-width: 430px) {
   .thumbnail-card img {
     height: 175px;
+  }
+  .tags {
+    width: 100%;
   }
 }
 

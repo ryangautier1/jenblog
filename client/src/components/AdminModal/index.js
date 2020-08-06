@@ -4,7 +4,7 @@ import API from '../../utils/API';
 
 function AdminModal(props) {
   const [modalState, setModalState] = useState("youtube");
-  const [tagsState, setTagsState] = useState(false);
+  const [tagsState, setTagsState] = useState([]);
 
   // set up useRef for form values
   const titleRef = useRef();
@@ -46,8 +46,21 @@ function AdminModal(props) {
         video: videoRef.current.value.split("src=\"")[1].split("\"")[0],
       };
 
+      // grab caption input
       if (captionRef.current.value !== "") {
         formContent.caption = captionRef.current.value
+      }
+
+      // grab tag input
+      // if the user typed a tag but didn't click the plus
+      let tags = [];
+      if (tagsRef.current.value !== "" && !tagsState.includes(tagsRef.current.value)) {
+        tags = [tagsRef.current.value];
+      }
+      tags.push(...tagsState);
+      
+      if (tags !== []){
+        formContent.tags = tags;
       }
 
       // add video to db
@@ -123,6 +136,14 @@ function AdminModal(props) {
   const removeTag = (tag) => {
     let newTags = tagsState.filter(item => item !== tag);
     setTagsState(newTags);
+  }
+
+  const addTag = () => {
+    let tags = [...tagsState];
+    if (!tags.includes(tagsRef.current.value)) {
+      tags.push(tagsRef.current.value);
+    }
+    setTagsState(tags);
   }
 
   return (
@@ -206,30 +227,35 @@ function AdminModal(props) {
             </div>
 
           }
-          <label htmlFor="#tagsinput">Tags</label>
-              <input className="mb-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200 relative"
+          <div className="flex flex-row flex-wrap mb-2">
+
+            <label htmlFor="#tagsinput" className="w-full">Tags</label>
+            <br />
+            <div className="relative tags">
+              <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200"
                 type="text"
                 id="tagsinput"
                 ref={tagsRef} />
-                <i className="fas fa-times absolute right-0 bottom-0 mb-2 text-gray-600 mr-2"></i>
+              <i className="fas fa-plus absolute right-0 bottom-0 mb-3 text-gray-600 mr-2"
+                onClick={() => { addTag() }}></i>
+            </div>
 
-
-
-          {tagsState ? 
-          <div className="overflow-auto ml-0 sm:ml-6 mt-2 sm:mt-0 flex flex-row">
-          {tagsState.map(tag => {
-            return (
-              <div className="mx-1 bg-gray-300 py-1 pr-1 pl-3 rounded-full" key={tag}>
-                {tag}
-                <i className="fas fa-times ml-2 mr-1 text-gray-500 cursor-pointer"
-                  onClick={() => { removeTag(tag) }}></i>
+            {tagsState ?
+              <div className="overflow-auto ml-0 sm:ml-6 mt-2 sm:mt-0 flex flex-row">
+                {tagsState.map(tag => {
+                  return (
+                    <div className="mx-1 bg-gray-300 py-2 pr-1 pl-3 rounded-full whitespace-no-wrap" key={tag}>
+                      {tag}
+                      <i className="fas fa-times ml-2 mr-1 text-gray-500 cursor-pointer"
+                        onClick={() => { removeTag(tag) }}></i>
+                    </div>
+                  )
+                })
+                }
               </div>
-            )
-          })
-          }
-        </div>
-          :
-          null}
+              :
+              null}
+          </div>
 
         </form>
         <div className="flex flex-row">
