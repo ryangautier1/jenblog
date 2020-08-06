@@ -118,6 +118,8 @@ function Thumbnails(props) {
         : null
       }
 
+      {/* if the posts are done loading */}
+      {postsData.length != 0 ? 
       <div className="w-full masonry">
 
         {postsData.map(item => {
@@ -157,6 +159,13 @@ function Thumbnails(props) {
         }
 
       </div>
+
+      : 
+      // if the posts are not done loading
+      <div className="w-full fixed top-0 left-0 h-full loading-page flex justify-center items-center z-0">
+        <p className="lato text-gray-100 text-3xl">Loading</p>
+      </div>
+      }
 
     </main>
   )

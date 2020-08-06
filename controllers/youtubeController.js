@@ -8,8 +8,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findVideos: function (req, res) {
-    console.log(req.query.search);
-    // console.log(req.query.search);
     let query;
     // if query is not empty
     if (req.query.search !== undefined){
@@ -28,6 +26,7 @@ module.exports = {
       })
       .catch(err => res.status(422).json(err));
     }
+    // if no search terms are given, return all videos for now
     else {
       db.Youtube
       .find(req.query)

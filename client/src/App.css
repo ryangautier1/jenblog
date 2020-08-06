@@ -62,6 +62,32 @@ nav {
 }
 /*  */
 
+/* loading page */
+.loading-page {
+  background: linear-gradient(269deg, #ff1b1c, #ff7f11, #fffffc);
+  background-size: 600% 600%;
+
+  -webkit-animation: loadingGradient 3s ease infinite;
+  -moz-animation: loadingGradient 3s ease infinite;
+  animation: loadingGradient 3s ease infinite;
+}
+
+@-webkit-keyframes loadingGradient {
+  0%{background-position:4% 0%}
+  50%{background-position:97% 100%}
+  100%{background-position:4% 0%}
+}
+@-moz-keyframes loadingGradient {
+  0%{background-position:4% 0%}
+  50%{background-position:97% 100%}
+  100%{background-position:4% 0%}
+}
+@keyframes loadingGradient {
+  0%{background-position:4% 0%}
+  50%{background-position:97% 100%}
+  100%{background-position:4% 0%}
+}
+
 
 /* thumbnail styles */
 .masonry {

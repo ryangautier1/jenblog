@@ -15,7 +15,7 @@ function Header() {
 
   return (
     <header>
-      <div className="min-w-full py-2 px-4 bg-white flex flex-row justify-between">
+      <div className="min-w-full py-2 px-4 bg-white flex flex-row justify-between z-10 relative">
         <h1 className="text-3xl">Title</h1>
         {userState ? <button type="button" className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
           onClick={() => API.logoutUser().then(() => {
