@@ -25,7 +25,7 @@ function Header() {
           Logout</button>
           :
           <Link to={"/admin"} >
-            <button className="ml-2 shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4">
+            <button className="shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4">
               Sign in</button>
           </Link>}
       </div>

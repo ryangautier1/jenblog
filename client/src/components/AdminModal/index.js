@@ -67,8 +67,8 @@ function AdminModal(props) {
         tags = [tagsRef.current.value];
       }
       tags.push(...tagsState);
-      
-      if (tags !== []){
+
+      if (tags !== []) {
         formContent.tags = tags;
       }
 
@@ -140,6 +140,8 @@ function AdminModal(props) {
     if (modalState === "text") {
       textpostRef.current.value = "";
     }
+    tagsRef.current.value = "";
+    setTagsState([]);
   }
 
   const removeTag = (tag) => {
@@ -272,7 +274,10 @@ function AdminModal(props) {
             onClick={(event) => handleFormSubmit(event)}>
             Submit</button>
           <button type="button" className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
-            onClick={() => props.toggleModal("admin-modal")}>
+            onClick={() => {
+              clearModal();
+              props.toggleModal("admin-modal");
+            }}>
             Close</button>
         </div>
 
