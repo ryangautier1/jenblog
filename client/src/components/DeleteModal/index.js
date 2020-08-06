@@ -14,7 +14,6 @@ function DeleteModal(props) {
   }
 }
 
-
   return (
     <div>
       <div className="absolute top-0 right-0 w-8 h-8 text-lg text-center text-white font-bold opacity-50 bg-black rounded-full cursor-pointer"
@@ -27,7 +26,7 @@ function DeleteModal(props) {
 
       {/* modal here */}
       <div id={id + "delete-modal"}
-        className="fixed modal right-0 left-0 mx-auto border hidden bg-white z-20 p-5">
+        className="fixed delete-modal right-0 left-0 mx-auto border hidden bg-white z-20 p-5">
         {title ? 
         <p className="text-gray-700 mb-4">Are you sure you want to delete "{title}" and its comments?</p>
         : <p className="text-gray-700 mb-4">Are you sure you want to delete this post and its comments?</p>}

@@ -141,6 +141,11 @@ iframe {
   top: 10%;
 }
 
+.delete-modal {
+  max-width: 510px;
+  top: 10%;
+}
+
 .modal-bg {
   min-width: 100vw;
   min-height: 100vh;
@@ -224,6 +229,12 @@ iframe {
   }
   .thumbnail-card img {
     height: 215px;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  .delete-modal {
+    margin: 0 20px;
   }
 }
 

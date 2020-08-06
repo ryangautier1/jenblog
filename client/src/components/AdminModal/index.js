@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import API from '../../utils/API';
 
 
@@ -13,6 +13,15 @@ function AdminModal(props) {
   const captionRef = useRef();
   const textpostRef = useRef();
   const tagsRef = useRef();
+
+  useEffect(() => {
+    if (document.getElementById("tagsrow").clientWidth > 300) {
+      document.getElementById("tagsrow").classList.remove("sm:ml-6");
+      document.getElementById("tagsrow").classList.remove("sm:mt-0");
+      document.getElementById("tagsrow").classList.add("w-full");
+      document.getElementById("tagsrow").classList.add("mt-2");
+    }
+  }, [tagsState]);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -144,6 +153,7 @@ function AdminModal(props) {
       tags.push(tagsRef.current.value);
     }
     setTagsState(tags);
+    tagsRef.current.value = "";
   }
 
   return (
@@ -186,8 +196,7 @@ function AdminModal(props) {
         </div>
         <form className="mb-4">
           <label htmlFor="#titleinput">
-            Title
-            {modalState === "text" ? " (Optional)" : null}
+            {modalState === "text" ? "Subject" : "Title"}
           </label>
           <input className="mb-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200"
             type="text"
@@ -212,7 +221,7 @@ function AdminModal(props) {
               <p className="hidden text-red-600 text-sm italic" id="embedwarning">You must enter a valid embed code</p>
 
               <label htmlFor="#captioninput">Caption (Optional)</label>
-              <textarea className="mb-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200"
+              <textarea className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200"
                 id="captioninput"
                 ref={captionRef} />
             </div>
@@ -220,7 +229,7 @@ function AdminModal(props) {
             :
             <div>
               <label htmlFor="#textpostinput">Body</label>
-              <textarea className="mb-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200"
+              <textarea className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-200"
                 id="textpostinput"
                 ref={textpostRef} />
               <p className="hidden text-red-600 text-sm italic" id="textpostwarning">You must enter content for your post</p>
@@ -241,7 +250,7 @@ function AdminModal(props) {
             </div>
 
             {tagsState ?
-              <div className="overflow-auto ml-0 sm:ml-6 mt-2 sm:mt-0 flex flex-row">
+              <div className="overflow-auto ml-0 sm:ml-6 sm:mt-0 mt-2 flex flex-row" id="tagsrow">
                 {tagsState.map(tag => {
                   return (
                     <div className="mx-1 bg-gray-300 py-2 pr-1 pl-3 rounded-full whitespace-no-wrap" key={tag}>
