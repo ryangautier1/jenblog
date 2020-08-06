@@ -114,11 +114,6 @@ function AdminModal(props) {
         }
       }
 
-      // grab caption input
-      if (captionRef.current.value !== "") {
-        formContent.caption = captionRef.current.value
-      }
-
       // grab tag input
       // if the user typed a tag but didn't click the plus
       let tags = [];

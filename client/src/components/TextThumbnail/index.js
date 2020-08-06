@@ -20,8 +20,18 @@ function TextThumbnail(props) {
         <h2 className="lato text-lg text-gray-900 text-bold">{props.title}</h2>
         <div className="text-md text-blue-700">{props.date}</div>
         {/* {props.comments ? <div className="text-md text-gray-700">{props.comments} Comments</div> : null} */}
-        {props.userState ?
-          <div>
+        {props.tags ?
+          <div className="flex flex-wrap flex-row">
+            {props.tags.map(item => {
+              return (
+                <div className="text-md text-gray-500">
+                  {props.tags.indexOf(item) !== props.tags.length - 1 ?
+                   <span className="mr-1">#{item}</span> 
+                   :
+                   <span>#{item}</span>}
+                </div>
+              )
+            })}
           </div>
           : null
         }

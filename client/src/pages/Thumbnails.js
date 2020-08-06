@@ -143,13 +143,13 @@ function Thumbnails(props) {
             // check if text post has comments
             if (comments) {
               return (
-                <TextThumbnail key={item._id} id={item._id} userState={userState} toggleModal={toggleModal} updateComments={updateComments} updatePage={updatePage} title={item.title} date={item.date} body={item.body} caption={item.caption} comments={comments[0]} />
+                <TextThumbnail key={item._id} id={item._id} userState={userState} toggleModal={toggleModal} updateComments={updateComments} updatePage={updatePage} title={item.title} date={item.date} body={item.body} caption={item.caption} tags={item.tags} comments={comments[0]} />
               )
             }
             else {
               // text post with no comments
               return (
-                <TextThumbnail key={item._id} id={item._id} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} body={item.body} caption={item.caption} />
+                <TextThumbnail key={item._id} id={item._id} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} body={item.body} caption={item.caption} tags={item.tags} />
               )
             }
           }
