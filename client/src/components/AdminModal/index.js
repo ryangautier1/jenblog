@@ -114,6 +114,23 @@ function AdminModal(props) {
         }
       }
 
+      // grab caption input
+      if (captionRef.current.value !== "") {
+        formContent.caption = captionRef.current.value
+      }
+
+      // grab tag input
+      // if the user typed a tag but didn't click the plus
+      let tags = [];
+      if (tagsRef.current.value !== "" && !tagsState.includes(tagsRef.current.value)) {
+        tags = [tagsRef.current.value];
+      }
+      tags.push(...tagsState);
+
+      if (tags !== []) {
+        formContent.tags = tags;
+      }
+
       API.addTextPost(formContent).then(() => {
         props.updatePage();
         clearModal();
