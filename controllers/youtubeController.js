@@ -9,19 +9,24 @@ module.exports = {
   },
   findVideos: function (req, res) {
 
+    // console.log(req.query.search);
+    let query;
     // if query is not empty
-    // if (req.query.search !== ""){
-    //   // if the last character is an S
-    //   if (req.query.search.charAt(req.query.search.length-1) === "s") {
+    if (req.query.search !== ""){
+      // if the last character is an S
+      // if (req.query.search.charAt(req.query.search.length-1) === "s") {
         
-    //   }
-    // }
+      // }
+      if (req.query.search.length > 1) {
+        query = req.query.search.map(item => new RegExp(item, 'i'));
+      }
+    }
 
     db.Youtube
-      .find({ title: { $regex: req.query.search, $options: 'i' } })
+      .find({ title: { $in: query } })
       .then(dbModel => {
         res.json(dbModel);
-        console.log(req.query.title);
+        console.log(query);
       })
       .catch(err => res.status(422).json(err));
   },
