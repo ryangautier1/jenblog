@@ -168,6 +168,23 @@ function VideoPage(props) {
           <div className="mt-1 mb-3">
             {videoState.caption}
           </div>
+
+          {videoState.tags ?
+          <div className="flex flex-wrap flex-row mb-2">
+            {videoState.tags.map(item => {
+              return (
+                <div className="text-md text-gray-500">
+                  {videoState.tags.indexOf(item) !== videoState.tags.length - 1 ?
+                   <span className="mr-1">#{item}</span> 
+                   :
+                   <span>#{item}</span>}
+                </div>
+              )
+            })}
+          </div>
+          : null
+        }
+
           <hr />
           <form className="flex flex-col mt-3">
             {/* if there is a user in local storage, show comment input */}

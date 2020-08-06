@@ -8,7 +8,6 @@ function TextThumbnail(props) {
     if (document.getElementById(props.id + "-text").clientHeight > 200) {
       document.getElementById(props.id + "-fade").classList.remove("hidden");
     }
-    // console.log(document.getElementById(props.id + "-text").clientHeight);
   }, [])
 
   return (
