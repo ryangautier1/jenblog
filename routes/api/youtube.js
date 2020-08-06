@@ -4,7 +4,7 @@ const youtubeController = require('../../controllers/youtubeController');
 // Match with /api/youtube
 router
     .route("/")
-    .get(youtubeController.findAll)
+    .get(youtubeController.findVideos)
     .post(youtubeController.create);
 
 // Match with /api/youtube/:id
