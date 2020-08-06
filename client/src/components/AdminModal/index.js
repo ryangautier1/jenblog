@@ -149,7 +149,7 @@ function AdminModal(props) {
 
   const addTag = () => {
     let tags = [...tagsState];
-    if (!tags.includes(tagsRef.current.value)) {
+    if (!tags.includes(tagsRef.current.value) && tagsRef.current.value !== "") {
       tags.push(tagsRef.current.value);
     }
     setTagsState(tags);
