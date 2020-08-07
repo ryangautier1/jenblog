@@ -48,44 +48,55 @@ function RelatedPosts(props) {
   }, [tags])
 
   return (
-    <aside className="inline-block flex lg:flex-col flex-row overflow-auto">
+    <aside className="lg:ml-2">
+      
       <h1>You may also be interested in...</h1>
-
-      {postsData.map(item => {
-        // check if item is a video
-        if (item.video) {
-          let comments = ytCommentData.filter(comment => comment.video === item._id);
-          // check if video has comments
-          if (comments[0] !== undefined) {
-            return (
-              <VideoThumbnail key={item._id} id={item._id} title={item.title} date={item.date} video={item.video} tags={item.tags} comments={comments[0].comments.length} />
-            )
+      
+      <div className="flex lg:flex-col flex-row overflow-auto">
+        {postsData.map(item => {
+          // check if item is a video
+          if (item.video) {
+            let comments = ytCommentData.filter(comment => comment.video === item._id);
+            // check if video has comments
+            if (comments[0] !== undefined) {
+              return (
+                <div className="related block mx-1">
+                  <VideoThumbnail key={item._id} id={item._id} title={item.title} date={item.date} video={item.video} tags={item.tags} related={true} comments={comments[0].comments.length} />
+                </div>
+              )
+            }
+            else {
+              // video has no comments
+              return (
+                <div className="related block mx-1">
+                  <VideoThumbnail key={item._id} id={item._id} title={item.title} date={item.date} tags={item.tags} related={true} video={item.video} />
+                </div>
+              )
+            }
           }
-          else {
-            // video has no comments
-            return (
-              <VideoThumbnail key={item._id} id={item._id} title={item.title} date={item.date} tags={item.tags} video={item.video} />
-            )
+          // check if item is a text post
+          else if (item.body) {
+            let comments = tpCommentData.filter(comment => comment.textpost === item._id);
+            // check if text post has comments
+            if (comments) {
+              return (
+                <div className="related block mx-1">
+                  <TextThumbnail key={item._id} id={item._id} title={item.title} date={item.date} body={item.body} caption={item.caption} tags={item.tags} related={true} comments={comments[0]} />
+                </div>
+              )
+            }
+            else {
+              // text post with no comments
+              return (
+                <div className="related block mx-1">
+                  <TextThumbnail key={item._id} id={item._id} title={item.title} date={item.date} body={item.body} caption={item.caption} related={true} tags={item.tags} />
+                </div>
+              )
+            }
           }
+        })
         }
-        // check if item is a text post
-        else if (item.body) {
-          let comments = tpCommentData.filter(comment => comment.textpost === item._id);
-          // check if text post has comments
-          if (comments) {
-            return (
-              <TextThumbnail key={item._id} id={item._id} title={item.title} date={item.date} body={item.body} caption={item.caption} tags={item.tags} comments={comments[0]} />
-            )
-          }
-          else {
-            // text post with no comments
-            return (
-              <TextThumbnail key={item._id} id={item._id} title={item.title} date={item.date} body={item.body} caption={item.caption} tags={item.tags} />
-            )
-          }
-        }
-      })
-      }
+      </div>
     </aside>
   )
 }

@@ -112,6 +112,10 @@ nav {
   object-fit: cover;
 }
 
+.related-img {
+  height: 125px !important;
+}
+
 .thumbnail-card:hover {
   box-shadow: 0 0 7px #777;
 }
@@ -135,6 +139,10 @@ nav {
 
 .videos {
   min-width: 650px;
+}
+
+.related {
+  width: 250px;
 }
 
 .yt-container {

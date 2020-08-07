@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function VideoThumbnail(props) {
+// const [related, setRelated] = useState(false);
+//   useEffect(() => {
+//     setRelated(true)
+//   },[props.related])
 
   // grab video id from embed code
   // split by /
@@ -11,10 +15,14 @@ function VideoThumbnail(props) {
 
   let thumbnailSrc = "https://img.youtube.com/vi/" + videoId + "/0.jpg";
 
+
   return (
     <Link to={"/video/" + props.id}>
       <div className="thumbnail-card mb-4 cursor-pointer p-3">
-        <img src={thumbnailSrc} alt={props.title} className="mb-2" />
+        {!props.related ?
+          <img src={thumbnailSrc} alt={props.title} className="mb-2" />
+          : <img src={thumbnailSrc} alt={props.title} className="mb-2 related-img" />
+        }
         <h2 className="lato text-lg text-gray-900 text-bold">{props.title}</h2>
         <div className="text-md text-blue-700">{props.date}</div>
         {props.comments ? <div className="text-md text-gray-700">{props.comments} Comments</div> : null}
@@ -24,9 +32,9 @@ function VideoThumbnail(props) {
               return (
                 <div className="text-md text-gray-500" key={item}>
                   {props.tags.indexOf(item) !== props.tags.length - 1 ?
-                   <span className="mr-1">#{item}</span> 
-                   :
-                   <span>#{item}</span>}
+                    <span className="mr-1">#{item}</span>
+                    :
+                    <span>#{item}</span>}
                 </div>
               )
             })}
