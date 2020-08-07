@@ -170,7 +170,7 @@ function TextPage(props) {
           <div className="flex flex-wrap flex-row mb-2">
             {textState.tags.map(item => {
               return (
-                <div className="text-md text-gray-500">
+                <div className="text-md text-gray-500" key={item}>
                   {textState.tags.indexOf(item) !== textState.tags.length - 1 ?
                    <span className="mr-1">#{item}</span> 
                    :

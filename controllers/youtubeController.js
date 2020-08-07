@@ -19,10 +19,9 @@ module.exports = {
         query = req.query.search.map(item => new RegExp(item, 'i'));
       }
       db.Youtube
-      .find({ title: { $in: query } })
+      .find({ $or:[ {title: { $in: query }}, {caption: { $in: query }}, {tags: { $in: query }} ]})
       .then(dbModel => {
         res.json(dbModel);
-        console.log(query);
       })
       .catch(err => res.status(422).json(err));
     }
@@ -32,7 +31,6 @@ module.exports = {
       .find(req.query)
       .then(dbModel => {
         res.json(dbModel);
-        console.log(query);
       })
       .catch(err => res.status(422).json(err));
     }

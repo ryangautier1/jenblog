@@ -12,7 +12,7 @@ function TextThumbnail(props) {
 
   return (
     <Link to={"/text/" + props.id}>
-      <div className="thumbnail-card mb-4 cursor-pointer p-4 animate__animated animate__fadeInUp">
+      <div className="thumbnail-card mb-4 cursor-pointer p-4">
         <p className="varta overflow-hidden text-thumbnail-body" id={props.id + "-text"}>{props.body}
           <span className="text-thumbnail-fade hidden" id={props.id + "-fade"}></span>
         </p>
@@ -23,7 +23,7 @@ function TextThumbnail(props) {
           <div className="flex flex-wrap flex-row">
             {props.tags.map(item => {
               return (
-                <div className="text-md text-gray-500">
+                <div className="text-md text-gray-500" key={item}>
                   {props.tags.indexOf(item) !== props.tags.length - 1 ?
                    <span className="mr-1">#{item}</span> 
                    :

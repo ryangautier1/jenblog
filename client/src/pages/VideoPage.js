@@ -173,7 +173,7 @@ function VideoPage(props) {
           <div className="flex flex-wrap flex-row mb-2">
             {videoState.tags.map(item => {
               return (
-                <div className="text-md text-gray-500">
+                <div className="text-md text-gray-500" key={item}>
                   {videoState.tags.indexOf(item) !== videoState.tags.length - 1 ?
                    <span className="mr-1">#{item}</span> 
                    :

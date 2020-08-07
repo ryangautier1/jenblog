@@ -63,13 +63,14 @@ nav {
 /*  */
 
 /* loading page */
+/* animation generated with https://www.gradient-animator.com/ */
 .loading-page {
-  background: linear-gradient(269deg, #ff1b1c, #ff7f11, #fffffc);
+  background: linear-gradient(270deg, #f35555, #faac68);
   background-size: 600% 600%;
 
-  -webkit-animation: loadingGradient 3s ease infinite;
-  -moz-animation: loadingGradient 3s ease infinite;
-  animation: loadingGradient 3s ease infinite;
+  -webkit-animation: loadingGradient 2s ease infinite;
+  -moz-animation: loadingGradient 2s ease infinite;
+  animation: loadingGradient 2s ease infinite;
 }
 
 @-webkit-keyframes loadingGradient {
