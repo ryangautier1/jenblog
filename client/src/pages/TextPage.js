@@ -145,7 +145,7 @@ function TextPage(props) {
     <div>
       <Link to="/blog">
         <p className="mt-8 ml-4 sm:ml-8 text-gray-600 hover:text-gray-800 inline-block">
-          <i className="fas fa-angle-double-left"></i>   Back
+          <i className="fas fa-angle-double-left"></i>   Home
         </p>
       </Link>
       <main className="mt-4 mx-1 pb-2 sm:mx-16 videos inner-shadow">
