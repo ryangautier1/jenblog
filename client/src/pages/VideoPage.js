@@ -255,7 +255,7 @@ function VideoPage(props) {
           </div>
         </div>
 
-        <RelatedPosts tags={videoState.tags} />
+        <RelatedPosts tags={videoState.tags} formatDates={formatDates} />
 
       </main>
     </div>
