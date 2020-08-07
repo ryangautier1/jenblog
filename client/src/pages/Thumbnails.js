@@ -17,6 +17,8 @@ function Thumbnails(props) {
   // set up state for storing text post data
   const [tpCommentData, setTpCommentData] = useState([]);
   const [userState, setUserState] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const [noResults, setNoResults] = useState(false);
 
   // gather video data on load
   useEffect(() => {
@@ -29,8 +31,10 @@ function Thumbnails(props) {
     })
   }, []);
 
+  // run api calls and update state when searchstate changes
   useEffect(() => {
-    console.log(props.searchState);
+    setPostsData([]);
+    setNoResults(false);
     updatePage();
   }, [props.searchState]);
 
@@ -38,75 +42,36 @@ function Thumbnails(props) {
 
   // this function gets video data from db, sorts by date, formats the dates and updates the state with the result
   const updatePage = () => {
-    // if there is no search query, props.searchState will be an empty array
-    if (props.searchState === []) {
-    API.getYtVideos().then(vids => {
-      API.getYtComments().then(ytComments => {
-        API.getTextPosts().then(posts => {
-          API.getTpComments().then(tpComments => {
-
-            let allPosts = vids.data.concat(posts.data);
-
-            // sort the result by date descending
-            allPosts.sort(function (a, b) {
-              return new Date(b.date) - new Date(a.date);
-            });
-
-            // vids.data.sort(function (a, b) {
-            //   return new Date(b.date) - new Date(a.date);
-            // });
-
-            // put the dates in mm-dd-yyyy format
-            // formatDates(vids.data, "post");
-            formatDates(ytComments.data, "comment");
-            formatDates(allPosts, "post")
-            formatDates(tpComments.data, "comment");
-
-
-            // update the state
-            setPostsData(allPosts);
-            setYtCommentData(ytComments.data);
-            setTpCommentData(tpComments.data);
-          })
-        })
-      })
-
-    });
-  }
-  else {
     API.getYtVideosByQuery(props.searchState).then(vids => {
       API.getYtComments().then(ytComments => {
-        API.getTextPosts().then(posts => {
+        API.getTextPostsByQuery(props.searchState).then(posts => {
           API.getTpComments().then(tpComments => {
-
+            // no results matched query
+            if (vids.data === [] && posts.data === []) {
+              setNoResults(true);
+            }
             let allPosts = vids.data.concat(posts.data);
 
             // sort the result by date descending
             allPosts.sort(function (a, b) {
               return new Date(b.date) - new Date(a.date);
-            });
-
-            // vids.data.sort(function (a, b) {
-            //   return new Date(b.date) - new Date(a.date);
-            // });
+            });        
 
             // put the dates in mm-dd-yyyy format
-            // formatDates(vids.data, "post");
             formatDates(ytComments.data, "comment");
             formatDates(allPosts, "post")
             formatDates(tpComments.data, "comment");
-
 
             // update the state
             setPostsData(allPosts);
             setYtCommentData(ytComments.data);
             setTpCommentData(tpComments.data);
-          })
-        })
-      })
-
-    });
-  }
+            setLoaded(true);
+          }).catch(err => console.log("error getting text post comments", err));
+        }).catch(err => console.log("error getting text posts", err));
+      }).catch(err => console.log("error getting youtube comments", err));
+    }).catch(err => console.log("error getting youtube videos", err));
+  // }
   }
 
   // this function takes an array of objects each with a date key and formats the dates into mm-dd-yyyy format
@@ -159,7 +124,7 @@ function Thumbnails(props) {
       }
 
       {/* if the posts are done loading */}
-      {postsData.length != 0 ? 
+      {loaded && postsData.length !== [] && !noResults ? 
       <div className="w-full masonry animate__animated animate__fadeInUp">
 
         {postsData.map(item => {
@@ -206,6 +171,12 @@ function Thumbnails(props) {
         <p className="lato text-gray-100 text-3xl">Loading...</p>
       </div>
       }
+    {noResults ? 
+<div className="w-full fixed top-0 left-0 h-full z-0">
+        <p className="lato text-gray-100 text-3xl">No results :|</p>
+      </div>
+      : null }
+
 
     </main>
   )

@@ -15,7 +15,7 @@ module.exports = {
       // if (req.query.search.charAt(req.query.search.length-1) === "s") {
         
       // }
-      if (req.query.search.length > 1) {
+      if (req.query.search.length >= 1) {
         query = req.query.search.map(item => new RegExp(item, 'i'));
       }
       db.TextPost
