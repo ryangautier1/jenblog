@@ -211,6 +211,13 @@ iframe {
   font-family: 'Josefin Sans', sans-serif;
 }
 
+@media screen and (max-width: 1280px) {
+  .videos {
+    min-width: unset;
+    max-width: 650px;
+  }
+}
+
 @media screen and (max-width: 1150px) {
   .thumbnail-card img {
     height: 175px;
@@ -223,13 +230,6 @@ iframe {
   }
   .thumbnail-card img {
     height: 230px;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .videos {
-    min-width: unset;
-    max-width: 650px;
   }
 }
 

@@ -61,7 +61,7 @@ export default {
     getTextPosts: function() {
         return axios.get("/api/textpost");
     },
-    getTextPostsByQuery: function(query) {
+    getTextPostsByQuery: function(query, limit) {
         // build query string
         let queryString = "?search[]="
         query.map(item => {
@@ -73,6 +73,9 @@ export default {
                 queryString += item;
             }
         })
+        if (limit) {
+            queryString += "&limit=" + limit;
+        }
         return axios.get("/api/textpost" + queryString);
     },
     getTextPostById: function(id) {

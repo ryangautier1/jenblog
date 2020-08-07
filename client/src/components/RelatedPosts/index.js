@@ -13,9 +13,10 @@ function RelatedPosts(props) {
   // on load, make api call for related posts based on tags
   useEffect(() => {
     if (tags !== undefined) {
-      API.getYtVideosByQuery(tags).then(vids => {
+      let limit = 5;
+      API.getYtVideosByQuery(tags, limit).then(vids => {
         API.getYtComments().then(ytComments => {
-          API.getTextPostsByQuery(tags).then(posts => {
+          API.getTextPostsByQuery(tags, limit).then(posts => {
             API.getTpComments().then(tpComments => {
               // // no results matched query
               // if (vids.data.length === 0 && posts.data.length === 0) {
