@@ -4,7 +4,7 @@ const textPostController = require('../../controllers/textPostController');
 // Match with /api/textpost
 router
     .route("/")
-    .get(textPostController.findAll)
+    .get(textPostController.findTextPosts)
     .post(textPostController.create);
 
 // Match with /api/textpost/:id
