@@ -48,11 +48,11 @@ function RelatedPosts(props) {
   }, [tags])
 
   return (
-    <aside className="lg:ml-2">
+    <aside className="xl:ml-2">
       
-      <h1>You may also be interested in...</h1>
+      <h1 className="xl:text-center mb-2">You may also be interested in...</h1>
       
-      <div className="flex lg:flex-col flex-row overflow-auto">
+      <div className="flex xl:flex-col flex-row overflow-auto">
         {postsData.map(item => {
           // check if item is a video
           if (item.video) {

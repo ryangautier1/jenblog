@@ -151,7 +151,7 @@ function VideoPage(props) {
           <i className="fas fa-angle-double-left"></i>   Home
         </p>
       </Link>
-      <main className="mt-4 mx-1 pb-2 sm:mx-16 lg:flex lg:flex-row lg:justify-between">
+      <main className="mt-4 mx-1 pb-2 sm:mx-16 xl:flex xl:flex-row xl:justify-around">
         <div className="flex-shrink-0 videos">
 
           <div key={id} className="mb-5 relative text-gray-700">
