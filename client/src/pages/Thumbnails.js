@@ -29,12 +29,17 @@ function Thumbnails(props) {
     })
   }, []);
 
-  useEffect(() => {console.log(props.searchState)}, [props.searchState]);
+  useEffect(() => {
+    console.log(props.searchState);
+    updatePage();
+  }, [props.searchState]);
 
 
 
   // this function gets video data from db, sorts by date, formats the dates and updates the state with the result
   const updatePage = () => {
+    // if there is no search query, props.searchState will be an empty array
+    if (props.searchState === []) {
     API.getYtVideos().then(vids => {
       API.getYtComments().then(ytComments => {
         API.getTextPosts().then(posts => {
@@ -67,6 +72,41 @@ function Thumbnails(props) {
       })
 
     });
+  }
+  else {
+    API.getYtVideosByQuery(props.searchState).then(vids => {
+      API.getYtComments().then(ytComments => {
+        API.getTextPosts().then(posts => {
+          API.getTpComments().then(tpComments => {
+
+            let allPosts = vids.data.concat(posts.data);
+
+            // sort the result by date descending
+            allPosts.sort(function (a, b) {
+              return new Date(b.date) - new Date(a.date);
+            });
+
+            // vids.data.sort(function (a, b) {
+            //   return new Date(b.date) - new Date(a.date);
+            // });
+
+            // put the dates in mm-dd-yyyy format
+            // formatDates(vids.data, "post");
+            formatDates(ytComments.data, "comment");
+            formatDates(allPosts, "post")
+            formatDates(tpComments.data, "comment");
+
+
+            // update the state
+            setPostsData(allPosts);
+            setYtCommentData(ytComments.data);
+            setTpCommentData(tpComments.data);
+          })
+        })
+      })
+
+    });
+  }
   }
 
   // this function takes an array of objects each with a date key and formats the dates into mm-dd-yyyy format

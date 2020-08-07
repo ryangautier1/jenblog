@@ -10,6 +10,21 @@ export default {
     getYtVideos: function() {
         return axios.get("/api/youtube");
     },
+    // this function takes an array of search terms and makes api call
+    getYtVideosByQuery: function(query) {
+        // build query string
+        let queryString = "?search[]="
+        query.map(item => {
+            // if it is not the last item in the query array
+            if (query.indexOf(item) !== query.length-1) {
+                queryString += (item + "&search[]=");
+            }
+            else {
+                queryString += item;
+            }
+        })
+        return axios.get("/api/youtube" + queryString);
+    },
     getVideoById: function(id) {
         return axios.get("/api/youtube/" + id);
     },
