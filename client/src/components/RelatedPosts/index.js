@@ -5,7 +5,7 @@ import VideoThumbnail from '../VideoThumbnail';
 
 function RelatedPosts(props) {
 
-  const { tags, formatDates } = props;
+  const { tags, formatDates, id } = props;
   const [postsData, setPostsData] = useState([]);
   const [ytCommentData, setYtCommentData] = useState([]);
   const [tpCommentData, setTpCommentData] = useState([]);
@@ -55,6 +55,9 @@ function RelatedPosts(props) {
       
       <div className="flex xl:flex-col flex-row overflow-auto mx-5">
         {postsData.map(item => {
+          if (item._id === id) {
+            return null;
+          }
           // check if item is a video
           if (item.video) {
             let comments = ytCommentData.filter(comment => comment.video === item._id);

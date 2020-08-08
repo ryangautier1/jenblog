@@ -233,7 +233,7 @@ function TextPage(props) {
           </div>
         </div>
 
-        <RelatedPosts tags={textState.tags} formatDates={formatDates} />
+        <RelatedPosts tags={textState.tags} formatDates={formatDates} id={id}/>
 
       </main>
     </div>

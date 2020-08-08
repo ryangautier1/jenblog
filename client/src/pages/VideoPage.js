@@ -243,7 +243,7 @@ function VideoPage(props) {
           </div>
         </div>
 
-        <RelatedPosts tags={videoState.tags} formatDates={formatDates} />
+        <RelatedPosts tags={videoState.tags} formatDates={formatDates} id={id}/>
 
       </main>
     </div>
