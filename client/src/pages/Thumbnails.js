@@ -116,6 +116,7 @@ function Thumbnails(props) {
 
       {/* if the posts are done loading */}
       {loaded && !noResults ?
+      <div>
         <div className="w-full masonry animate__animated animate__fadeInUp">
 
           {postsData.map(item => {
@@ -153,9 +154,12 @@ function Thumbnails(props) {
             }
           })
           }
-
+          
         </div>
-
+        <button type="button" className="sm:text-xl text-lg load-more text-sm shadow border-2 border-red-500 hover:text-red-700 hover:border-red-700 focus:outline-none text-red-500 font-bold py-2 px-2 sm:px-4">
+          load more
+        </button>
+        </div>
         :
 
         !loaded ? 

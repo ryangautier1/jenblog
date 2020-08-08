@@ -144,6 +144,11 @@ nav {
   left: 0;
 }
 
+.load-more {
+  width: 90%;
+  margin-left: 5%;
+}
+
 /*  */
 
 .videos {
