@@ -34,6 +34,7 @@ module.exports = {
       db.Youtube
         .find({ $or: [{ title: { $in: query } }, { caption: { $in: query } }, { tags: { $in: query } }] })
         .limit(limit)
+        .skip(parseInt(req.query.skip))
         .then(dbModel => {
           res.json(dbModel);
         })

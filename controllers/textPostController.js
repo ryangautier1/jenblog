@@ -16,6 +16,7 @@ module.exports = {
     else {
       limit = 10;
     }
+
     let query = [];
     // if query is not empty
     if (req.query.search !== undefined){
@@ -34,6 +35,7 @@ module.exports = {
       db.TextPost
       .find({ $or:[ {title: { $in: query }}, {body: { $in: query }}, {tags: { $in: query }} ]})
       .limit(limit)
+      .skip(parseInt(req.query.skip))
       .then(dbModel => {
         res.json(dbModel);
       })

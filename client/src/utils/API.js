@@ -11,7 +11,7 @@ export default {
         return axios.get("/api/youtube");
     },
     // this function takes an array of search terms and makes api call
-    getYtVideosByQuery: function(query) {
+    getYtVideosByQuery: function(query, limit, skip) {
         // build query string
         let queryString = "?search[]="
         query.map(item => {
@@ -23,6 +23,12 @@ export default {
                 queryString += item;
             }
         })
+        if (limit) {
+            queryString += "&limit=" + limit;
+        }
+        if (skip) {
+            queryString += "&skip=" + skip;
+        }
         return axios.get("/api/youtube" + queryString);
     },
     getVideoById: function(id) {
@@ -61,7 +67,7 @@ export default {
     getTextPosts: function() {
         return axios.get("/api/textpost");
     },
-    getTextPostsByQuery: function(query, limit) {
+    getTextPostsByQuery: function(query, limit, skip) {
         // build query string
         let queryString = "?search[]="
         query.map(item => {
@@ -75,6 +81,9 @@ export default {
         })
         if (limit) {
             queryString += "&limit=" + limit;
+        }
+        if (skip) {
+            queryString += "&skip=" + skip;
         }
         return axios.get("/api/textpost" + queryString);
     },
