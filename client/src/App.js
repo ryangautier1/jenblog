@@ -60,15 +60,27 @@ function App() {
     setSearchState(newTerms);
   }
 
+  let modalOpen = true;
+  const toggleModal = (target) => {
+    modalOpen = !modalOpen;
+    if (modalOpen) {
+      document.getElementById(target).classList.add("hidden");
+      document.getElementById(target + "-bg").classList.add("hidden");
+    } else {
+      document.getElementById(target).classList.remove("hidden");
+      document.getElementById(target + "-bg").classList.remove("hidden");
+    }
+  }
+
   return (
     <div>
       <Router>
-      <Header />
+      <Header toggleModal={toggleModal} />
         <Switch>
           <Route exact path={["/", "/blog"]}>
           {/* <Nav /> */}
             <Search handleSearch={handleSearch} removeTerm={removeTerm} searchState={searchState}/>
-            <Thumbnails searchState={searchState} />
+            <Thumbnails searchState={searchState} toggleModal={toggleModal} />
           </Route>
           <Route path={["/video/:id"]}>
             {/* <Nav /> */}

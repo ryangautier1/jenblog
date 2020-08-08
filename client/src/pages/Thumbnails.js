@@ -20,6 +20,8 @@ function Thumbnails(props) {
   const [loaded, setLoaded] = useState(false);
   const [noResults, setNoResults] = useState(false);
 
+  const {toggleModal} = props;
+
   // gather video data on load
   useEffect(() => {
     updatePage();
@@ -100,17 +102,7 @@ function Thumbnails(props) {
     }
   }
 
-  let modalOpen = true;
-  const toggleModal = (target) => {
-    modalOpen = !modalOpen;
-    if (modalOpen) {
-      document.getElementById(target).classList.add("hidden");
-      document.getElementById(target + "-bg").classList.add("hidden");
-    } else {
-      document.getElementById(target).classList.remove("hidden");
-      document.getElementById(target + "-bg").classList.remove("hidden");
-    }
-  }
+  
 
   const updateComments = (video, data, commentRef) => {
     API.updateYtComments(video, data).then(() => {
@@ -121,11 +113,6 @@ function Thumbnails(props) {
 
   return (
     <main className="mt-8 sm:mx-6 md:mx-16 mx-2 pb-2 inner-shadow z-0">
-
-      {true ?
-        <AdminModal updatePage={updatePage} toggleModal={toggleModal} />
-        : null
-      }
 
       {/* if the posts are done loading */}
       {loaded && !noResults ?

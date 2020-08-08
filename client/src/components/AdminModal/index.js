@@ -75,9 +75,10 @@ function AdminModal(props) {
       // add video to db
       API.addVideo(formContent).then(() => {
         // update page, clear and close modal
-        props.updatePage();
+        // props.updatePage();
         clearModal();
-        props.toggleModal("admin-modal")
+        props.toggleModal("admin-modal");
+        window.location.replace('/');
       }
 
       ).catch(err => console.log(err));
@@ -127,9 +128,10 @@ function AdminModal(props) {
       }
 
       API.addTextPost(formContent).then(() => {
-        props.updatePage();
+        // props.updatePage();
         clearModal();
-        props.toggleModal("admin-modal")
+        props.toggleModal("admin-modal");
+        window.location.replace('/');
       }).catch(err => console.log(err));
 
     }
@@ -174,8 +176,7 @@ function AdminModal(props) {
     <div>
       <div className="text-center">
         <button
-          className="cursor-pointer mb-3 bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          id="admin-modal-open"
+          className="text-sm shadow border-2 border-gray-100 hover:text-red-500 hover:bg-gray-100 focus:outline-none text-white font-bold py-2 px-4"          id="admin-modal-open"
           onClick={() => {
             props.toggleModal("admin-modal")
           }}>

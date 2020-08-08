@@ -73,6 +73,15 @@ nav {
   animation: loadingGradient 2s ease infinite;
 }
 
+.header-gradient {
+  background: linear-gradient(270deg, #f35555, #faac68);
+  background-size: 600% 600%;
+
+  -webkit-animation: loadingGradient 8s ease infinite;
+  -moz-animation: loadingGradient 8s ease infinite;
+  animation: loadingGradient 8s ease infinite;
+}
+
 @-webkit-keyframes loadingGradient {
   0%{background-position:4% 0%}
   50%{background-position:97% 100%}

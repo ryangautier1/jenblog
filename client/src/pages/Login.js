@@ -13,7 +13,7 @@ function Login() {
       password: passwordRef.current.value
     }).then(() => {
       console.log("logged in");
-      window.location.replace("/youtube");
+      window.location.replace("/");
     }).catch(err => {
       console.log("Couldn't log in... ", err);
     })
