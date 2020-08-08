@@ -1,13 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import DeleteModal from '../components/DeleteModal';
+import RelatedPosts from '../components/RelatedPosts';
 import API from '../utils/API';
 
 
 function TextPage(props) {
   let { id } = useParams();
   const [textState, setTextState] = useState(false);
-  const { formatDates, userState } = props;
+  const { formatDates, userState, toggleModal } = props;
   const [jenBlogName, setJenBlogName] = useState(localStorage.getItem("jenBlogName"));
   const [commentState, setCommentState] = useState(false);
   const nameRef = useRef();
@@ -29,18 +30,6 @@ function TextPage(props) {
       });
     }).catch(err => console.log(err))
   }, [])
-
-  let modalOpen = true;
-  const toggleModal = (target) => {
-    modalOpen = !modalOpen;
-    if (modalOpen) {
-      document.getElementById(target).classList.add("hidden");
-      document.getElementById(target + "-bg").classList.add("hidden");
-    } else {
-      document.getElementById(target).classList.remove("hidden");
-      document.getElementById(target + "-bg").classList.remove("hidden");
-    }
-  }
 
   const removeName = () => {
     // clear local storage
@@ -241,6 +230,9 @@ function TextPage(props) {
               </div>
             </div> : <div className="mt-2">Be the first to comment!</div>}
         </div>
+
+        <RelatedPosts tags={textState.tags} formatDates={formatDates} />
+
       </main>
     </div>
 

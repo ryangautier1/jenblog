@@ -53,7 +53,7 @@ function RelatedPosts(props) {
       
       <h1 className="xl:text-center mb-2">You may also be interested in...</h1>
       
-      <div className="flex xl:flex-col flex-row overflow-auto">
+      <div className="flex xl:flex-col flex-row overflow-auto mx-5">
         {postsData.map(item => {
           // check if item is a video
           if (item.video) {

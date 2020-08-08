@@ -84,11 +84,11 @@ function App() {
           </Route>
           <Route path={["/video/:id"]}>
             {/* <Nav /> */}
-            <VideoPage formatDates={formatDates} userState={false} />
+            <VideoPage formatDates={formatDates} userState={false} toggleModal={toggleModal} />
           </Route>
           <Route path={["/text/:id"]}>
             {/* <Nav /> */}
-            <TextPage formatDates={formatDates} userState={false} />
+            <TextPage formatDates={formatDates} userState={false} toggleModal={toggleModal} />
           </Route>
           <Route exact path={["/youtube"]}>
             {/* <Nav /> */}
