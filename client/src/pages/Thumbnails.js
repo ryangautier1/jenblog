@@ -139,9 +139,9 @@ function Thumbnails(props) {
             else if (item.body) {
               let comments = tpCommentData.filter(comment => comment.textpost === item._id);
               // check if text post has comments
-              if (comments) {
+              if (comments[0] !== undefined) {
                 return (
-                  <TextThumbnail key={item._id} id={item._id} userState={userState} toggleModal={toggleModal} updateComments={updateComments} updatePage={updatePage} title={item.title} date={item.date} body={item.body} caption={item.caption} tags={item.tags} comments={comments[0]} />
+                  <TextThumbnail key={item._id} id={item._id} userState={userState} toggleModal={toggleModal} updateComments={updateComments} updatePage={updatePage} title={item.title} date={item.date} body={item.body} caption={item.caption} tags={item.tags} comments={comments[0].comments.length} />
                 )
               }
               else {

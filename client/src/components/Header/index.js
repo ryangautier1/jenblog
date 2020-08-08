@@ -17,7 +17,7 @@ function Header(props) {
 
   return (
     <header>
-      <div className="min-w-full py-2 px-4 bg-white flex flex-row justify-between z-10 relative header-gradient">
+      <div className="min-w-full py-2 px-4 bg-white flex flex-row justify-between z-20 relative header-gradient">
         <h1 className="text-3xl varta text-gray-100">Blog Site</h1>
         <div>
           {userState ?
@@ -25,7 +25,7 @@ function Header(props) {
 
             <AdminModal toggleModal={toggleModal} />
 
-            <button type="button" className="ml-2 text-sm shadow border-2 border-gray-100 hover:text-red-500 hover:bg-gray-100 focus:outline-none text-white font-bold py-2 px-4"
+            <button type="button" className="ml-2 text-sm shadow border-2 border-gray-100 hover:text-red-500 hover:bg-gray-100 focus:outline-none text-white font-bold py-2 px-2 sm:px-4"
               onClick={() => API.logoutUser().then(() => {
                 setUserState(false);
                 window.location.reload();

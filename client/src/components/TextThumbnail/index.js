@@ -18,7 +18,7 @@ function TextThumbnail(props) {
         </p>
         <h2 className="lato text-lg text-gray-900 text-bold">{props.title}</h2>
         <div className="text-md text-blue-700">{props.date}</div>
-        {/* {props.comments ? <div className="text-md text-gray-700">{props.comments} Comments</div> : null} */}
+        {props.comments ? <div className="text-md text-gray-700">{props.comments} Comments</div> : null}
         {props.tags ?
           <div className="flex flex-wrap flex-row">
             {props.tags.map(item => {

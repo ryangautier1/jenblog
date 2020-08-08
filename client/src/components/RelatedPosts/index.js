@@ -82,10 +82,10 @@ function RelatedPosts(props) {
           else if (item.body) {
             let comments = tpCommentData.filter(comment => comment.textpost === item._id);
             // check if text post has comments
-            if (comments) {
+            if (comments[0] !== undefined) {
               return (
                 <div className="related block mx-1" key={item._id}>
-                  <TextThumbnail id={item._id} title={item.title} date={item.date} body={item.body} caption={item.caption} tags={item.tags} related={true} comments={comments[0]} />
+                  <TextThumbnail id={item._id} title={item.title} date={item.date} body={item.body} caption={item.caption} tags={item.tags} related={true} comments={comments[0].comments.length} />
                 </div>
               )
             }
