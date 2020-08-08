@@ -148,6 +148,8 @@ nav {
 
 .videos {
   min-width: 650px;
+  max-width: 650px;
+
 }
 
 .related {
