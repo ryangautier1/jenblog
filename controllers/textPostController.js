@@ -8,6 +8,14 @@ module.exports = {
         .catch(err => res.status(422).json(err));
   },
   findTextPosts: function (req, res) {
+    // define limit to be 10 unless otherwise specified
+    let limit;
+    if (req.query.limit) {
+      limit = parseInt(req.query.limit);
+    }
+    else {
+      limit = 10;
+    }
     let query = [];
     // if query is not empty
     if (req.query.search !== undefined){
@@ -25,7 +33,7 @@ module.exports = {
       }
       db.TextPost
       .find({ $or:[ {title: { $in: query }}, {body: { $in: query }}, {tags: { $in: query }} ]})
-      .limit(req.query.limit)
+      .limit(limit)
       .then(dbModel => {
         res.json(dbModel);
       })
