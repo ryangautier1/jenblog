@@ -29,7 +29,7 @@ function TextPage(props) {
         console.log("no comments");
       });
     }).catch(err => console.log(err))
-  }, [])
+  }, [id])
 
   const removeName = () => {
     // clear local storage

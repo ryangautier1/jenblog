@@ -30,7 +30,7 @@ function VideoPage(props) {
 
       });
     }).catch(err => console.log(err))
-  }, [])
+  }, [id])
 
   const removeName = () => {
     // clear local storage
