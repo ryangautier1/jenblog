@@ -25,7 +25,7 @@ function Header(props) {
 
             <AdminModal toggleModal={toggleModal} />
 
-            <button type="button" className="ml-2 text-md shadow border-2 border-gray-100 hover:text-red-500 hover:bg-gray-100 focus:outline-none text-white font-bold py-2 px-2 sm:px-4"
+            <button type="button" className="ml-2 text-sm shadow border-2 border-gray-100 hover:text-red-500 hover:bg-gray-100 focus:outline-none text-white font-bold py-2 px-2 sm:px-4"
               onClick={() => API.logoutUser().then(() => {
                 setUserState(false);
                 window.location.reload();
@@ -34,7 +34,7 @@ function Header(props) {
           </div>            
             :
             <Link to={"/admin"} >
-              <button className="text-md shadow border-2 border-gray-100 hover:text-red-500 hover:bg-gray-100 focus:outline-none text-white font-bold py-2 px-4">
+              <button className="text-sm shadow border-2 border-gray-100 hover:text-red-500 hover:bg-gray-100 focus:outline-none text-white font-bold py-2 px-4">
                 sign in</button>
             </Link>}
         </div>

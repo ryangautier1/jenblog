@@ -8,13 +8,13 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findVideos: function (req, res) {
-    // define limit to be 10 unless otherwise specified
+    // define limit to be 8 unless otherwise specified
     let limit;
     if (req.query.limit) {
       limit = parseInt(req.query.limit);
     }
     else {
-      limit = 10;
+      limit = 8;
     }
     let query = [];
     // if query is not empty
