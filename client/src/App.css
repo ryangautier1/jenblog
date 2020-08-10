@@ -18,18 +18,7 @@ footer {
 }
 /*  */
 
-/* header and nav style */
-.header-div {
-  background-color: #fff;
-}
-
-.header-caption {
-  max-width: 33%
-}
-
-.header-gradient {
-  background: linear-gradient(to left, #f8a574, #e76f29);
-}
+/* header style */
 
 .search {
   width: 200px;
@@ -47,22 +36,13 @@ footer {
   color: #444;
 }
 
-nav {
-  background-color: #fff !important;
-}
-
-.nav-page-effect {
-  box-shadow: inset 0px 5px 5px 0px #ccc;
-  width: calc(100% - 3rem);
-  margin-left: 1.5rem;
-}
-
+/* extra margin is needed to make sticky search bar effect smooth */
 .extra-margin {
   margin-top: 85px;
 }
 /*  */
 
-/* loading page */
+/* loading page an header background */
 /* animation generated with https://www.gradient-animator.com/ */
 .loading-page {
   background: linear-gradient(270deg, #f35555, #faac68);
@@ -98,9 +78,7 @@ nav {
   100%{background-position:4% 0%}
 }
 
-
 /* thumbnail styles */
-
 .grid:after {
   content: '';
   display: block;
@@ -126,10 +104,6 @@ nav {
   object-fit: cover;
 }
 
-.related-img {
-  height: 125px !important;
-}
-
 .thumbnail-card:hover {
   box-shadow: 0 0 7px #777;
 }
@@ -140,6 +114,7 @@ nav {
   position: relative;
 }
 
+/* used to fade out text if it overflows */
 .text-thumbnail-fade {
   height: 3rem;
   width: 100%;
@@ -149,17 +124,16 @@ nav {
   left: 0;
 }
 
-.load-more {
-  width: 90%;
-  margin-left: 5%;
+/* style for image on relatedPosts */
+.related-img {
+  height: 125px !important;
 }
 
 /*  */
-
+/* styling for video page and text post page */
 .videos {
   min-width: 650px;
   max-width: 650px;
-
 }
 
 .related {
@@ -193,6 +167,11 @@ iframe {
   height: 100%;
 }
 
+.tags {
+  max-width: 300px;
+}
+
+/* modal styles */
 .modal {
   max-width: 70vw;
   top: 10%;
@@ -208,18 +187,12 @@ iframe {
   min-height: 100vh;
 }
 
-.tags {
-  max-width: 300px;
-}
-
+/* styling for admin modal nav icons */
 .nav-icon {
   transition: 0.2s ease;
 }
 
-/* .comments-section {
-  background-color: #0f1b2c;
-} */
-
+/* google fonts */
 .varta {
   font-family: 'Varta', sans-serif;
 }
@@ -246,6 +219,7 @@ iframe {
 }
 
 @media screen and (max-width: 1050px) {
+  /* make masonry 2 columns */
   .grid-item {
     width: calc(50% - 10px);
     float: left;
@@ -278,16 +252,10 @@ iframe {
 }
 
 @media screen and (max-width: 640px) {
-  .my-nav {
-    background-color: #0f1b2c;
-  }
-  nav {
-    box-shadow: 0px -1px 4px 0px #ccc;
-  }
   .search {
     width: 100%;
   }
-
+  /* make masonry 1 column */
   .grid-item {
     width: 100%;
     float: left;

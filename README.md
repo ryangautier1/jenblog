@@ -16,6 +16,7 @@ So that my users' experiences with my content are more personal
 - The admin may upload text posts with optional title and tags.
 - When creating a new post, the admin will be notified of errors that would prevent a successful post if there are any.
 - Users may search all posts by keywords that appear anywhere in the post.
+- Search terms may be singular or plural.
 - When viewing an individual post, related posts will be displayed on the side or bottom of the page depending on the screen size. These posts are searched based on the individual post's tags.
 - Users may comment on posts without having to create an account. Users must first enter their name, which is stored in local storage. Their name can be changed if they are on a shared device.
 
