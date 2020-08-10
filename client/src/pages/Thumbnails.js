@@ -1,31 +1,20 @@
 import React, { useState, useEffect } from 'react';
-// import LoadingVideo from '../components/LoadingVideo';
-import Search from '../components/Search';
+import Masonry from "masonry-layout";
 import VideoThumbnail from '../components/VideoThumbnail';
 import TextThumbnail from '../components/TextThumbnail';
-// import TextPost from '../components/TextPost';
-import AdminModal from '../components/AdminModal';
 import API from '../utils/API';
 
 // custom styling is in App.css
-function Thumbnails(props) {
+function Thumbnails(props) {  
+  
 
   // set up state for storing post data
   const [postsData, setPostsData] = useState([]);
   const [ytCommentData, setYtCommentData] = useState([]);
   const [tpCommentData, setTpCommentData] = useState([]);
-  const [postIdState, setPostIdState] = useState([]);
-  // store count of each type of post on page
-  const [skipYt, setSkipYt] = useState(0);
-  const [skipTp, setSkipTp] = useState(0);
-  // store whether the db has returned all videos and textposts
-  const [allTpsLoaded, setAllTpsLoaded] = useState(false);
-  const [allVidsLoaded, setAllVidsLoaded] = useState(false);
-
 
   const [userState, setUserState] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [noResults, setNoResults] = useState(false);
 
   const { toggleModal } = props;
 
@@ -46,12 +35,21 @@ function Thumbnails(props) {
     updatePage();
   }, [props.searchState]);
 
+  useEffect(() => {
+    var elem = document.querySelector('.grid');
+    var msnry = new Masonry( elem, {
+      // options
+      itemSelector: '.grid-item',
+      percentPosition: true,
+      gutter: 10
+    });
+  }, [loaded]);
+
 
 
   // this function gets video data from db, sorts by date, formats the dates and updates the state with the result
   const updatePage = () => {
     setLoaded(false);
-    setNoResults(false);
     API.getYtVideosByQuery(props.searchState).then(vids => {
       API.getYtComments().then(ytComments => {
         API.getTextPostsByQuery(props.searchState).then(posts => {
@@ -118,7 +116,7 @@ function Thumbnails(props) {
       {/* if the posts are done loading */}
       {loaded ?
         <div>
-          <div className="w-full masonry animate__animated animate__fadeInUp">
+          <div className="w-full grid animate__animated animate__fadeInUp">
 
             {postsData.map(item => {
               // check if item is a video
@@ -127,13 +125,17 @@ function Thumbnails(props) {
                 // check if video has comments
                 if (comments[0] !== undefined) {
                   return (
-                    <VideoThumbnail key={item._id} id={item._id} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} video={item.video} tags={item.tags} comments={comments[0].comments.length} />
+                    <div className="grid-item">
+                      <VideoThumbnail key={item._id} id={item._id} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} video={item.video} tags={item.tags} comments={comments[0].comments.length} />
+                    </div>
                   )
                 }
                 else {
                   // video has no comments
                   return (
-                    <VideoThumbnail key={item._id} id={item._id} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} tags={item.tags} video={item.video} />
+                    <div className="grid-item">
+                      <VideoThumbnail key={item._id} id={item._id} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} tags={item.tags} video={item.video} />
+                    </div>
                   )
                 }
               }
@@ -143,13 +145,17 @@ function Thumbnails(props) {
                 // check if text post has comments
                 if (comments[0] !== undefined) {
                   return (
-                    <TextThumbnail key={item._id} id={item._id} userState={userState} toggleModal={toggleModal} updateComments={updateComments} updatePage={updatePage} title={item.title} date={item.date} body={item.body} caption={item.caption} tags={item.tags} comments={comments[0].comments.length} />
+                    <div className="grid-item">
+                      <TextThumbnail key={item._id} id={item._id} userState={userState} toggleModal={toggleModal} updateComments={updateComments} updatePage={updatePage} title={item.title} date={item.date} body={item.body} caption={item.caption} tags={item.tags} comments={comments[0].comments.length} />
+                    </div>
                   )
                 }
                 else {
                   // text post with no comments
                   return (
-                    <TextThumbnail key={item._id} id={item._id} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} body={item.body} caption={item.caption} tags={item.tags} />
+                    <div className="grid-item">
+                      <TextThumbnail key={item._id} id={item._id} toggleModal={toggleModal} updatePage={updatePage} title={item.title} date={item.date} body={item.body} caption={item.caption} tags={item.tags} />
+                    </div>
                   )
                 }
               }

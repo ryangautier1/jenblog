@@ -142,7 +142,7 @@ function TextPage(props) {
 
           <div key={id} className="mb-5 relative text-gray-700">
             {/* change true to check if user is logged in */}
-            {true ?
+            {userState ?
               <DeleteModal id={id} title={textState.title} toggleModal={toggleModal} deleteTextPost={deleteTextPost} type={"textpost"} />
               : <div></div>}
             {/* if the textpost has a title, print the title */}

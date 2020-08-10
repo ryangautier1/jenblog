@@ -144,7 +144,7 @@ function VideoPage(props) {
 
           <div key={id} className="mb-5 relative text-gray-700">
             {/* if user is logged in, show delete button */}
-            {true ?
+            {userState ?
               <DeleteModal id={id} title={videoState.title} toggleModal={toggleModal} deleteVideo={deleteVideo} type={"video"} />
               : <div></div>}
             <span className="text-lg sm:text-xl pl-2 sm:pl-0 lato">{videoState.title}</span>

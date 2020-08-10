@@ -100,11 +100,16 @@ nav {
 
 
 /* thumbnail styles */
-.masonry {
-  column-count: 3;
-  column-gap: 1em;
-  width: 100%;
-  padding: 1em;
+
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.grid-item {
+  width: calc(33% - 20px);
+  float: left;
 }
 
 .thumbnail-card {
@@ -241,8 +246,9 @@ iframe {
 }
 
 @media screen and (max-width: 1050px) {
-  .masonry {
-    column-count: 2;
+  .grid-item {
+    width: calc(50% - 10px);
+    float: left;
   }
   .thumbnail-card img {
     height: 230px;
@@ -281,13 +287,13 @@ iframe {
   .search {
     width: 100%;
   }
-  .masonry {
-    column-count: 1;
-    max-width: 450px;
-    margin: auto;
+
+  .grid-item {
+    width: 100%;
+    float: left;
   }
   .thumbnail-card img {
-    height: 215px;
+    height: 250px;
   }
 }
 
@@ -299,7 +305,7 @@ iframe {
 
 @media screen and (max-width: 430px) {
   .thumbnail-card img {
-    height: 175px;
+    height: 195px;
   }
   .tags {
     width: 100%;
