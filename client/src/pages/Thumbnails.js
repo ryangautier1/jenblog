@@ -13,6 +13,7 @@ function Thumbnails(props) {
   const [ytCommentData, setYtCommentData] = useState([]);
   const [tpCommentData, setTpCommentData] = useState([]);
 
+  const [noResults, setNoResults] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   const { toggleModal } = props;
@@ -43,10 +44,15 @@ function Thumbnails(props) {
   // this function gets video data from db, sorts by date, formats the dates and updates the state with the result
   const updatePage = () => {
     setLoaded(false);
+    setNoResults(false);
     API.getYtVideosByQuery(props.searchState).then(vids => {
       API.getYtComments().then(ytComments => {
         API.getTextPostsByQuery(props.searchState).then(posts => {
           API.getTpComments().then(tpComments => {
+            // determine if there are no results
+            if (vids.data.length === 0 && posts.data.length === 0) {
+              setNoResults(true);
+            }
 
             let allPosts = vids.data.concat(posts.data);
 
@@ -107,8 +113,7 @@ function Thumbnails(props) {
     <main className="mt-8 sm:mx-6 md:mx-16 mx-2 pb-2 inner-shadow z-0">
 
       {/* if the posts are done loading */}
-      {loaded ?
-        <div>
+      {loaded && !noResults ?
           <div className="w-full grid animate__animated animate__fadeIn">
 
             {postsData.map(item => {
@@ -153,10 +158,7 @@ function Thumbnails(props) {
                 }
               }
             })
-            }
-
-          </div>
-          
+            }          
 
         </div>
         :
