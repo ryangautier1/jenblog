@@ -7,7 +7,9 @@ function Header(props) {
   return (
     <header>
       <div className="min-w-full py-2 px-4 bg-white flex flex-row justify-between z-20 relative header-gradient">
+      <Link to={"/"} >
         <h1 className="text-3xl varta text-gray-100">blog site</h1>
+      </Link>
         <div>
           {userState ?
           // if the user is logged in, display admin modal and logout buttons
