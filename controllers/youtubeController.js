@@ -13,9 +13,6 @@ module.exports = {
     if (req.query.limit) {
       limit = parseInt(req.query.limit);
     }
-    else {
-      limit = 8;
-    }
     let query = [];
     // if query is not empty
     if (req.query.search !== undefined) {

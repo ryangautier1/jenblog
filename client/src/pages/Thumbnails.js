@@ -50,42 +50,14 @@ function Thumbnails(props) {
 
   // this function gets video data from db, sorts by date, formats the dates and updates the state with the result
   const updatePage = () => {
-    let limit = 8;
     setLoaded(false);
     setNoResults(false);
-    API.getYtVideosByQuery(props.searchState, limit, skipYt).then(vids => {
+    API.getYtVideosByQuery(props.searchState).then(vids => {
       API.getYtComments().then(ytComments => {
-        API.getTextPostsByQuery(props.searchState, limit, skipTp).then(posts => {
+        API.getTextPostsByQuery(props.searchState).then(posts => {
           API.getTpComments().then(tpComments => {
-            // no results matched query
-            if (vids.data.length === 0 && posts.data.length === 0) {
-              setNoResults(true);
-              setLoaded(true);
-              return;
-            }
 
-            // update skip values
-            let nYt = skipYt;
-            setSkipYt(nYt + vids.data.length);
-            let nTp = skipTp;
-            setSkipYt(nTp + posts.data.length);
-
-            //  check if vids.data and posts.data contain results that are already on the page
-            let newVids = vids.data.filter(item => postIdState.indexOf(item._id) === -1);
-            let newTps = posts.data.filter(item => postIdState.indexOf(item._id) === -1);
-            if (newTps < limit) {
-              setAllTpsLoaded(true);
-            }
-            if (newVids < limit) {
-              setAllVidsLoaded(true);
-            }
-            if (allTpsLoaded && allVidsLoaded) {
-              setLoaded(true);
-              return;
-            }
-
-            console.log("all posts not loaded");
-            let allPosts = newVids.concat(newTps);
+            let allPosts = vids.data.concat(posts.data);
 
             // sort the result by date descending
             allPosts.sort(function (a, b) {
@@ -97,12 +69,8 @@ function Thumbnails(props) {
             formatDates(allPosts, "post")
             formatDates(tpComments.data, "comment");
 
-            let currPosts = postsData;
-            let newPosts = allPosts.concat(currPosts);
-
             // update the state
-            setPostsData(newPosts);
-            updatePostIds(newPosts);
+            setPostsData(allPosts);
             setYtCommentData(ytComments.data);
             setTpCommentData(tpComments.data);
             setLoaded(true);
@@ -111,19 +79,6 @@ function Thumbnails(props) {
       }).catch(err => console.log("error getting youtube comments", err));
     }).catch(err => console.log("error getting youtube videos", err));
     // }
-  }
-
-  const updatePostIds = (obj) => {
-    let newIds = [];
-    obj.map(item => {
-      // if the post id is not in the list of post ids yet
-      if (postIdState.indexOf(item._id) === -1) {
-        // push the id into the postIdState
-        newIds.push(item._id);
-      }
-    });
-    let currIds = postIdState;
-    setPostIdState(currIds.concat(newIds));
   }
 
   // this function takes an array of objects each with a date key and formats the dates into mm-dd-yyyy format
@@ -161,7 +116,7 @@ function Thumbnails(props) {
     <main className="mt-8 sm:mx-6 md:mx-16 mx-2 pb-2 inner-shadow z-0">
 
       {/* if the posts are done loading */}
-      {loaded && !noResults ?
+      {loaded ?
         <div>
           <div className="w-full masonry animate__animated animate__fadeInUp">
 
@@ -202,22 +157,12 @@ function Thumbnails(props) {
             }
 
           </div>
-          {/* display load button */}
-          {/* if all posts have not been loaded */}
-          {!allTpsLoaded && !allTpsLoaded ?
-            // if the page is not currently loading
-            <button type="button"
-              className="sm:text-xl text-lg load-more text-sm shadow border-2 border-red-500 hover:text-red-700 hover:border-red-700 focus:outline-none text-red-500 font-bold py-2 px-2 sm:px-4"
-              onClick={() => { updatePage() }}>
-              load more
-      </button> :
-            // if all posts have been loaded, remove load more button from page
-            null}
+          
 
         </div>
         :
 
-        !loaded && !noResults ?
+        !loaded ?
           // if the posts are not done loading
           <div className="w-full fixed top-0 left-0 h-full loading-page flex justify-center items-center z-0">
             <p className="lato text-gray-100 text-3xl">Loading...</p>
