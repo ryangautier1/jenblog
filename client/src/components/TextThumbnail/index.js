@@ -10,7 +10,7 @@ function TextThumbnail(props) {
     if (document.getElementById(id + "-text").clientHeight > 200) {
       document.getElementById(id + "-fade").classList.remove("hidden");
     }
-  }, [])
+  })
 
   return (
     <Link to={"/text/" + id}>
