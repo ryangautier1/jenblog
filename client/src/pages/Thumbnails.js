@@ -116,7 +116,7 @@ function Thumbnails(props) {
       {/* if the posts are done loading */}
       {loaded ?
         <div>
-          <div className="w-full grid animate__animated animate__fadeInUp">
+          <div className="w-full grid animate__animated animate__fadeIn">
 
             {postsData.map(item => {
               // check if item is a video

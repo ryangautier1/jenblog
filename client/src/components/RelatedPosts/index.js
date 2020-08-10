@@ -64,7 +64,7 @@ function RelatedPosts(props) {
             // check if video has comments
             if (comments[0] !== undefined) {
               return (
-                <div className="related block mx-1 animate__animated animate__fadeInUp" key={item._id}>
+                <div className="related block mx-1 animate__animated animate__fadeIn" key={item._id}>
                   <VideoThumbnail id={item._id} title={item.title} date={item.date} video={item.video} tags={item.tags} related={true} comments={comments[0].comments.length} />
                 </div>
               )
@@ -72,7 +72,7 @@ function RelatedPosts(props) {
             else {
               // video has no comments
               return (
-                <div className="related block mx-1 animate__animated animate__fadeInUp" key={item._id}>
+                <div className="related block mx-1 animate__animated animate__fadeIn" key={item._id}>
                   <VideoThumbnail id={item._id} title={item.title} date={item.date} tags={item.tags} related={true} video={item.video} />
                 </div>
               )
@@ -84,7 +84,7 @@ function RelatedPosts(props) {
             // check if text post has comments
             if (comments[0] !== undefined) {
               return (
-                <div className="related block mx-1 animate__animated animate__fadeInUp" key={item._id}>
+                <div className="related block mx-1 animate__animated animate__fadeIn" key={item._id}>
                   <TextThumbnail id={item._id} title={item.title} date={item.date} body={item.body} caption={item.caption} tags={item.tags} related={true} comments={comments[0].comments.length} />
                 </div>
               )
@@ -92,7 +92,7 @@ function RelatedPosts(props) {
             else {
               // text post with no comments
               return (
-                <div className="related block mx-1 animate__animated animate__fadeInUp" key={item._id}>
+                <div className="related block mx-1 animate__animated animate__fadeIn" key={item._id}>
                   <TextThumbnail id={item._id} title={item.title} date={item.date} body={item.body} caption={item.caption} related={true} tags={item.tags} />
                 </div>
               )
