@@ -284,10 +284,10 @@ function AdminModal(props) {
 
         </form>
         <div className="flex flex-row">
-          <button type="submit" className="text-lg text-sm shadow border-2 border-red-500 hover:text-red-700 hover:border-red-700 focus:outline-none text-red-500 font-bold py-2 px-2 sm:px-4"
+          <button type="submit" className="text-sm shadow border-2 border-red-500 hover:text-red-700 hover:border-red-700 focus:outline-none text-red-500 font-bold py-2 px-2 sm:px-4"
             onClick={(event) => handleFormSubmit(event)}>
             submit</button>
-          <button type="button" className="text-lg ml-2 text-sm shadow border-2 bg-red-500 hover:bg-red-700 focus:outline-none text-gray-100 font-bold py-2 px-2 sm:px-4"
+          <button type="button" className="ml-2 text-sm shadow bg-red-500 hover:bg-red-700 focus:outline-none text-gray-100 font-bold py-2 px-2 sm:px-4"
             onClick={() => {
               clearModal();
               props.toggleModal("admin-modal");
