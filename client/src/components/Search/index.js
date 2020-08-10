@@ -1,27 +1,28 @@
 import React, { useRef, useEffect } from 'react';
 
 
-
 function Search(props) {
+
+  const { searchState, removeTerm, handleSearch } = props;
 
   const searchRef = useRef();
 
+  // scroll listener in useeffect and clean up listener
   useEffect(function setupScroll() {
     function handleScroll() {
+      // if the window scrolls below certain value, make search sticky to top
       if (window.scrollY > 60) {
-        if (window.innerWidth > 640) {
-          document.getElementById("search").classList.add("fixed", "top-0");
-          document.getElementById("search").classList.remove("relative");
-          document.getElementsByTagName("main")[0].classList.add("extra-margin");
-        }
+        document.getElementById("search").classList.add("fixed", "top-0");
+        document.getElementById("search").classList.remove("relative");
+        document.getElementsByTagName("main")[0].classList.add("extra-margin");
       }
+
       else {
-        if (window.innerWidth > 640) {
-          document.getElementById("search").classList.remove("fixed", "top-0");
-          document.getElementById("search").classList.add("relative");
-          document.getElementsByTagName("main")[0].classList.remove("extra-margin");
-        }
+        document.getElementById("search").classList.remove("fixed", "top-0");
+        document.getElementById("search").classList.add("relative");
+        document.getElementsByTagName("main")[0].classList.remove("extra-margin");
       }
+
     }
     window.addEventListener("scroll", handleScroll);
     return function cleanupScroll() {
@@ -35,7 +36,7 @@ function Search(props) {
       <form
         className="search relative"
         onSubmit={(event) => {
-          props.handleSearch(event, searchRef.current.value)
+          handleSearch(event, searchRef.current.value)
           searchRef.current.value = "";
         }}>
         <input placeholder="Search"
@@ -46,12 +47,13 @@ function Search(props) {
       </form>
 
       <div className="overflow-auto ml-0 sm:ml-6 mt-2 sm:mt-0 flex flex-row">
-        {props.searchState.map(term => {
+        {/* display search terms with remove buttons */}
+        {searchState.map(term => {
           return (
             <div className="mx-1 bg-gray-300 py-1 pr-1 pl-3 rounded-full whitespace-no-wrap" key={term}>
               {term}
               <i className="fas fa-times ml-2 mr-1 text-gray-500 cursor-pointer"
-                onClick={() => { props.removeTerm(term) }}></i>
+                onClick={() => { removeTerm(term) }}></i>
             </div>
           )
         })

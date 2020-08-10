@@ -18,12 +18,6 @@ function RelatedPosts(props) {
         API.getYtComments().then(ytComments => {
           API.getTextPostsByQuery(tags, limit).then(posts => {
             API.getTpComments().then(tpComments => {
-              // // no results matched query
-              // if (vids.data.length === 0 && posts.data.length === 0) {
-              //   setNoResults(true);
-              //   setLoaded(true);
-              //   return;
-              // }
 
               let allPosts = vids.data.concat(posts.data);
 

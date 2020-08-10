@@ -11,7 +11,7 @@ import './App.css';
 import Login from './pages/Login';
 
 function App() {
-  
+
   const [searchState, setSearchState] = useState([]);
   const [userState, setUserState] = useState(false);
 
@@ -24,6 +24,13 @@ function App() {
       setUserState(false);
     })
   }, []);
+
+  const handleLogout = () => {
+    API.logoutUser().then(() => {
+      setUserState(false);
+      window.location.reload();
+    }).catch(err => console.log(err));
+  }
 
   // this function takes an array of objects each with a date key and formats the dates into mm-dd-yyyy format
   // for type === post, the dates are at data[i].date
@@ -57,7 +64,7 @@ function App() {
   const handleSearch = (event, value) => {
     event.preventDefault();
     let term = value;
-    if (!searchState.includes(term)){
+    if (!searchState.includes(term)) {
       setSearchState([...searchState, term]);
     }
   }
@@ -83,10 +90,10 @@ function App() {
   return (
     <div>
       <Router>
-      <Header toggleModal={toggleModal} userState={userState} />
+        <Header toggleModal={toggleModal} userState={userState} handleLogout={handleLogout} />
         <Switch>
           <Route exact path={["/", "/blog"]}>
-            <Search handleSearch={handleSearch} removeTerm={removeTerm} searchState={searchState}/>
+            <Search handleSearch={handleSearch} removeTerm={removeTerm} searchState={searchState} />
             <Thumbnails searchState={searchState} toggleModal={toggleModal} />
           </Route>
           <Route path={["/video/:id"]}>
