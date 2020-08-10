@@ -114,6 +114,7 @@ function Thumbnails(props) {
 
       {/* if the posts are done loading */}
       {loaded && !noResults ?
+      <div>
           <div className="w-full grid animate__animated animate__fadeIn">
 
             {postsData.map(item => {
@@ -159,7 +160,7 @@ function Thumbnails(props) {
               }
             })
             }          
-
+          </div>
         </div>
         :
 
