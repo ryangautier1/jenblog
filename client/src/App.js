@@ -1,21 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
-import Nav from './components/Nav';
 import Footer from './components/Footer';
-// import Home from './pages/Home';
 import Search from './components/Search';
-import Youtube from './pages/Youtube';
-// import Instagram from './pages/Instagram';
 import VideoPage from './pages/VideoPage';
 import TextPage from './pages/TextPage';
 import Thumbnails from './pages/Thumbnails';
+import API from './utils/API';
 import './App.css';
 import Login from './pages/Login';
 
 function App() {
   
   const [searchState, setSearchState] = useState([]);
+  const [userState, setUserState] = useState(false);
+
+
+  useEffect(() => {
+    API.getUserData().then(res => {
+      setUserState(true);
+    }).catch(err => {
+      console.log("Not logged in");
+      setUserState(false);
+    })
+  }, []);
 
   // this function takes an array of objects each with a date key and formats the dates into mm-dd-yyyy format
   // for type === post, the dates are at data[i].date
@@ -75,24 +83,17 @@ function App() {
   return (
     <div>
       <Router>
-      <Header toggleModal={toggleModal} />
+      <Header toggleModal={toggleModal} userState={userState} />
         <Switch>
           <Route exact path={["/", "/blog"]}>
-          {/* <Nav /> */}
             <Search handleSearch={handleSearch} removeTerm={removeTerm} searchState={searchState}/>
             <Thumbnails searchState={searchState} toggleModal={toggleModal} />
           </Route>
           <Route path={["/video/:id"]}>
-            {/* <Nav /> */}
-            <VideoPage formatDates={formatDates} userState={false} toggleModal={toggleModal} />
+            <VideoPage formatDates={formatDates} userState={userState} toggleModal={toggleModal} />
           </Route>
           <Route path={["/text/:id"]}>
-            {/* <Nav /> */}
-            <TextPage formatDates={formatDates} userState={false} toggleModal={toggleModal} />
-          </Route>
-          <Route exact path={["/youtube"]}>
-            {/* <Nav /> */}
-            <Youtube formatDates={formatDates} />
+            <TextPage formatDates={formatDates} userState={userState} toggleModal={toggleModal} />
           </Route>
           <Route exact path={["/admin"]}>
             <Login />

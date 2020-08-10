@@ -13,7 +13,6 @@ function Thumbnails(props) {
   const [ytCommentData, setYtCommentData] = useState([]);
   const [tpCommentData, setTpCommentData] = useState([]);
 
-  const [userState, setUserState] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   const { toggleModal } = props;
@@ -21,12 +20,6 @@ function Thumbnails(props) {
   // gather video data on load
   useEffect(() => {
     updatePage();
-    API.getUserData().then(res => {
-      setUserState(true);
-    }).catch(err => {
-      console.log("Not logged in");
-      setUserState(false);
-    })
   }, []);
 
   // run api calls and update state when searchstate changes
@@ -146,7 +139,7 @@ function Thumbnails(props) {
                 if (comments[0] !== undefined) {
                   return (
                     <div className="grid-item">
-                      <TextThumbnail key={item._id} id={item._id} userState={userState} toggleModal={toggleModal} updateComments={updateComments} updatePage={updatePage} title={item.title} date={item.date} body={item.body} caption={item.caption} tags={item.tags} comments={comments[0].comments.length} />
+                      <TextThumbnail key={item._id} id={item._id} toggleModal={toggleModal} updateComments={updateComments} updatePage={updatePage} title={item.title} date={item.date} body={item.body} caption={item.caption} tags={item.tags} comments={comments[0].comments.length} />
                     </div>
                   )
                 }
