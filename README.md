@@ -28,8 +28,9 @@ This is a full stack MERN application, hosted on Heroku.
 In future builds, the admin will be able to post intagram posts as well
 
 
-## Delpoyed Link
-
-
 ## Questions
 Feel free to contact me at ryangautier2@gmail.com with any questions or comments!
+
+## Gif of Application
+![blogsite](./blogsite.gif)
+
