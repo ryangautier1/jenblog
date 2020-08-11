@@ -17,10 +17,10 @@ export default {
         query.map(item => {
             // if it is not the last item in the query array
             if (query.indexOf(item) !== query.length-1) {
-                queryString += (item + "&search[]=");
+                return queryString += (item + "&search[]=");
             }
             else {
-                queryString += item;
+                return queryString += item;
             }
         })
         if (limit) {
@@ -73,10 +73,10 @@ export default {
         query.map(item => {
             // if it is not the last item in the query array
             if (query.indexOf(item) !== query.length-1) {
-                queryString += (item + "&search[]=");
+                return queryString += (item + "&search[]=");
             }
             else {
-                queryString += item;
+                return queryString += item;
             }
         })
         if (limit) {
