@@ -20,6 +20,7 @@ So that my users' experiences with my content are more personal
 - Search terms may be singular or plural.
 - When viewing an individual post, related posts will be displayed on the side or bottom of the page depending on the screen size. These posts are searched based on the individual post's tags.
 - Users may comment on posts without having to create an account. Users must first enter their name, which is stored in local storage. Their name can be changed if they are on a shared device.
+- This is a responsive application.
 
 ## About
 tailwindcss was used for styling this application, and masonry.js was used to create the masonry layout. Animate.css was used to create some of the animations, and the loading gradient animation was created with the help of https://www.gradient-animator.com/. The favicon was created with the help of https://realfavicongenerator.net/.
