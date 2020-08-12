@@ -23,7 +23,7 @@ So that my users' experiences with my content are more personal
 ## About
 tailwindcss was used for styling this application, and masonry.js was used to create the masonry layout. Animate.css was used to create some of the animations, and the loading gradient animation was created with the help of https://www.gradient-animator.com/. The favicon was created with the help of https://realfavicongenerator.net/.
 
-This is a full stack MERN application, hosted on Heroku. 
+This is a full stack MERN application.
 
 In future builds, the admin will be able to post intagram posts as well
 
