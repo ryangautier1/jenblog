@@ -16,6 +16,6 @@ const textPostCommentSchema = new Schema({
   ]
 })
 
-const ytComment = mongoose.model("textPostComment", textPostCommentSchema);
+const TextPostComment = mongoose.model("textPostComment", textPostCommentSchema);
 
-module.exports = ytComment;
+module.exports = TextPostComment;
