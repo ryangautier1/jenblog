@@ -31,12 +31,12 @@ function Thumbnails(props) {
 
   useEffect(() => {
     var elem = document.querySelector('.grid');
-    // new Masonry( elem, {
-    //   // options
-    //   itemSelector: '.grid-item',
-    //   percentPosition: true,
-    //   gutter: 10
-    // });
+    new Masonry( elem, {
+      // options
+      itemSelector: '.grid-item',
+      percentPosition: true,
+      gutter: 10
+    });
   }, [loaded]);
 
 
