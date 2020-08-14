@@ -118,7 +118,7 @@ footer {
 .text-thumbnail-fade {
   height: 3rem;
   width: 100%;
-  background-image: linear-gradient(transparent, #fff);
+  background-image: linear-gradient(#ffffff00, #fff);
   position: absolute;
   bottom: 0;
   left: 0;
