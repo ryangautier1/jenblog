@@ -11,11 +11,7 @@ router
 router
   .route("/:textpost")
   .get(textPostCommentController.getCommentsByPost)
-  .put(textPostCommentController.update);
-
-// Match with /api/textpostcomment/delete/:id
-router
-  .route("/delete/:id")
+  .put(textPostCommentController.update)
   .delete(textPostCommentController.remove);
 
   module.exports = router;

@@ -53,7 +53,7 @@ export default {
         return axios.delete("/api/youtube/" + id);
     },
     deleteComments: function(id) {
-        return axios.delete("/api/ytcomment/delete/" + id);
+        return axios.delete("/api/ytcomment/" + id);
     },
     getUserData: function () {
         return axios.get("/api/user-login/user_data");
@@ -106,6 +106,6 @@ export default {
         return axios.put("/api/textpostcomment/" + textpost, data);
     },
     deleteTpComments: function(id) {
-        return axios.delete("/api/textpostcomment/delete/" + id);
+        return axios.delete("/api/textpostcomment/" + id);
     }
 };

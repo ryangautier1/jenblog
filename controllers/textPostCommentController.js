@@ -32,8 +32,7 @@ module.exports = {
   },
   remove: function(req, res) {
     db.TextPostComment
-      .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
+      .remove({ textpost: req.params.textpost })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }

@@ -18,11 +18,8 @@ router
 router
     .route("/:video")
     .get(ytcommentController.getCommentsByVideo)
-    .put(ytcommentController.update);
-
-// Match with "/api/ytcomment/delete/:id"
-router
-    .route("/delete/:id")
+    .put(ytcommentController.update)
     .delete(ytcommentController.remove);
+
 
 module.exports = router;

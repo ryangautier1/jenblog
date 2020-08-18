@@ -95,7 +95,7 @@ function TextPage(props) {
   const deleteTextPost = () => {
     if (commentState) {
       API.deleteTextPost(id).then(() => {
-        API.deleteTpComments(commentState._id).then(() => {
+        API.deleteTpComments(id).then(() => {
           toggleModal(id + "delete-modal");
           window.location.replace("/blog");
         }).catch((errr) => { console.log(errr) })

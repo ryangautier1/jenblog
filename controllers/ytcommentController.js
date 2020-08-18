@@ -32,8 +32,7 @@ module.exports = {
   },
   remove: function(req, res) {
     db.ytComment
-        .findById({ _id: req.params.id })
-        .then(dbModel => dbModel.remove())
+        .remove({ video: req.params.video })
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
   }

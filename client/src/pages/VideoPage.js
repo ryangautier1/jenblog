@@ -98,7 +98,7 @@ function VideoPage(props) {
   const deleteVideo = () => {
     if (commentState) {
       API.deleteVideo(id).then(() => {
-        API.deleteComments(commentState._id).then(() => {
+        API.deleteComments(id).then(() => {
           toggleModal(id + "delete-modal");
           window.location.replace("/blog");
         }).catch((errr) => { console.log(errr) })
