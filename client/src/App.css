@@ -282,6 +282,6 @@ iframe {
 
 @media screen and (max-width: 375px) {
   .thumbnail-card img {
-    height: 150px;
+    height: 175px;
   }
 }
