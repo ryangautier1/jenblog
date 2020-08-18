@@ -221,12 +221,24 @@ function VideoPage(props) {
             {/* if comments were returned from API call */}
             {commentState ?
               <div className="comments-section mx-4 mb-2 mt-5 p-2 varta">
+
+
+                {commentState.comments.length > 1 ?
                 <div className="flex justify-between border-b border-gray-700 mb-2 pr-1 pb-1">
-                  {commentState.comments.length} comments
-                <i id={"arrow-" + id} className="fas fa-caret-square-down pt-1 cursor-pointer"
-                    onClick={() => { toggleComments() }}>
-                  </i>
+                  {commentState.comments.length} Comments 
+                  <i id={"arrow-" + id} 
+                  className="fas fa-caret-square-up pt-1 cursor-pointer"
+                  onClick={() => { toggleComments() }}></i>
                 </div>
+                :
+                <div className="flex justify-between border-b border-gray-700 mb-2 pr-1 pb-1">
+                  {commentState.comments.length} Comment 
+                  <i id={"arrow-" + id} 
+                  className="fas fa-caret-square-up pt-1 cursor-pointer"
+                  onClick={() => { toggleComments() }}></i>
+                </div>}
+
+
                 <div id={"comments-section-" + id} className="hidden">
                   {commentState.comments.map(item => {
                     return (

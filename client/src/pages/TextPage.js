@@ -216,7 +216,22 @@ function TextPage(props) {
             </form>
             {commentState.length > 0 ?
               <div className="comments-section mx-4 mb-2 mt-5 p-2 varta">
-                <div className="flex justify-between border-b border-gray-700 mb-2 pr-1 pb-1">{commentState.length} comments <i id={"arrow-" + id} className="fas fa-caret-square-up pt-1 cursor-pointer" onClick={() => { toggleComments() }}></i></div>
+                
+                {commentState.length > 1 ?
+                <div className="flex justify-between border-b border-gray-700 mb-2 pr-1 pb-1">
+                  {commentState.length} Comments 
+                  <i id={"arrow-" + id} 
+                  className="fas fa-caret-square-up pt-1 cursor-pointer"
+                  onClick={() => { toggleComments() }}></i>
+                </div>
+                :
+                <div className="flex justify-between border-b border-gray-700 mb-2 pr-1 pb-1">
+                  {commentState.length} Comment 
+                  <i id={"arrow-" + id} 
+                  className="fas fa-caret-square-up pt-1 cursor-pointer"
+                  onClick={() => { toggleComments() }}></i>
+                </div>}
+                
                 <div id={"comments-section-" + id}>
                   {commentState.map(item => {
                     return (
