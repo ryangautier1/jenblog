@@ -13,10 +13,18 @@ function VideoThumbnail(props) {
 
   let thumbnailSrc = "https://img.youtube.com/vi/" + videoId + "/0.jpg";
 
-  useEffect(() => {
+  useEffect(function setupResize() {
+    function handleResize() {
+      // set height of img so the aspect ratio is 16:9
       document.getElementById("img-" + id).style.height = (document.getElementById("img-" + id).clientWidth * (9/16))+"px";
-  }
-);
+    }
+    // resize on page load
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return function cleanupResize() {
+      window.removeEventListener('resize', handleResize);
+    }
+  });
 
 
 return (
