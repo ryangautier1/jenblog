@@ -8,7 +8,7 @@ function Header(props) {
     <header>
       <div className="min-w-full py-2 px-4 bg-white flex flex-row justify-between z-20 relative header-gradient">
       <Link to={"/"} >
-        <h1 className="text-3xl varta text-gray-100">blog site</h1>
+        <h1 className="text-3xl varta text-gray-100">blogATX</h1>
       </Link>
         <div>
           {userState ?
@@ -18,7 +18,7 @@ function Header(props) {
             <button type="button" className="ml-2 text-sm shadow border-2 border-gray-100 hover:text-red-500 hover:bg-gray-100 focus:outline-none text-white font-bold py-2 px-2 sm:px-4"
               onClick={() => handleLogout()}>
               logout</button>
-          </div>            
+          </div>
             :
             // if the user is not logged in, display login button
             <Link to={"/admin"} >
