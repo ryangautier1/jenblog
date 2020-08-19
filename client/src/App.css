@@ -98,6 +98,10 @@ footer {
   margin: 0 0 1em;
 }
 
+.related-card {
+  background-color: unset;
+}
+
 .responsive-img {
   width: 100%;
   object-fit: cover;
