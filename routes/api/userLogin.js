@@ -13,7 +13,6 @@ router.post("/signup", function(req, res) {
     password: req.body.password
   })
     .then(function () {
-      // res.json(res);
       res.redirect(307, "/api/user-login/login");
     })
     .catch(function(err) {
