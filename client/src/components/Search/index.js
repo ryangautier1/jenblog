@@ -50,10 +50,13 @@ function Search(props) {
         {/* display search terms with remove buttons */}
         {searchState.map(term => {
           return (
-            <div className="mx-1 bg-gray-300 py-1 pr-1 pl-3 rounded-full whitespace-no-wrap" key={term}>
-              {term}
-              <i className="fas fa-times ml-2 mr-1 text-gray-500 cursor-pointer"
-                onClick={() => { removeTerm(term) }}></i>
+            <div className="flex flex-row text-sm sm:text-base">
+              <p className="pt-1 mr-2">Showing posts matching: </p>
+              <div className="mx-1 bg-gray-300 py-1 pr-1 pl-3 rounded-full whitespace-no-wrap" key={term}>
+                {term}
+                <i className="fas fa-times ml-2 mr-1 text-gray-500 cursor-pointer"
+                  onClick={() => { removeTerm(term) }}></i>
+              </div>
             </div>
           )
         })

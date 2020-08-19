@@ -63,10 +63,13 @@ function App() {
   // this function updates the state with user input and clears the search field
   const handleSearch = (event, value) => {
     event.preventDefault();
-    let term = value;
-    if (!searchState.includes(term)) {
-      setSearchState([...searchState, term]);
-    }
+    setSearchState([value]);
+    
+    // below would allow a user to search with more than one term
+    // let term = value;
+    // if (!searchState.includes(term)) {
+    //   setSearchState([...searchState, term]);
+    // }
   }
 
   // this function updates the state to remove the item clicked
