@@ -20,6 +20,25 @@ footer {
 
 /* header style */
 
+#nav-area {
+  transition: ease 0.5s;
+  height: 3.5rem;
+}
+
+.expanded {
+  height: 18rem !important;
+}
+
+#search {
+  transition: ease 0.5s;
+  top: 3.5rem;
+  left: 0;
+}
+
+.expanded-search {
+  top: 18rem !important;
+}
+
 .search {
   width: 200px;
 }
@@ -36,10 +55,6 @@ footer {
   color: #444;
 }
 
-/* extra margin is needed to make sticky search bar effect smooth */
-.extra-margin {
-  margin-top: 85px;
-}
 /*  */
 
 /* loading page an header background */
@@ -79,6 +94,10 @@ footer {
 }
 
 /* thumbnail styles */
+.blog-margin {
+  margin-top: 8rem;
+}
+
 .grid:after {
   content: '';
   display: block;
