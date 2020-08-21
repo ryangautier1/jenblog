@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
+import About from './pages/About';
 import Search from './components/Search';
 import VideoPage from './pages/VideoPage';
 import TextPage from './pages/TextPage';
@@ -98,6 +99,9 @@ function App() {
         <Switch>
           <Route exact path={["/"]}>
             <Home/>
+          </Route>
+          <Route exact path={["/about"]}>
+            <About/>
           </Route>
           <Route exact path={["/blog"]}>
             <Search handleSearch={handleSearch} removeTerm={removeTerm} searchState={searchState} />

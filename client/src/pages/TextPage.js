@@ -131,10 +131,10 @@ function TextPage(props) {
   }
 
   return (
-    <div>
+    <div className="mt-16">
       <Link to="/blog">
         <p className="mt-8 ml-4 sm:ml-8 text-gray-600 hover:text-gray-800 inline-block">
-          <i className="fas fa-angle-double-left"></i>   Home
+          <i className="fas fa-angle-double-left"></i>   Blog
         </p>
       </Link>
       <main className="mt-4 mx-1 pb-2 sm:mx-16 xl:flex xl:flex-row xl:justify-around">
