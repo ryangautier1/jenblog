@@ -17,7 +17,7 @@ function Home() {
     return function cleanupResize() {
       window.removeEventListener('resize', handleResize);
     }
-  });
+  },[]);
 
   return (
     <div className="mt-20 p-5 mx-auto w-full flex flex-col items-center">
@@ -28,7 +28,7 @@ function Home() {
             className="object-cover home-img animate__animated animate__fadeIn"
           />
           <span className="absolute top-0 border-4 border-gray-100 inner-border-img"></span>
-          <p className="absolute top-0 left-0 text-xl font-extrabold text-gray-100 sm:py-5 sm:px-6 py-4 px-5">food.</p>
+          <p className="absolute top-0 left-0 text-xl font-extrabold text-gray-100 sm:py-6 sm:px-8 py-4 px-6">food.</p>
         </div>
         <div className="relative lg:w-1/3 sm:w-1/2 w-full inline-block p-4" id="home-img-3">
           <img src="https://res.cloudinary.com/dbhnjg0zu/image/upload/v1598036169/hans-vivek-vja1liByt0Y-unsplash-min_nrvdge.jpg"
@@ -36,7 +36,7 @@ function Home() {
             className="object-cover home-img animate__animated animate__fadeIn"
           />
           <span className="absolute top-0 border-4 border-gray-100 inner-border-img"></span>
-          <p className="absolute bottom-0 right-0 text-xl font-extrabold text-gray-100 sm:py-5 sm:px-6 py-4 px-5">music.</p>
+          <p className="absolute bottom-0 right-0 text-xl font-extrabold text-gray-100 sm:py-6 sm:px-8 py-4 px-6">music.</p>
         </div>
         <div className="relative lg:w-1/3 sm:w-1/2 w-full inline-block p-4" id="home-img-2">
           <img src="https://res.cloudinary.com/dbhnjg0zu/image/upload/v1597980390/mekht-GuvimT4IFok-unsplash_2_qljtl6.jpg"
@@ -44,7 +44,7 @@ function Home() {
             className="object-cover home-img animate__animated animate__fadeIn"
           />
           <span className="absolute top-0 border-4 border-gray-100 inner-border-img"></span>
-          <p className="absolute top-0 left-0 text-xl font-extrabold text-gray-100 sm:py-5 sm:px-6 py-4 px-5">but mostly food.</p>
+          <p className="absolute top-0 left-0 text-xl font-extrabold text-gray-100 sm:py-6 sm:px-8 py-4 px-6">but mostly food.</p>
         </div>
       </div>
 

@@ -25,12 +25,6 @@ footer {
   height: 3.5rem;
 }
 
-nav {
-  top: -10rem;
-  left: 0;
-  transition: 0.5s ease;
-}
-
 #search {
   transition: ease 0.5s;
   top: 3.5rem;
@@ -49,7 +43,7 @@ nav {
   top: 5rem !important;
 }
 
-.dot {
+.nav-transition {
   transition: 0.2s ease;
 }
 
@@ -281,6 +275,11 @@ iframe {
 @media screen and (max-width: 640px) {
   .search {
     width: 100%;
+  }
+  nav {
+    top: -10rem;
+    left: 0;
+    transition: 0.5s ease;
   }
   /* make masonry 1 column */
   .grid-item {
