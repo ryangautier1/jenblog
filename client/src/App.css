@@ -25,8 +25,10 @@ footer {
   height: 3.5rem;
 }
 
-.expanded {
-  height: 18rem !important;
+nav {
+  top: -10rem;
+  left: 0;
+  transition: 0.5s ease;
 }
 
 #search {
@@ -35,8 +37,20 @@ footer {
   left: 0;
 }
 
+.expanded {
+  height: 16rem !important;
+}
+
 .expanded-search {
-  top: 18rem !important;
+  top: 16rem !important;
+}
+
+.expanded-nav {
+  top: 5rem !important;
+}
+
+.dot {
+  transition: 0.2s ease;
 }
 
 .search {
