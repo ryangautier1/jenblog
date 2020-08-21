@@ -184,7 +184,7 @@ function AdminModal(props) {
     <div>
       <div className="text-center">
         <button
-          className="text-sm shadow border-2 border-gray-100 hover:text-red-500 hover:bg-gray-100 focus:outline-none text-white font-bold py-2 px-2 sm:px-4"
+          className="text-sm shadow border-2 border-gray-100 hover:text-red-500 hover:bg-gray-100 focus:outline-none text-white font-bold py-1 px-2 sm:px-3"
           id="admin-modal-open"
           onClick={() => {
             props.toggleModal("admin-modal")

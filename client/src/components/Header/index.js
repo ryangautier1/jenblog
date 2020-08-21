@@ -102,12 +102,12 @@ function Header(props) {
 
             {userState ?
               // if the user is logged in, display admin modal and logout buttons
-              <div className="flex flex-row justify-between">
+              <li className="flex flex-row justify-around mr-5">
                 <AdminModal toggleModal={toggleModal} />
-                <button type="button" className="ml-2 text-sm shadow border-2 border-gray-100 hover:text-red-500 hover:bg-gray-100 focus:outline-none text-white font-bold py-2 px-2 sm:px-4"
+                <button type="button" className="ml-2 text-sm shadow border-2 border-gray-100 hover:text-red-500 hover:bg-gray-100 focus:outline-none text-white font-bold py-1 px-2 sm:px-3"
                   onClick={() => handleLogout()}>
                   logout</button>
-              </div>
+              </li>
               :
               // if the user is not logged in, display login button
               <li className="text-center inline-block">
