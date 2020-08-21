@@ -70,6 +70,22 @@ nav {
 }
 
 /*  */
+.home-img {
+  height: 100%;
+  width: 100%;
+}
+
+.inner-border-btn {
+  width: 15rem;
+}
+
+.inner-border-img {
+  height: 80%;
+  width: 80%;
+  margin-top: 10%;
+  margin-left: calc(10% - 1rem);
+}
+/*  */
 
 /* loading page an header background */
 /* animation generated with https://www.gradient-animator.com/ */

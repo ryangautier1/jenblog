@@ -20,7 +20,7 @@ function Login() {
   }
 
   return (
-    <form className="px-4 mx-auto mt-12 w-full max-w-md">
+    <form className="px-4 mx-auto mt-32 h-full w-full max-w-md">
       <div className="md:flex md:items-center mb-6">
         <div className="md:w-1/3">
           <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" htmlFor="username">
