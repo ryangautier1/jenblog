@@ -32,7 +32,7 @@ function Login() {
             className="bg-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none"
             id="username"
             type="text"
-            placeholder="JennyBenedict"
+            placeholder="username"
             ref={usernameRef}
           />
         </div>
