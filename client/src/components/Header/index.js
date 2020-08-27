@@ -5,16 +5,16 @@ function Header(props) {
   const { toggleModal, userState, handleLogout } = props;
 
   const toggleNav = () => {
-    if (window.innerWidth < 640) {
+    // if (window.innerWidth < 640) {
     document.getElementById("nav-area").classList.toggle("expanded");
     document.getElementsByTagName("nav")[0].classList.toggle("expanded-nav");
     document.getElementById("nav-modal-bg").classList.toggle("hidden");
-    }
+    // }
   }
 
   const toggleDots = (n) => {
-    // toggle side bars on small screens
-    if (window.innerWidth < 640) {
+    // toggle side bars on large screens
+    if (window.innerWidth > 640) {
       let bar1 = document.getElementById("bar-" + n + "1");
       let bar2 = document.getElementById("bar-" + n + "2");
       bar1.classList.toggle("w-0");
@@ -25,12 +25,7 @@ function Header(props) {
       bar2.classList.toggle("w-6");
       bar2.classList.toggle("border");
     }
-    //on larger screens, toggle bottom border
-    else {
-      let bar = document.getElementById("bar-b-" + n);
-      bar.classList.toggle("opacity-0");
-      bar.classList.toggle("border");
-    }
+    
   }
 
   return (
@@ -47,7 +42,7 @@ function Header(props) {
             <h1 className="text-3xl varta text-gray-100">blogATX</h1>
           </Link>
 
-          <div className="block sm:hidden border-2 border-gray-100 h-8 w-8 mt-1 flex-col flex justify-around py-1 items-center cursor-pointer"
+          <div className="block border-2 border-gray-100 h-8 w-8 mt-1 flex-col flex justify-around py-1 items-center cursor-pointer"
             onClick={() => toggleNav()}>
             <div className=" border border-gray-100 w-4"></div>
             <div className=" border border-gray-100 w-4"></div>
@@ -56,8 +51,8 @@ function Header(props) {
 
         </div>
 
-        <nav className="sm:flex sm:flex-row sm:justify-end sm:pr-4 sm:pt-1 lato text-gray-100 min-w-full text-center fixed text-lg">
-          <ul className="flex flex-col sm:flex-row">
+        <nav className="sm:flex sm:justify-around sm:pt-1 lato text-gray-100 min-w-full text-center fixed text-lg">
+          <ul className="flex flex-col">
             <li className="mb-2 text-center inline-block">
               <div className="w-0 bg-gray-100 inline-block mr-5 mb-1 nav-transition" id="bar-11"></div>
               <Link to={"/"} >
@@ -66,11 +61,9 @@ function Header(props) {
                   onMouseOut={() => { toggleDots("1") }}
                   onClick={() => toggleNav()}>
                   Home
-                  <div className="w-12 mb-1 opacity-0 bg-gray-100 absolute bottom-0 nav-transition" id="bar-b-1"></div>
                 </span>
               </Link>
               <div className="w-0 bg-gray-100 inline-block ml-5 mb-1 nav-transition" id="bar-12"></div>
-              <div className="w-0 bg-gray-100 absolute bottom-0 nav-transition" id="bar-b-1"></div>
             </li>
             <li className="mb-2 text-center inline-block">
               <div className="w-0 bg-gray-100 inline-block mr-5 mb-1 nav-transition" id="bar-21"></div>
@@ -80,7 +73,6 @@ function Header(props) {
                   onMouseOut={() => { toggleDots("2") }}
                   onClick={() => toggleNav()}>
                   About
-                  <div className="w-12 mb-1 opacity-0 bg-gray-100 absolute bottom-0 nav-transition" id="bar-b-2"></div>
                 </span>
               </Link>
               <div className="w-0 bg-gray-100 inline-block ml-5 mb-1 nav-transition" id="bar-22"></div>
@@ -94,7 +86,6 @@ function Header(props) {
                   onMouseOut={() => { toggleDots("3") }}
                   onClick={() => toggleNav()}>
                   Blog
-                  <div className="w-8 mb-1 opacity-0 bg-gray-100 absolute bottom-0 nav-transition" id="bar-b-3"></div>
                 </span>
               </Link>
               <div className="w-0 bg-gray-100 inline-block ml-5 mb-1 nav-transition" id="bar-32"></div>
@@ -118,7 +109,6 @@ function Header(props) {
                     onMouseOut={() => { toggleDots("4") }}
                     onClick={() => toggleNav()}>
                     Admin
-                    <div className="w-12 mb-1 opacity-0 bg-gray-100 absolute bottom-0 nav-transition" id="bar-b-4"></div>
 
                   </span>
                 </Link>

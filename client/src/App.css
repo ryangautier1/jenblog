@@ -20,6 +20,12 @@ footer {
 
 /* header style */
 
+nav {
+  top: -10rem;
+  left: 0;
+  transition: 0.5s ease;
+}
+
 #nav-area {
   transition: ease 0.5s;
   height: 3.5rem;
@@ -275,11 +281,6 @@ iframe {
 @media screen and (max-width: 640px) {
   .search {
     width: 100%;
-  }
-  nav {
-    top: -10rem;
-    left: 0;
-    transition: 0.5s ease;
   }
   /* make masonry 1 column */
   .grid-item {

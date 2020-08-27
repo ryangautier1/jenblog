@@ -27,7 +27,7 @@ function Home() {
   });
 
   return (
-    <div className="mt-12 p-5 mx-auto w-full flex flex-col items-center">
+    <div className="mt-12 lg:mt-16 p-5 mx-auto w-full flex flex-col items-center">
       <div className="flex flex-row flex-wrap justify-center">
         <div className="relative lg:w-1/3 sm:w-1/2 w-full inline-block p-4" id="home-img-1">
           <img src="https://res.cloudinary.com/dbhnjg0zu/image/upload/v1597976622/brenan-greene-HPZs4EXRFSU-unsplash_1_isa1mb.jpg"
