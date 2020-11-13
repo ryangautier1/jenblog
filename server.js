@@ -25,7 +25,7 @@ app.use(passport.session());
 app.use(routes);
 
 // connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/jenblog", {
+mongoose.connect(process.env.DB_URI || "mongodb://localhost/jenblog", {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useFindAndModify: false
